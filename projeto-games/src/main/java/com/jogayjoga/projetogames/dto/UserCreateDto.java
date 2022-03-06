@@ -18,14 +18,4 @@ public class UserCreateDto {
     private String name;
 
     private String login;
-
-    private String password;
-
-    private String telephoneNumber;
-
-    private String email;
-
-    private Date birthDate;
-
-    private ProfileUser profile;
 }

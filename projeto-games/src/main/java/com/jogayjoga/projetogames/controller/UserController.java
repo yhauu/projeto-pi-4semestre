@@ -1,4 +1,4 @@
-package com.jogayjoga.projetogames.rest;
+package com.jogayjoga.projetogames.controller;
 
 import java.util.List;
 
