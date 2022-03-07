@@ -16,20 +16,10 @@
 <body>
     Felype Carvalho
 
-
     
-
-    <!-- Import Common HTML Function-->
+    <!-- Import Common JS Function-->
     <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
-    <script>
-        $(function () {
-            var includes = $('[data-include]')
-            $.each(includes, function () {
-                var file = 'common/' + $(this).data('include') + '.html'
-                $(this).load(file)
-            })
-        })
-    </script>
+    <script type="text/javascript" src="js/mainFunction.js"></script>
 
     <!-- Required Js -->
     <div data-include="import-js-general"></div>
