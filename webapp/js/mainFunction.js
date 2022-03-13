@@ -19,14 +19,14 @@ $(document).ready(function () {
         responsive: true,
         // select: true,
         language: {
-            info: "Mostrando _START_ a _END_ de _TOTAL_ de registros",
+            info: "Mostrando de _START_ á _END_ do total de _TOTAL_ de registros",
             infoEmpty: " ",
-            emptyTable: "N�o existem registros para exibir",
+            emptyTable: "Não existem registros para exibir",
             zeroRecords: "Nenhum registro encontrado para pesquisa",
             processing: "Processando...",
             paginate: {
-                previous: "Anterior",
-                next: "Pr�ximo"
+                previous: "Anterior ",
+                next: " Próximo"
             },
             search: "Pesquisar na tabela",
 
