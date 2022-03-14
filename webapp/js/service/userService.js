@@ -1,4 +1,41 @@
-function saveUser() {
+let idUser = 0;
+
+function verificaIdUrl() {
+    var url = window.location.href;
+    var res = url.split('?');
+
+    if (res[1] !== undefined) {
+        var lala = res[1].split('=');
+        idUser = lala[1];
+    }
+
+    if (idUser > 0) {
+        loadUser(idUser);
+    }
+}
+
+function loadUser(idUser) {
+    let success = function (data) {
+        document.getElementById("cNomeUsuario").value = data.name
+        document.getElementById("cUserUsuario").value = data.login
+        document.getElementById("cSenhaUsuario").value = data.password
+        document.getElementById("cCPFUsuario").value = data.legalNumber
+        document.getElementById("cDataNascimentoUsuario").value = data.birthDate
+        document.getElementById("cEmailUsuario").value = data.email
+        document.getElementById("cTelefone").value = data.telephoneNumber
+        document.getElementById("cPerfilUsuário").value = data.profile
+    }
+
+    let error = function (err) {
+        console.log(err);
+    }
+
+    findOne(success, error, idUser);
+}
+
+function saveUser(event) {
+    event.preventDefault()
+
     let cNomeUsuario = document.getElementById("cNomeUsuario").value;
     let cUserUsuario = document.getElementById("cUserUsuario").value;
     let cSenhaUsuario = document.getElementById("cSenhaUsuario").value;
@@ -15,113 +52,87 @@ function saveUser() {
         password: cSenhaUsuario,
         telephoneNumber: cTelefone,
         email: cEmailUsuario,
-        birthDate: cDataNascimentoUsuario,
+        birthDate: FormataStringData(cDataNascimentoUsuario),
         profile: cPerfilUsuário
     }
 
-    console.log(data)
-
     let success = function (data) {
-        console.log(data);
+        window.location = "list-user.html"
     }
 
     let error = function (err) {
-        console.log(err);
+        console.log(err)
     }
 
-    post(success, error, data);
+    if (idUser > 0) {
+        update(success, error, data, idUser);
+    } else {
+        post(success, error, data);
+    }
 }
 
 function listUser() {
-
     let listUsuario = document.getElementById("listaUsuario")
 
-    let data = {
-        id: 0,
-        name: "Felype 1",
-        login: "Felipe-sama",
-        legalNumber: "123-123-123-12",
-        password: "f3r1pe",
-        telephone: "123",
-        email: "aiii@aiii",
-        birthDate: "10/10/2002",
-        profile: "Safado",
-        status: "Ativado"
-    }
-    let data1 = {
-        id: 1,
-        name: "Felype 2",
-        login: "Felipe-sama",
-        legalNumber: "123-123-123-12",
-        password: "f3r1pe",
-        telephone: "123",
-        email: "aiii@aiii",
-        birthDate: "10/10/2002",
-        profile: "Safado",
-        status: "Ativado"
-    }
-    let data2 = {
-        id: 2,
-        name: "Felype 3",
-        login: "Felipe-sama",
-        legalNumber: "123-123-123-12",
-        password: "f3r1pe",
-        telephone: "123",
-        email: "aiii@aiii",
-        birthDate: "10/10/2002",
-        profile: "Safado",
-        status: "Ativado"
+
+    let success = function (data){
+        
+        data.forEach(element => {
+            console.log(element)
+            listaUsuario.innerHTML += `
+                    <tr>
+                        <td>${element.id}</td>
+                        <td>${element.login}</td>
+                        <td>${element.name}</td>
+                        <td>${element.legalNumber}</td>
+                        <td>${element.profile}</td>
+                        <td>${element.userStatus == false?"Desabilitado": "Habilitado"}</td>
+                        <td>
+                            <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
+                                data-target="#viewModalUsuario" title="Informações" 
+                                id="btnView">
+                                <i data-feather="info"></i></a>
+                            <a class="btn btn-sm btn-icon btn-secondary" href="#"                            
+                                title="Ativar/Desativar"
+                                id="btnAtive" onclick="disableUser()">
+                                <i data-feather="toggle-left"></i></a>
+                            <a class="btn btn-sm btn-icon btn-warning"
+                                title="Editar" onclick="telaUpdate(${element.id})"
+                                id="btnEdit">
+                                <i data-feather="edit"></i></a>                            
+                        </td>
+                    </tr>
+                `
+        })
     }
 
-    let data3 = {
-        id: 3,
-        name: "Felype 4",
-        login: "Felipe-sama",
-        legalNumber: "123-123-123-12",
-        password: "f3r1pe",
-        telephone: "123",
-        email: "aiii@aiii",
-        birthDate: "10/10/2002",
-        profile: "Safado",
-        status: "Ativado"
+    let error = function (err){
+        
     }
 
-    var list = [];
+    findAll(success, error)
 
-    list.push(data);
-    list.push(data1);
-    list.push(data2);
-    list.push(data3);
+}
 
-    console.log(list)
+function telaUpdate(id) {
+    window.location = "register-user.html?id="+id;
+}
 
-    list.forEach(element => {
-        listaUsuario.innerHTML += `
-                <tr>
-                    <td>${element.id}</td>
-                    <td>${element.login}</td>
-                    <td>${element.name}</td>
-                    <td>${element.legalNumber}</td>
-                    <td>${element.profile}</td>
-                    <td>${element.status}</td>
-                    <td>
-                        <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
-                            data-target="#viewModalUsuario" title="Informações">
-                            <i data-feather="info"></i></a>
-                        <a class="btn btn-sm btn-icon btn-secondary" href="#"
-                            data-toggle="modal" data-target="#updateModalUsuario"
-                            title="Ativar/Desativar"><i data-feather="toggle-left"></i></a>
-                        <a class="btn btn-sm btn-icon btn-warning" href="register-user.html"
-                            title="Editar"><i data-feather="edit"></i></a>
-                        <a class="btn btn-sm btn-icon btn-danger" href="#" data-toggle="modal"
-                            data-target="#deleteUsuarioModal" title="Excluir"><i
-                                data-feather="x"></i></a>
-                    </td>
-                </tr>
-            `
+function disableUser(id) {
+    disable(id)
+    // document.location.reload(true)
 
+}
+
+function disable(success, error, id) {
+    console.log(urlPrincipal + urlUsuario)
+    $.ajax({
+        url: urlPrincipal + urlUsuario + `${id}/status`,
+        contentType: 'application/json',
+        type: 'PATH',
+        success,
+        error
     })
-
 }
 
 function post(success, error, dado) {
@@ -138,7 +149,28 @@ function post(success, error, dado) {
 
 function findAll(success, error) {
     $.ajax({
-        url: ursPrincipal + urlUsuario,
+        url: urlPrincipal + urlUsuario,
+        contentType: 'application/json',
+        type: 'GET',
+        success,
+        error,
+    })
+}
+
+function update(success, error, dado, id) {
+    $.ajax({
+        url: urlPrincipal + urlUsuario + `/${id}/update`,
+        contentType: 'application/json',
+        type: 'PUT',
+        data: JSON.stringify(dado),
+        success,
+        error,
+    })
+}
+
+function findOne(success, error, id) {
+    $.ajax({
+        url: urlPrincipal + urlUsuario + `/${id}`,
         contentType: 'application/json',
         type: 'GET',
         success,

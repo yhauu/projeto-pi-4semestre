@@ -34,3 +34,19 @@ $(document).ready(function () {
     });
 });
 
+// Jquery Mask
+$(document).ready(function(){
+    $('.date').mask('00/00/0000');
+    $('.phone_with_ddd').mask('(00) 0000-0000');
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+  });
+
+// Format Date
+function FormataStringData(data) {
+    var dia  = data.split("/")[0];
+    var mes  = data.split("/")[1];
+    var ano  = data.split("/")[2];
+  
+    return ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
+    // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
+  }
