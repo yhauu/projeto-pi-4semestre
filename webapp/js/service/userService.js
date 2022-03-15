@@ -106,15 +106,15 @@ function listUser() {
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
                                 data-target="#viewModalUsuario" title="Informações" 
                                 id="btnView" onclick="loadUser('visualizar', ${element.id})">
-                                <i data-feather="info"></i></a>
+                                <i class="material-icons-two-tone">info</i></a>
                             <a class="btn btn-sm btn-icon btn-secondary" href="#"                            
                                 title="Ativar/Desativar"
                                 id="btnAtive" onclick="disableUser(${element.id})">
-                                <i data-feather="toggle-left"></i></a>
+                                <i class="material-icons-two-tone">toggle_on</i></a>
                             <a class="btn btn-sm btn-icon btn-warning"
                                 title="Editar" onclick="telaUpdate(${element.id})"
                                 id="btnEdit">
-                                <i data-feather="edit"></i></a>                            
+                                <i class="material-icons-two-tone">edit</i></a>                            
                         </td>
                     </tr>
                 `
