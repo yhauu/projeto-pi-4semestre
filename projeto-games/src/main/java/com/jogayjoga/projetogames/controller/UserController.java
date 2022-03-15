@@ -53,7 +53,7 @@ public class UserController {
         userService.update(userId, user);
     }
 
-    @PatchMapping
+    @PutMapping
     @RequestMapping("/{userId}/status")
     @ResponseStatus(HttpStatus.OK)
     public void updateStatus(@PathVariable long userId) throws Exception {

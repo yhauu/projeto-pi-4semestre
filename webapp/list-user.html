@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body onload="startDataTable()">
     <div data-include="pre-loader"></div>
     <div data-include="mobile-header"></div>
     <div data-include="navigation-menu"></div>
@@ -72,6 +72,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
                             <!-- Modals -->
 
                             <!-- Modal Delete -->
@@ -124,26 +125,31 @@
                                                 </div>
                                                 <div class="col-md-3 position-relative">
                                                     <label for="vCPFUsuario" class="form-label">CPF</label>
-                                                    <input type="number" class="form-control" name="vCPFUsuario"
+                                                    <input type="text" class="form-control" name="vCPFUsuario"
                                                         id="vCPFUsuario" readonly value="">
                                                 </div>
                                                 <div class="col-md-3 position-relative">
                                                     <label for="vDataNascimentoUsuario" class="form-label">Data de
                                                         Nascimento</label>
-                                                    <input type="number" class="form-control"
+                                                    <input type="text" class="form-control"
                                                         name="vDataNascimentoUsuario" id="vDataNascimentoUsuario"
                                                         readonly value="">
+                                                </div>                                                
+                                                <div class="col-md-3 position-relative">
+                                                    <label class="form-label" for="vEmailUsuario">E-mail</label>
+                                                    <input type="text" class="form-control" name="vEmailUsuario"
+                                                        id="vEmailUsuario" readonly value="">
+                                                </div>
+                                                <div class="col-md-3 position-relative">
+                                                    <label class="form-label" for="vTelefone">Telefone</label>
+                                                    <input type="text" class="form-control" name="vTelefone"
+                                                        id="vTelefone" readonly value="">
                                                 </div>
                                                 <div class="col-md-3 position-relative">
                                                     <label class="form-label" for="vPerfilUsuario">Peril do
                                                         Usuário</label>
                                                     <input type="text" class="form-control" name="vPerfilUsuario"
                                                         id="vPerfilUsuario" readonly value="">
-                                                </div>
-                                                <div class="col-md-3 position-relative">
-                                                    <label class="form-label" for="vEmailUsuario">E-mail</label>
-                                                    <input type="text" class="form-control" name="vEmailUsuario"
-                                                        id="vEmailUsuario" readonly value="">
                                                 </div>
                                                 <div class="col-md-3 position-relative">
                                                     <label class="form-label" for="vStatusUsuario">Estado do
@@ -154,7 +160,7 @@
                                                 <div class="col-md-3 position-relative">
                                                     <label for="vDataAltercaoUsuario" class="form-label">Ultima
                                                         Alteração</label>
-                                                    <input type="number" class="form-control"
+                                                    <input type="text" class="form-control"
                                                         name="vDataAltercaoUsuario" id="vDataAltercaoUsuario" readonly
                                                         value="">
                                                 </div>
@@ -186,6 +192,7 @@
     <!-- Jquery Lib -->
     <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
+    
 
     <!-- Dashborad Kit-->
     <!-- <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script> -->
@@ -195,5 +202,7 @@
 
     <!-- JS Main Functions -->
     <script type="text/javascript" src="js/mainFunction.js"></script>
+    
+    
 
 </html>

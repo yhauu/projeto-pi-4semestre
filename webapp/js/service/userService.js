@@ -10,26 +10,41 @@ function verificaIdUrl() {
     }
 
     if (idUser > 0) {
-        loadUser(idUser);
+        loadUser("editar", idUser);
     }
 }
 
-function loadUser(idUser) {
+function loadUser(tela, idUser) {
     let success = function (data) {
-        document.getElementById("cNomeUsuario").value = data.name
-        document.getElementById("cUserUsuario").value = data.login
-        document.getElementById("cSenhaUsuario").value = data.password
-        document.getElementById("cCPFUsuario").value = data.legalNumber
-        document.getElementById("cDataNascimentoUsuario").value = data.birthDate
-        document.getElementById("cEmailUsuario").value = data.email
-        document.getElementById("cTelefone").value = data.telephoneNumber
-        document.getElementById("cPerfilUsuário").value = data.profile
+        console.log(data)
+        if (tela === "editar") {
+            document.getElementById("cNomeUsuario").value = data.name
+            document.getElementById("cUserUsuario").value = data.login
+            document.getElementById("cSenhaUsuario").value = data.password
+            document.getElementById("cCPFUsuario").value = data.legalNumber
+            document.getElementById("cDataNascimentoUsuario").value = data.birthDate
+            document.getElementById("cEmailUsuario").value = data.email
+            document.getElementById("cTelefone").value = data.telephoneNumber
+            document.getElementById("cPerfilUsuário").value = data.profile
+        } else {
+            document.getElementById("vNomeUsuario").value = data.name
+            document.getElementById("vUserUsuario").value = data.login
+            //document.getElementById("vSenhaUsuario").value = data.password
+            document.getElementById("vCPFUsuario").value = data.legalNumber
+            document.getElementById("vDataNascimentoUsuario").value = data.birthDate
+            document.getElementById("vEmailUsuario").value = data.email
+            document.getElementById("vTelefone").value = data.telephoneNumber
+            document.getElementById("vPerfilUsuario").value = data.profile
+            document.getElementById("vStatusUsuario").value = data.userStatus
+            document.getElementById("vDataAltercaoUsuario").value = data.statusUpdateDate
+        }
     }
 
     let error = function (err) {
-        console.log(err);
+        console.log(err)
     }
 
+    console.log(tela+" "+idUser);
     findOne(success, error, idUser);
 }
 
@@ -90,11 +105,11 @@ function listUser() {
                         <td>
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
                                 data-target="#viewModalUsuario" title="Informações" 
-                                id="btnView">
+                                id="btnView" onclick="loadUser('visualizar', ${element.id})">
                                 <i data-feather="info"></i></a>
                             <a class="btn btn-sm btn-icon btn-secondary" href="#"                            
                                 title="Ativar/Desativar"
-                                id="btnAtive" onclick="disableUser()">
+                                id="btnAtive" onclick="disableUser(${element.id})">
                                 <i data-feather="toggle-left"></i></a>
                             <a class="btn btn-sm btn-icon btn-warning"
                                 title="Editar" onclick="telaUpdate(${element.id})"
@@ -119,17 +134,22 @@ function telaUpdate(id) {
 }
 
 function disableUser(id) {
-    disable(id)
-    // document.location.reload(true)
+    let success = function (){
+        document.location.reload(true);
+    }
 
+    let error = function (err){
+        console.log(err);
+    }
+
+    disable(success, error, id)
 }
 
 function disable(success, error, id) {
-    console.log(urlPrincipal + urlUsuario)
     $.ajax({
-        url: urlPrincipal + urlUsuario + `${id}/status`,
+        url: urlPrincipal + urlUsuario + `/${id}/status`,
         contentType: 'application/json',
-        type: 'PATH',
+        type: 'PUT',
         success,
         error
     })

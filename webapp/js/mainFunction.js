@@ -8,7 +8,7 @@ $(function () {
 })
 
 // Function DataTable
-$(document).ready(function () {
+function startDataTable() {
     $('table').DataTable({
         dom: 'Bfrtip',
         // order: [[0,'asc']],
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
         }
     });
-});
+}
 
 // Jquery Mask
 $(document).ready(function(){
