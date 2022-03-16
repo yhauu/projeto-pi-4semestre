@@ -19,7 +19,7 @@ function startDataTable() {
         responsive: true,
         // select: true,
         language: {
-            info: "Mostrando de _START_ á _END_ do total de _TOTAL_ de registros",
+            info: "Mostrando START a END de TOTAL de registros",
             infoEmpty: " ",
             emptyTable: "Não existem registros para exibir",
             zeroRecords: "Nenhum registro encontrado para pesquisa",
