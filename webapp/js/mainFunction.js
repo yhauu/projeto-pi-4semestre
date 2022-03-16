@@ -17,18 +17,22 @@ function startDataTable() {
         colReorder: true,
         rowReorder: true,
         responsive: true,
+        pagingType: "full_numbers",
         // select: true,
         language: {
-            info: "Mostrando START a END de TOTAL de registros",
+            info: "Mostrando _START_ a _END_ de _TOTAL_ de registros",
             infoEmpty: " ",
             emptyTable: "Não existem registros para exibir",
             zeroRecords: "Nenhum registro encontrado para pesquisa",
             processing: "Processando...",
             paginate: {
+                first: "Primeira Página",
+                last: "Última Página",
                 previous: "Anterior ",
                 next: " Próximo"
             },
             search: "Pesquisar na tabela",
+            
 
         }
     });
