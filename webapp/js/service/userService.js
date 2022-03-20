@@ -86,6 +86,7 @@ function saveUser(event) {
     }
 }
 
+
 function listUser() {
     let listUsuario = document.getElementById("listaUsuario")
 
