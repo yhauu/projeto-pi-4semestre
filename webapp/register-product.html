@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <link rel="stylesheet" href="css/dashboardkit/style.css" id="main-style-link">
+    <!-- Favicon icon -->
+    <link rel="icon" href="/img/dashboardkit/image/favicon.svg" type="image/x-icon">
+
+    <!-- font css -->
+    <link rel="stylesheet" href="fonts/dashboardkit/feather.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/fontawesome.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/material.css">
+
+    <title>Cadastro de Produto</title>
+
+</head>
+
+<body>
+    <div data-include="pre-loader"></div>
+    <div data-include="mobile-header"></div>
+    <div data-include="navigation-menu"></div>
+    <div data-include="header"></div>
+
+    <!-- Conteudo da Página -->
+    <div class="pc-container">
+        <div class="pcoded-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Cadastrar Usuário</h3>
+                        </div>
+                        <div class="card-body">
+                            <a href="list-user.html" class="btn btn-primary" ><- Voltar</a>
+                            <form class="row g-3 mt-3" onsubmit="saveUser(event)">
+                                <div class="col-md-6 position-relative">
+                                    <label for="cNomeUsuario" class="form-label">Nome Produto</label>
+                                    <input type="text" class="form-control" name="cNomeUsuario" id="cNomeUsuario" required value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cUserUsuario" class="form-label">Preço</label>
+                                    <input type="text" class="form-control" name="cUserUsuario" id="cUserUsuario"required value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cSenhaUsuario" class="form-label">Quantidade</label>
+                                    <input type="password" class="form-control" name="cSenhaUsuario" id="cSenhaUsuario" required value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cCPFUsuario" class="form-label">Marca</label>
+                                    <input type="text" class="form-control cpf" name="cCPFUsuario" id="cCPFUsuario" required value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cDataNascimentoUsuario" class="form-label">Modelo</label>
+                                    <input type="text" class="form-control date" name="cDataNascimentoUsuario" id="cDataNascimentoUsuario" required
+                                        value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label class="form-label" for="cEmail">E-mail</label>
+                                    <input type="text" class="form-control" name="cEmailUsuario" id="cEmailUsuario" value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label class="form-label" for="cTelefone">Telefone</label>
+                                    <input type="text" class="form-control phone_with_ddd" name="cTelefone" id="cTelefone" value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <div class="form-group">
+                                        <label class="form-label" for="cPerfilUsuário">Peril do Usuário</label>
+                                        <select class="form-control" name="cPerfilUsuário" id="cPerfilUsuário" required>
+                                            <option value="ADMINISTRADOR">Administrador</option>
+                                            <option value="ESTOQUISTA">Estoquista</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-success float-right">Cadastrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <!-- Import Common JS Function-->
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
+
+    <!-- Dashborad Kit-->
+    <!-- <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script> -->
+    <script type="text/javascript" src="js/dashboardkit/plugins/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/plugins/feather.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/pcoded.min.js"></script>
+
+    <!-- JS Main Functions -->
+    <script type="text/javascript" src="js/mainFunction.js"></script>
+
+    <!-- JS Service -->
+    <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/userService.js"></script>
+    <script>verificaIdUrl();</script>
+
+</html>
