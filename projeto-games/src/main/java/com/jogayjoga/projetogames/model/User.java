@@ -58,25 +58,4 @@ public class User {
 
     @Column(name="data_alteracao_status")
     private Date statusUpdateDate;
-
-    public void setUserStatus(boolean b) {
-    }
-
-    public void setId(long userId) {
-    }
-
-    public boolean isUserStatus() {
-        return false;
-    }
-
-    public void setStatusUpdateDate(Date date) {
-    }
-
-    public String getEmail() {
-        return null;
-    }
-
-    public Object getLegalNumber() {
-        return null;
-    }
 }
