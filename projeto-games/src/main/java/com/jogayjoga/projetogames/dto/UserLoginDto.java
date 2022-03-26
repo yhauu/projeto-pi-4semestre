@@ -1,9 +1,5 @@
 package com.jogayjoga.projetogames.dto;
 
-import java.util.Date;
-
-import com.jogayjoga.projetogames.util.ProfileUser;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreateDto {
+public class UserLoginDto {
 
-    private String name;
+    private String email;
 
-    private String login;
+    private String password;
 }

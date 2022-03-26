@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User findOne(long id) throws Exception {
+    private User findOne(long id) throws Exception {
         Optional<User> user = userRepository.findById(id);
 
         if (user == null ||  user.isEmpty() == true) {
