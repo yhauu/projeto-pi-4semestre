@@ -37,9 +37,14 @@ public class UserService {
     }
 
     public void update(long userId, User user) throws NotFoundException, BadRequestException {
-        findOne(userId);
+        User userCreated = findOne(userId);
         userVerification(user, 'u');
         user.setId(userId);
+
+        if (!userCreated.getPassword().equals(user.getPassword())) {
+            user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(10)));
+        }
+
         userRepository.save(user);
     }
 
