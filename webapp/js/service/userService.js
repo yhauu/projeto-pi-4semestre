@@ -26,10 +26,11 @@ function loadUser(tela, idUser) {
             document.getElementById("cEmailUsuario").value = data.email
             document.getElementById("cTelefone").value = data.telephoneNumber
             document.getElementById("cPerfilUsuário").value = data.profile
+            DisableForm("cEmailUsuario")
+            DisableForm("cCPFUsuario")
         } else {
             document.getElementById("vNomeUsuario").value = data.name
             document.getElementById("vUserUsuario").value = data.login
-            //document.getElementById("vSenhaUsuario").value = data.password
             document.getElementById("vCPFUsuario").value = data.legalNumber
             document.getElementById("vDataNascimentoUsuario").value = data.birthDate
             document.getElementById("vEmailUsuario").value = data.email

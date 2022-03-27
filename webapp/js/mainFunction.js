@@ -54,3 +54,8 @@ function FormataStringData(data) {
     return ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
     // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
   }
+
+  // Disable Form by ID;
+function DisableForm (idForm) {
+    document.getElementById(idForm).readOnly = true
+}
