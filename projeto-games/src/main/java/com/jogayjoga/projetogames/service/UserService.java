@@ -8,6 +8,7 @@ import com.jogayjoga.projetogames.model.User;
 import com.jogayjoga.projetogames.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +29,7 @@ public class UserService {
 
     public void create(User user) throws Exception {
         userVerification(user, 'c');
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(10)));
         user.setUserStatus(true);
         userRepository.save(user);
     }
