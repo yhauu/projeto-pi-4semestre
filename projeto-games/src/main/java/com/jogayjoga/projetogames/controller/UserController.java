@@ -2,6 +2,8 @@ package com.jogayjoga.projetogames.controller;
 
 import java.util.List;
 
+import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
+import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
 import com.jogayjoga.projetogames.model.User;
 import com.jogayjoga.projetogames.service.UserService;
 
@@ -35,27 +37,27 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public User getUser(@PathVariable Long userId) throws Exception {
+    public User getUser(@PathVariable Long userId) throws NotFoundException {
         return userService.findUser(userId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody User user) throws Exception {
+    public void create(@RequestBody User user) throws NotFoundException {
         userService.create(user);
     }
 
     @PutMapping
     @RequestMapping("/{userId}/update")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable long userId, @RequestBody User user) throws Exception {
+    public void update(@PathVariable long userId, @RequestBody User user) throws NotFoundException, BadRequestException {
         userService.update(userId, user);
     }
 
     @PutMapping
     @RequestMapping("/{userId}/status")
     @ResponseStatus(HttpStatus.OK)
-    public void updateStatus(@PathVariable long userId) throws Exception {
+    public void updateStatus(@PathVariable long userId) throws NotFoundException {
         userService.updateStatus(userId);
     }
 }

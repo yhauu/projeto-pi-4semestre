@@ -1,6 +1,7 @@
 package com.jogayjoga.projetogames.service;
 
 import com.jogayjoga.projetogames.dto.UserLoginDto;
+import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.model.User;
 import com.jogayjoga.projetogames.repository.UserRepository;
 
@@ -14,7 +15,7 @@ public class UserLoginService {
     @Autowired
     private UserRepository userRepository;
 
-    public User findUserLogin(UserLoginDto userLoginDto) throws Exception {
+    public User findUserLogin(UserLoginDto userLoginDto) throws BadRequestException {
 
         // Variável do BD
         User user = userRepository.findByEmail(userLoginDto.getEmail());
@@ -28,7 +29,7 @@ public class UserLoginService {
             }
         }
 
-        throw new Exception("User or password was wrong!");
+        throw new BadRequestException("User or password was wrong!");
     }
 
     /* public User findUserLogin(UserLoginDto userLoginDto) throws Exception {
