@@ -16,7 +16,7 @@ function verificaIdUrl() {
 
 function loadUser(tela, idUser) {
     let success = function (data) {
-        console.log(data)
+        //console.log(data)
         if (tela === "editar") {
             document.getElementById("cNomeUsuario").value = data.name
             document.getElementById("cUserUsuario").value = data.login
@@ -45,7 +45,7 @@ function loadUser(tela, idUser) {
         console.log(err)
     }
 
-    console.log(tela + " " + idUser);
+    //console.log(tela + " " + idUser);
     findOne(success, error, idUser);
 }
 
@@ -100,7 +100,7 @@ function listUser() {
     let success = function (data) {
 
         data.forEach(element => {
-            console.log(element)
+            //console.log(element)
             listaUsuario.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
@@ -163,7 +163,7 @@ function disable(success, error, id) {
 }
 
 function post(success, error, dado) {
-    console.log(urlPrincipal + urlUsuario)
+    //console.log(urlPrincipal + urlUsuario)
     $.ajax({
         url: urlPrincipal + urlUsuario,
         contentType: 'application/json',
