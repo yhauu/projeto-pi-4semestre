@@ -16,22 +16,23 @@ function verificaIdUrl() {
 
 function loadUser(tela, idUser) {
     let success = function (data) {
-        console.log(data)
+        //console.log(data)
         if (tela === "editar") {
             document.getElementById("cNomeUsuario").value = data.name
             document.getElementById("cUserUsuario").value = data.login
             document.getElementById("cSenhaUsuario").value = data.password
             document.getElementById("cCPFUsuario").value = data.legalNumber
-            document.getElementById("cDataNascimentoUsuario").value = data.birthDate
+            document.getElementById("cDataNascimentoUsuario").value = FormataStringDataToFrontend(data.birthDate)
             document.getElementById("cEmailUsuario").value = data.email
             document.getElementById("cTelefone").value = data.telephoneNumber
             document.getElementById("cPerfilUsuário").value = data.profile
+            DisableForm("cEmailUsuario")
+            DisableForm("cCPFUsuario")
         } else {
             document.getElementById("vNomeUsuario").value = data.name
             document.getElementById("vUserUsuario").value = data.login
-            //document.getElementById("vSenhaUsuario").value = data.password
             document.getElementById("vCPFUsuario").value = data.legalNumber
-            document.getElementById("vDataNascimentoUsuario").value = data.birthDate
+            document.getElementById("vDataNascimentoUsuario").value = FormataStringDataToFrontend(data.birthDate)
             document.getElementById("vEmailUsuario").value = data.email
             document.getElementById("vTelefone").value = data.telephoneNumber
             document.getElementById("vPerfilUsuario").value = data.profile
@@ -44,7 +45,7 @@ function loadUser(tela, idUser) {
         console.log(err)
     }
 
-    console.log(tela+" "+idUser);
+    //console.log(tela + " " + idUser);
     findOne(success, error, idUser);
 }
 
@@ -60,29 +61,35 @@ function saveUser(event) {
     let cTelefone = document.getElementById("cTelefone").value;
     let cPerfilUsuário = document.getElementById("cPerfilUsuário").value;
 
-    let data = {
-        name: cNomeUsuario,
-        login: cUserUsuario,
-        legalNumber: cCPFUsuario,
-        password: cSenhaUsuario,
-        telephoneNumber: cTelefone,
-        email: cEmailUsuario,
-        birthDate: FormataStringData(cDataNascimentoUsuario),
-        profile: cPerfilUsuário
-    }
+    if (ValidCPF(cCPFUsuario) === true) {
 
-    let success = function (data) {
-        window.location = "list-user.html"
-    }
+        let data = {
+            name: cNomeUsuario,
+            login: cUserUsuario,
+            legalNumber: cCPFUsuario,
+            password: cSenhaUsuario,
+            telephoneNumber: cTelefone,
+            email: cEmailUsuario,
+            birthDate: FormataStringDataToBackend(cDataNascimentoUsuario),
+            profile: cPerfilUsuário
+        }
 
-    let error = function (err) {
-        console.log(err)
-    }
+        let success = function (data) {
+            window.location = "list-user.html"
+        }
 
-    if (idUser > 0) {
-        update(success, error, data, idUser);
+        let error = function (err) {
+            console.log(err)
+        }
+
+        if (idUser > 0) {
+            update(success, error, data, idUser);
+        } else {
+            post(success, error, data);
+        }
+
     } else {
-        post(success, error, data);
+        alert("CPF Invalido");
     }
 }
 
@@ -90,10 +97,10 @@ function listUser() {
     let listUsuario = document.getElementById("listaUsuario")
 
 
-    let success = function (data){
-        
+    let success = function (data) {
+
         data.forEach(element => {
-            console.log(element)
+            //console.log(element)
             listaUsuario.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
@@ -101,7 +108,7 @@ function listUser() {
                         <td>${element.name}</td>
                         <td>${element.legalNumber}</td>
                         <td>${element.profile}</td>
-                        <td>${element.userStatus == false?"Desabilitado": "Habilitado"}</td>
+                        <td>${element.userStatus == false ? "Desabilitado" : "Habilitado"}</td>
                         <td>
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
                                 data-target="#viewModalUsuario" title="Informações" 
@@ -121,8 +128,8 @@ function listUser() {
         })
     }
 
-    let error = function (err){
-        
+    let error = function (err) {
+
     }
 
     findAll(success, error)
@@ -130,15 +137,15 @@ function listUser() {
 }
 
 function telaUpdate(id) {
-    window.location = "register-user.html?id="+id;
+    window.location = "register-user.html?id=" + id;
 }
 
 function disableUser(id) {
-    let success = function (){
+    let success = function () {
         document.location.reload(true);
     }
 
-    let error = function (err){
+    let error = function (err) {
         console.log(err);
     }
 
@@ -156,7 +163,7 @@ function disable(success, error, id) {
 }
 
 function post(success, error, dado) {
-    console.log(urlPrincipal + urlUsuario)
+    //console.log(urlPrincipal + urlUsuario)
     $.ajax({
         url: urlPrincipal + urlUsuario,
         contentType: 'application/json',
