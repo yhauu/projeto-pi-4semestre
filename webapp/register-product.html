@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="fonts/dashboardkit/feather.css">
     <link rel="stylesheet" href="fonts/dashboardkit/fontawesome.css">
     <link rel="stylesheet" href="fonts/dashboardkit/material.css">
+    
 
     <!-- jquery -->
     <link rel="stylesheet" href="css/jquery/jquery.dataTables.min.css">
@@ -38,39 +39,51 @@
                             <h3>Cadastrar Produto</h3>
                         </div>
                         <div class="card-body">
-                            <a href="list-user.html" class="btn btn-primary" ><- Voltar</a>
-                            <form class="row g-3 mt-3" onsubmit="saveUser(event)">
-                                <div class="col-md-6 position-relative">
-                                    <label for="cNomeUsuario" class="form-label">Nome do Produto</label>
-                                    <input type="text" class="form-control" name="cNomeUsuario" id="cNomeUsuario" required value="">
-                                </div>
-                                <div class="col-md-3 position-relative">
-                                    <label for="cUserUsuario" class="form-label">Preço</label>
-                                    <input type="text" class="form-control value" name="cUserUsuario" id="cUserUsuario"required value="">
-                                   
-                                </div>
-                                <div class="col-md-3 position-relative">
-                                    <label for="cSenhaUsuario" class="form-label">Quantidade</label>
-                                    <input type="number" class="form-control" name="cSenhaUsuario" id="cSenhaUsuario" required value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Default file input example</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                  </div>
+                            <a href="list-user.html" class="btn btn-primary">
+                                <- Voltar</a>
+                                    <form class="row g-3 mt-3" onsubmit="saveUser(event)">
+                                        <div class="col-md-11 position-relative">
+                                            <label for="cNomeUsuario" class="form-label">Nome do Produto</label>
+                                            <input type="text" class="form-control" name="cNomeUsuario"
+                                                id="cNomeUsuario" required value="">
+                                        </div>
+                                        <div class="col-md-7 position-relative">
+                                            <label for="cNomeUsuario" class="form-label">Descrição do Produto</label>
+                                            <input type="text" class="form-control" name="cNomeUsuario"
+                                                id="cNomeUsuario" required value="">
+                                        </div>
 
-                                <div class="col-md-3 position-relative">
-                                    <div class="form-group">
-                                        <label class="form-label" for="cPerfilUsuário">Peril do Usuário</label>
-                                        <select class="form-control" name="cPerfilUsuário" id="cPerfilUsuário" required>
-                                            <option value="ADMINISTRADOR">Administrador</option>
-                                            <option value="ESTOQUISTA">Estoquista</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-success float-right">Cadastrar</button>
-                                </div>
-                            </form>
+
+                                        <div class="col-md-2 position-relative">
+                                            <label for="cUserUsuario" class="form-label">Preço</label>
+                                            <input type="text" class="form-control value" name="cUserUsuario"
+                                                id="cUserUsuario" required value="">
+
+                                        </div>
+                                        <div class="col-md-2 position-relative">
+                                            <label for="cSenhaUsuario" class="form-label">Qtd Estoque</label>
+                                            <input type="number" class="form-control" name="cSenhaUsuario"
+                                                id="cSenhaUsuario" required value="">
+                                        </div>
+                                        <div class="col-md-10 position-relative">
+                                            <label for="formFile" class="form-label">Inserir Imagens</label>
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+
+                                        <div class="col-md-3 position-relative">
+                                            <div class="form-group">
+                                                <label class="form-label" for="cPerfilUsuário">Peril do Usuário</label>
+                                                <select class="form-control" name="cPerfilUsuário" id="cPerfilUsuário"
+                                                    required>
+                                                    <option value="ADMINISTRADOR">Administrador</option>
+                                                    <option value="ESTOQUISTA">Estoquista</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-success float-right">Cadastrar</button>
+                                        </div>
+                                    </form>
                         </div>
                     </div>
                 </div>

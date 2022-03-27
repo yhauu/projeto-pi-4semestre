@@ -46,6 +46,15 @@ $(document).ready(function(){
     $('.value').mask('R$ 000,00');
   });
 
+  $('.carousel').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+});
+
+
 // Format Date
 function FormataStringData(data) {
     var dia  = data.split("/")[0];
