@@ -22,7 +22,7 @@ function loadUser(tela, idUser) {
             document.getElementById("cUserUsuario").value = data.login
             document.getElementById("cSenhaUsuario").value = data.password
             document.getElementById("cCPFUsuario").value = data.legalNumber
-            document.getElementById("cDataNascimentoUsuario").value = data.birthDate
+            document.getElementById("cDataNascimentoUsuario").value = FormataStringDataToFrontend(data.birthDate)
             document.getElementById("cEmailUsuario").value = data.email
             document.getElementById("cTelefone").value = data.telephoneNumber
             document.getElementById("cPerfilUsuário").value = data.profile
@@ -32,7 +32,7 @@ function loadUser(tela, idUser) {
             document.getElementById("vNomeUsuario").value = data.name
             document.getElementById("vUserUsuario").value = data.login
             document.getElementById("vCPFUsuario").value = data.legalNumber
-            document.getElementById("vDataNascimentoUsuario").value = data.birthDate
+            document.getElementById("vDataNascimentoUsuario").value = FormataStringDataToFrontend(data.birthDate)
             document.getElementById("vEmailUsuario").value = data.email
             document.getElementById("vTelefone").value = data.telephoneNumber
             document.getElementById("vPerfilUsuario").value = data.profile
@@ -70,7 +70,7 @@ function saveUser(event) {
             password: cSenhaUsuario,
             telephoneNumber: cTelefone,
             email: cEmailUsuario,
-            birthDate: FormataStringData(cDataNascimentoUsuario),
+            birthDate: FormataStringDataToBackend(cDataNascimentoUsuario),
             profile: cPerfilUsuário
         }
 
