@@ -45,7 +45,7 @@ function loadUser(tela, idUser) {
         console.log(err)
     }
 
-    console.log(tela+" "+idUser);
+    console.log(tela + " " + idUser);
     findOne(success, error, idUser);
 }
 
@@ -61,39 +61,44 @@ function saveUser(event) {
     let cTelefone = document.getElementById("cTelefone").value;
     let cPerfilUsuário = document.getElementById("cPerfilUsuário").value;
 
-    let data = {
-        name: cNomeUsuario,
-        login: cUserUsuario,
-        legalNumber: cCPFUsuario,
-        password: cSenhaUsuario,
-        telephoneNumber: cTelefone,
-        email: cEmailUsuario,
-        birthDate: FormataStringData(cDataNascimentoUsuario),
-        profile: cPerfilUsuário
-    }
+    if (ValidCPF(cCPFUsuario) === true) {
 
-    let success = function (data) {
-        window.location = "list-user.html"
-    }
+        let data = {
+            name: cNomeUsuario,
+            login: cUserUsuario,
+            legalNumber: cCPFUsuario,
+            password: cSenhaUsuario,
+            telephoneNumber: cTelefone,
+            email: cEmailUsuario,
+            birthDate: FormataStringData(cDataNascimentoUsuario),
+            profile: cPerfilUsuário
+        }
 
-    let error = function (err) {
-        console.log(err)
-    }
+        let success = function (data) {
+            window.location = "list-user.html"
+        }
 
-    if (idUser > 0) {
-        update(success, error, data, idUser);
+        let error = function (err) {
+            console.log(err)
+        }
+
+        if (idUser > 0) {
+            update(success, error, data, idUser);
+        } else {
+            post(success, error, data);
+        }
+
     } else {
-        post(success, error, data);
+        alert("CPF Invalido");
     }
 }
-
 
 function listUser() {
     let listUsuario = document.getElementById("listaUsuario")
 
 
-    let success = function (data){
-        
+    let success = function (data) {
+
         data.forEach(element => {
             console.log(element)
             listaUsuario.innerHTML += `
@@ -103,7 +108,7 @@ function listUser() {
                         <td>${element.name}</td>
                         <td>${element.legalNumber}</td>
                         <td>${element.profile}</td>
-                        <td>${element.userStatus == false?"Desabilitado": "Habilitado"}</td>
+                        <td>${element.userStatus == false ? "Desabilitado" : "Habilitado"}</td>
                         <td>
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
                                 data-target="#viewModalUsuario" title="Informações" 
@@ -123,8 +128,8 @@ function listUser() {
         })
     }
 
-    let error = function (err){
-        
+    let error = function (err) {
+
     }
 
     findAll(success, error)
@@ -132,15 +137,15 @@ function listUser() {
 }
 
 function telaUpdate(id) {
-    window.location = "register-user.html?id="+id;
+    window.location = "register-user.html?id=" + id;
 }
 
 function disableUser(id) {
-    let success = function (){
+    let success = function () {
         document.location.reload(true);
     }
 
-    let error = function (err){
+    let error = function (err) {
         console.log(err);
     }
 

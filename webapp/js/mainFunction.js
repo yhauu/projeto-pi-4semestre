@@ -32,30 +32,64 @@ function startDataTable() {
                 next: " Próximo"
             },
             search: "Pesquisar na tabela",
-            
+
 
         }
     });
 }
 
 // Jquery Mask
-$(document).ready(function(){
+$(document).ready(function () {
     $('.date').mask('00/00/0000');
     $('.phone_with_ddd').mask('(00) 0000-0000');
-    $('.cpf').mask('000.000.000-00', {reverse: true});
-  });
+    $('.cpf').mask('000.000.000-00', { reverse: true });
+});
 
 // Format Date
 function FormataStringData(data) {
-    var dia  = data.split("/")[0];
-    var mes  = data.split("/")[1];
-    var ano  = data.split("/")[2];
-  
-    return ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
-    // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
-  }
+    var dia = data.split("/")[0];
+    var mes = data.split("/")[1];
+    var ano = data.split("/")[2];
 
-  // Disable Form by ID;
-function DisableForm (idForm) {
+    return ano + '-' + ("0" + mes).slice(-2) + '-' + ("0" + dia).slice(-2);
+    // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
+}
+
+// Disable Form by ID;
+function DisableForm(idForm) {
     document.getElementById(idForm).readOnly = true
+}
+
+//Valid CPF
+function ValidCPF(strCPF) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+    strCPF = strCPF.split('.').join("");
+    strCPF = strCPF.split('-').join("");
+
+    if (strCPF == "00000000000" ||
+        strCPF == "11111111111" ||
+        strCPF == "22222222222" ||
+        strCPF == "33333333333" ||
+        strCPF == "44444444444" ||
+        strCPF == "55555555555" ||
+        strCPF == "66666666666" ||
+        strCPF == "77777777777" ||
+        strCPF == "88888888888" ||
+        strCPF == "99999999999") return false;
+
+    for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+    Soma = 0;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+    return true;
 }
