@@ -5,6 +5,7 @@ import com.jogayjoga.projetogames.model.User;
 import com.jogayjoga.projetogames.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +23,7 @@ public class UserLoginService {
         if (user != null) {
 
             // Verificação de senha do BD com a senha recebida do front
-            if (user.getPassword().equals(userLoginDto.getPassword())) {
+            if (BCrypt.checkpw(userLoginDto.getPassword(), user.getPassword())) {
                 return user;
             }
         }

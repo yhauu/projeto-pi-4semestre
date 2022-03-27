@@ -1,5 +1,6 @@
 package com.jogayjoga.projetogames.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -48,7 +49,7 @@ public class User {
     private String email;
 
     @Column(name="data_nascimento")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(name="perfil_sistema")
     private ProfileUser profile;
