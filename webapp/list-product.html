@@ -48,11 +48,11 @@
                                             <th>Nome</th>
                                             <th>Qtde.</th>
                                             <th>Preço</th>
-                                            <th>Status</th>                                             
+                                            <th>Status</th>
                                             <th>Funções</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="listaUsuario">
+                                    <tbody id="listaProduto">
                                         <!-- <tr>
                                             <td>${element.id}</td>
                                             <td>${element.login}</td>
@@ -62,7 +62,7 @@
                                             <td>${element.userStatus == false ? "Desabilitado" : "Habilitado"}</td>
                                             <td>
                                                 <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
-                                                    data-target="#viewModalUsuario" title="Informações" id="btnView"
+                                                    data-target="#viewModalProduto" title="Informações" id="btnView"
                                                     onclick="loadUser('visualizar', ${element.id})">
                                                     <i class="material-icons-two-tone">info</i></a>
                                                 <a class="btn btn-sm btn-icon btn-secondary" href="#"
@@ -82,112 +82,67 @@
                                             <td>Habilitado</td>
                                             <td>
                                                 <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
-                                                    data-target="#viewModalUsuario" title="Informações" id="btnView"
+                                                    data-target="#viewModalProduto" title="Informações" id="btnView"
                                                     onclick="">
                                                     <i class="material-icons-two-tone">info</i></a>
                                                 <a class="btn btn-sm btn-icon btn-secondary" href="#"
-                                                    title="Ativar/Desativar" id="btnAtive"
-                                                    onclick="">
+                                                    title="Ativar/Desativar" id="btnAtive" onclick="">
                                                     <i class="material-icons-two-tone">toggle_on</i></a>
-                                                <a class="btn btn-sm btn-icon btn-warning" title="Editar"
-                                                    onclick="" id="btnEdit">
+                                                <a class="btn btn-sm btn-icon btn-warning" title="Editar" onclick=""
+                                                    id="btnEdit">
                                                     <i class="material-icons-two-tone">edit</i></a>
                                             </td>
-                                        </tr
-                                    </tbody>
+                                        </tr </tbody>
                                 </table>
                             </div>
 
                             <!-- Modals -->
 
-                            <!-- Modal Delete -->
-                            <div class="modal fade" id="deleteUsuarioModal" tabindex="-1"
-                                aria-labelledby="deleteUsuarioModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-fullscreen-md-down">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title h4" id="deleteUsuarioModalLabel">Atenção!</h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Tem certeza que deseja excluir esse registro? </p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                                onclick="">Excluir</button>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancelar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Modal View -->
-                            <div class="modal fade" id="viewModalUsuario" tabindex="-1"
-                                aria-labelledby="viewModalUsuarioLabel" aria-hidden="true">
+                            <div class="modal fade" id="viewModalProduto" tabindex="-1"
+                                aria-labelledby="viewModalProdutoLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen p-25">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title h4" id="viewModalUsuarioLabel">Visualização de Dados
-                                                do Usuário</h5>
+                                            <h5 class="modal-title h4" id="viewModalProdutoLabel">Visualização de Dados
+                                                do Produto</h5>
                                             <button type="button" class="btn-close" data-dismiss="modal"
                                                 aria-label="Close">
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             <form class="row g-3">
+                                                <div class="col-md-9 position-relative">
+                                                    <label for="vNomeProduto" class="form-label">Nome Produto</label>
+                                                    <input type="text" class="form-control" name="vNomeProduto"
+                                                        id="vNomeProduto" readonly value="">
+                                                </div>
+                                                <div class="col-md-3 position-relative">
+                                                    <label for="vQtdeProduto" class="form-label">Qtde. em
+                                                        Estoque</label>
+                                                    <input type="text" class="form-control" name="vQtdeProduto"
+                                                        id="vQtdeProduto" readonly value="">
+                                                </div>
                                                 <div class="col-md-6 position-relative">
-                                                    <label for="vNomeUsuario" class="form-label">Nome Produto</label>
-                                                    <input type="text" class="form-control" name="vNomeUsuario"
-                                                        id="vNomeUsuario" readonly value="">
+                                                    <label for="vDescricaoProduto" class="form-label">Descrição do Produto</label>
+                                                    <textarea type="textarea" class="form-control" name="vDescricaoProduto"
+                                                        id="vDescricaoProduto" readonly value=""></textarea>
                                                 </div>
                                                 <div class="col-md-3 position-relative">
-                                                    <label for="vUsuarioUsuario" class="form-label">Descrição do
-                                                        Produto</label>
-                                                    <input type="text" class="form-control" name="vUserUsuario"
-                                                        id="vUserUsuario" readonly value="">
+                                                    <label for="vPrecoProduto" class="form-label">Preço</label>
+                                                    <input type="text" class="form-control value" name="vPrecoProduto"
+                                                        id="vPrecoProduto" readonly value="">
                                                 </div>
                                                 <div class="col-md-3 position-relative">
-                                                    <label for="vCPFUsuario" class="form-label">Valor</label>
-                                                    <input type="text" class="form-control" name="vCPFUsuario"
-                                                        id="vCPFUsuario" readonly value="">
+                                                    <label class="form-label" for="vAvaliacaoProduto">Avaliação</label>
+                                                    <input type="text" class="form-control" name="vAvaliacaoProduto"
+                                                        id="vAvaliacaoProduto" readonly value="">
                                                 </div>
                                                 <div class="col-md-3 position-relative">
-                                                    <label for="vDataNascimentoUsuario" class="form-label">Qtd Produto
-                                                    </label>
-                                                    <input type="text" class="form-control"
-                                                        name="vDataNascimentoUsuario" id="vDataNascimentoUsuario"
-                                                        readonly value="">
-                                                </div>
-                                                <div class="col-md-3 position-relative">
-                                                    <label class="form-label" for="vEmailUsuario">E-mail</label>
-                                                    <input type="text" class="form-control" name="vEmailUsuario"
-                                                        id="vEmailUsuario" readonly value="">
-                                                </div>
-                                                <div class="col-md-3 position-relative">
-                                                    <label class="form-label" for="vTelefone">Telefone</label>
-                                                    <input type="text" class="form-control" name="vTelefone"
-                                                        id="vTelefone" readonly value="">
-                                                </div>
-                                                <div class="col-md-3 position-relative">
-                                                    <label class="form-label" for="vPerfilUsuario">Peril do
-                                                        Usuário</label>
-                                                    <input type="text" class="form-control" name="vPerfilUsuario"
-                                                        id="vPerfilUsuario" readonly value="">
-                                                </div>
-                                                <div class="col-md-3 position-relative">
-                                                    <label class="form-label" for="vStatusUsuario">Estado do
-                                                        Usuário</label>
-                                                    <input type="text" class="form-control" name="vStatusUsuario"
-                                                        id="vStatusUsuario" readonly value="">
-                                                </div>
-                                                <div class="col-md-3 position-relative">
-                                                    <label for="vDataAltercaoUsuario" class="form-label">Ultima
+                                                    <label for="vDataAltercaoProduto" class="form-label">Ultima
                                                         Alteração</label>
-                                                    <input type="text" class="form-control" name="vDataAltercaoUsuario"
-                                                        id="vDataAltercaoUsuario" readonly value="">
+                                                    <input type="text" class="form-control" name="vDataAltercaoProduto"
+                                                        id="vDataAltercaoProduto" readonly value="">
                                                 </div>
                                             </form>
                                         </div>
@@ -205,25 +160,17 @@
         </div>
     </div>
 
-    <!-- Import Common JS Function-->
-    <!-- Jquery -->
-    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
-
-    <!-- JS Service -->
-    <script type="text/javascript" src="js/service/url.js"></script>
-    <script type="text/javascript" src="js/service/userService.js"></script>
-    <!-- <script>listUser();</script> -->
-
-    <!-- Jquery Lib -->
-    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
-
+   <!-- Import Common JS Function-->
     <!-- Dashborad Kit-->
-    <!-- <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script> -->
+    <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script>
     <script type="text/javascript" src="js/dashboardkit/plugins/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/dashboardkit/plugins/feather.min.js"></script>
     <script type="text/javascript" src="js/dashboardkit/pcoded.min.js"></script>
 
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
 
     <!-- JS Main Functions -->
     <script type="text/javascript" src="js/mainFunction.js"></script>
