@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="fonts/dashboardkit/feather.css">
     <link rel="stylesheet" href="fonts/dashboardkit/fontawesome.css">
     <link rel="stylesheet" href="fonts/dashboardkit/material.css">
-    
+
 
     <!-- jquery -->
     <link rel="stylesheet" href="css/jquery/jquery.dataTables.min.css">
@@ -39,47 +39,47 @@
                             <h3>Cadastrar Produto</h3>
                         </div>
                         <div class="card-body">
-                            <a href="list-user.html" class="btn btn-primary">
-                                <- Voltar</a>
-                                    <form class="row g-3 mt-3" onsubmit="saveUser(event)">
-                                        <div class="col-md-11 position-relative">
-                                            <label for="cNomeUsuario" class="form-label">Nome do Produto</label>
-                                            <input type="text" class="form-control" name="cNomeUsuario"
-                                                id="cNomeUsuario" required value="">
+                            <a href="list-product.html" class="btn btn-primary"><- Voltar</a>
+                                    <form class="row g-3 mt-3" onsubmit="">
+                                        <div class="col-md-9 position-relative">
+                                            <label for="cNomeProduto" class="form-label">Nome do Produto</label>
+                                            <input type="text" class="form-control" name="cNomeProduto"
+                                                id="cNomeProduto" required value="">
+                                        </div>                                        
+                                        <div class="col-md-3 position-relative">
+                                            <label for="cQtdeProduto" class="form-label">Qtde. em Estoque</label>
+                                            <input type="number" class="form-control" name="cQtdeProduto"
+                                                id="cQtdeProduto" required value="">
                                         </div>
-                                        <div class="col-md-7 position-relative">
-                                            <label for="cNomeUsuario" class="form-label">Descrição do Produto</label>
-                                            <input type="text" class="form-control" name="cNomeUsuario"
-                                                id="cNomeUsuario" required value="">
+                                        <div class="col-md-6 position-relative">
+                                            <label for="cDescricaoProduto" class="form-label">Descrição do Produto</label>
+                                            <textarea type="textarea" class="form-control" name="cDescricaoProduto"
+                                                id="cDescricaoProduto" required value=""></textarea>
                                         </div>
-
-
-                                        <div class="col-md-2 position-relative">
-                                            <label for="cUserUsuario" class="form-label">Preço</label>
-                                            <input type="text" class="form-control value" name="cUserUsuario"
-                                                id="cUserUsuario" required value="">
-
+                                        <div class="col-md-3 position-relative">
+                                            <label for="cPrecoProduto" class="form-label">Preço</label>
+                                            <input type="text" class="form-control value" name="cPrecoProduto"
+                                                id="cPrecoProduto" required value="">
                                         </div>
-                                        <div class="col-md-2 position-relative">
-                                            <label for="cSenhaUsuario" class="form-label">Qtd Estoque</label>
-                                            <input type="number" class="form-control" name="cSenhaUsuario"
-                                                id="cSenhaUsuario" required value="">
-                                        </div>
-                                        <div class="col-md-10 position-relative">
-                                            <label for="formFile" class="form-label">Inserir Imagens</label>
-                                            <input class="form-control" type="file" id="formFile">
-                                        </div>
-
                                         <div class="col-md-3 position-relative">
                                             <div class="form-group">
-                                                <label class="form-label" for="cPerfilUsuário">Peril do Usuário</label>
-                                                <select class="form-control" name="cPerfilUsuário" id="cPerfilUsuário"
+                                                <label class="form-label" for="cAvaliacaoProduto">Avaliação</label>
+                                                <select class="form-control" name="cAvaliacaoProduto" id="cAvaliacaoProduto"
                                                     required>
-                                                    <option value="ADMINISTRADOR">Administrador</option>
-                                                    <option value="ESTOQUISTA">Estoquista</option>
+                                                    <option value="5.0">5,0</option>
+                                                    <option value="4.0">4,0</option>
+                                                    <option value="3.0">3,0</option>
+                                                    <option value="2.0">2,0</option>
+                                                    <option value="1.0">1,0</option>
+                                                    <option value="0.0">0,0</option>                                                    
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-6 position-relative">
+                                            <label for="cImagemProduto" class="form-label">Inserir Imagens</label>
+                                            <input class="form-control" type="file" id="cImagemProduto" name="cImagemProduto" multiple>
+                                        </div>
+                                        
                                         <div class="col-12">
                                             <button class="btn btn-success float-right">Cadastrar</button>
                                         </div>
