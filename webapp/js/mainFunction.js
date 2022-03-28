@@ -42,23 +42,8 @@ function startDataTable() {
 $(document).ready(function () {
     $('.date').mask('00/00/0000');
     $('.phone_with_ddd').mask('(00) 0000-0000');
-<<<<<<< HEAD
     $('.cpf').mask('000.000.000-00', { reverse: true });
 });
-=======
-    $('.cpf').mask('000.000.000-00', {reverse: true})
-    $('.value').mask('R$ 000,00');
-  });
->>>>>>> feature/#3
-
-  $('.carousel').slick({
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
-});
-
 
 // Format Date
 function FormataStringDataToBackend(data) {
