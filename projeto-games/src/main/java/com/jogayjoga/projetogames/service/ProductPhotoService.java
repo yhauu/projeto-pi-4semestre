@@ -34,4 +34,8 @@ public class ProductPhotoService {
         product.setId(productId);
         productPhotoRepository.save(product);
     }
+
+    public List<ProductPhoto> findAllPhotosByProductId(long idProduct) {
+        return productPhotoRepository.findByProductId(idProduct);
+    }
 }

@@ -7,6 +7,7 @@ import java.util.Optional;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
 import com.jogayjoga.projetogames.model.Product;
+import com.jogayjoga.projetogames.model.ProductPhoto;
 import com.jogayjoga.projetogames.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,8 @@ public class ProductService {
 
     public Product findProduct(long productId) throws NotFoundException {
         Product product = findOne(productId);
+        List<ProductPhoto> listPhotos = productPhotoService.findAllPhotosByProductId(productId);
+        product.setPhotos(listPhotos);
         return product;
     }
 

@@ -55,4 +55,11 @@ public class ProductController {
     public void update(@PathVariable long productId, @RequestBody Product product, @RequestParam List<MultipartFile> photos) throws NotFoundException, BadRequestException {
         productService.update(productId, product, photos);
     }
+
+    @PutMapping
+    @RequestMapping("/{productId}/status")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateStatus(@PathVariable long productId) throws NotFoundException {
+        productService.updateStatus(productId);
+    }
 }
