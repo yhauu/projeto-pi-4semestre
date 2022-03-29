@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <a href="list-product.html" class="btn btn-primary">
                                 <- Voltar</a>
-                                    <form class="row g-3 mt-3" onsubmit="">
+                                    <form class="row g-3 mt-3" onsubmit="//saveProduct(event)">
                                         <div class="col-md-9 position-relative">
                                             <label for="cNomeProduto" class="form-label">Nome do Produto</label>
                                             <input type="text" class="form-control" name="cNomeProduto"
@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="col-md-3 position-relative">
                                             <label for="cPrecoProduto" class="form-label">Preço</label>
-                                            <input type="text" class="form-control value" name="cPrecoProduto"
+                                            <input type="text" class="form-control value_real" name="cPrecoProduto"
                                                 id="cPrecoProduto" required value="">
                                         </div>
                                         <div class="col-md-3 position-relative">
@@ -110,6 +110,9 @@
     <!-- JS Main Functions -->
     <script type="text/javascript" src="js/mainFunction.js"></script>
 
-
+    <!-- JS Service -->
+    <!-- <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/produtcService.js"></script>
+    <script>verificaIdUrl();</script> -->
 
 </html>
