@@ -50,15 +50,16 @@ function saveProduct(event) {
     let cDescricaoProduto = document.getElementById("cDescricaoProduto").value;
     let cPrecoProduto = document.getElementById("cPrecoProduto").value;
     let cAvaliacaoProduto = document.getElementById("cAvaliacaoProduto").value;
+    let cImagemProduto = null;
     // let cImagemProduto = document.getElementById("cImagemProduto").value;
 
     let data = {
-        // ?: cNomeProduto,
-        // ?: cQtdeProduto,
-        // ?: cDescricaoProduto,
-        // ?: cPrecoProduto,
-        // ?: cAvaliacaoProduto,
-        
+        name: cNomeProduto,
+        quantity: cQtdeProduto,
+        description: cDescricaoProduto,
+        price: cPrecoProduto,
+        rating: cAvaliacaoProduto,
+        photos: cImagemProduto
     }
 
     let success = function (data) {
@@ -68,9 +69,6 @@ function saveProduct(event) {
     let error = function (err) {
         // console.log(err)
         // console.log(err.responseJSON.message)
-        if (err.status == 400) {
-            alert("O e-mail já está em uso!")
-        }
     }
 
     if (idProduct > 0) {
@@ -85,22 +83,20 @@ function saveProduct(event) {
 function listProduct() {
     let listProduto = document.getElementById("listaProduto")
 
-
     let success = function (data) {
-
         data.forEach(element => {
             //console.log(element)
             listaUsuario.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
-                        <td>${element.login}</td>
+                        <td>${element.id}</td>
                         <td>${element.name}</td>
-                        <td>${element.legalNumber}</td>
-                        <td>${element.profile}</td>
+                        <td>${element.quantity}</td>
+                        <td>${element.price}</td>
                         <td>${element.productStatus == false ? "Desabilitado" : "Habilitado"}</td>
                         <td>
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
-                                data-target="#viewModalUsuario" title="Informações" 
+                                data-target="#viewModalProduto" title="Informações" 
                                 id="btnView" onclick="loadProduct('visualizar', ${element.id})">
                                 <i class="material-icons-two-tone">info</i></a>
                             <a class="btn btn-sm btn-icon btn-secondary" href="#"                            
@@ -118,11 +114,9 @@ function listProduct() {
     }
 
     let error = function (err) {
-
     }
 
     findAll(success, error)
-
 }
 
 function telaUpdate(id) {
