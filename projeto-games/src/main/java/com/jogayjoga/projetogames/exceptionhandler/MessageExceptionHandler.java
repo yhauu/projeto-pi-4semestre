@@ -1,7 +1,5 @@
 package com.jogayjoga.projetogames.exceptionhandler;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
