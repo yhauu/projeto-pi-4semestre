@@ -54,8 +54,8 @@ public class ProductService {
 
     public Product findProduct(long productId) throws NotFoundException {
         Product product = findOne(productId);
-        List<ProductPhoto> listPhotos = productPhotoService.findAllPhotosByProductId(productId);
-        product.setPhotos(listPhotos);
+        //List<ProductPhoto> listPhotos = productPhotoService.findAllPhotosByProductId(productId);
+        //product.setPhotos(listPhotos);
         return product;
     }
 
