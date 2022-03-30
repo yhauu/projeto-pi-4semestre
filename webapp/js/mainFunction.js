@@ -8,12 +8,12 @@ $(function () {
 })
 
 // Function DataTable
-async function startDataTable(){
+async function countDataTable(){
     await sleep(50);
-    playDataTable();
+    startDataTable();
 }
 
-function playDataTable() {
+function startDataTable() {
     $('table').DataTable({
         dom: 'Bfrtip',
         // order: [[0,'asc']],
