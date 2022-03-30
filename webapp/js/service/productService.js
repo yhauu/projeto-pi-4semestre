@@ -53,6 +53,7 @@ function saveProduct(event) {
     let cImagemProduto = null;
     // let cImagemProduto = document.getElementById("cImagemProduto").value;
 
+    
     let data = {
         name: cNomeProduto,
         quantity: cQtdeProduto,
@@ -61,6 +62,8 @@ function saveProduct(event) {
         rating: cAvaliacaoProduto,
         photos: cImagemProduto
     }
+
+    console.log(data)
 
     let success = function (data) {
         window.location = "list-product.html"
