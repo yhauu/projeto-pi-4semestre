@@ -32,13 +32,13 @@ public class ProductService {
         return product.get();
     }
 
-    public void create(Product product, List<MultipartFile> productPhotos) throws NotFoundException {
+    public void create(Product product) throws NotFoundException { //, List<MultipartFile> productPhotos
         product.setProductStatus(true);
         productRepository.save(product);
-        productPhotoService.create(product.getId(), productPhotos);
+        //productPhotoService.create(product.getId(), productPhotos);
     }
 
-    public void update(long productId, Product product, List<MultipartFile> photos) throws NotFoundException, BadRequestException {
+    public void update(long productId, Product product) throws NotFoundException, BadRequestException { //, List<MultipartFile> photos
         findOne(productId);
         product.setId(productId);
         productRepository.save(product);

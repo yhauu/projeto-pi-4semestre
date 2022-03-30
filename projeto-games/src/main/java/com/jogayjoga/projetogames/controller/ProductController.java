@@ -45,15 +45,15 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Product product, @RequestParam List<MultipartFile> photos) throws NotFoundException {
-        productService.create(product, photos);
+    public void create(@RequestBody Product product) throws NotFoundException { //, @RequestParam List<MultipartFile> photos
+        productService.create(product);
     }
 
     @PutMapping
     @RequestMapping("/{productId}/update")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable long productId, @RequestBody Product product, @RequestParam List<MultipartFile> photos) throws NotFoundException, BadRequestException {
-        productService.update(productId, product, photos);
+    public void update(@PathVariable long productId, @RequestBody Product product) throws NotFoundException, BadRequestException { //, @RequestParam List<MultipartFile> photos
+        productService.update(productId, product);
     }
 
     @PutMapping
