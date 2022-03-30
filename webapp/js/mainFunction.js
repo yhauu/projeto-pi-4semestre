@@ -8,9 +8,12 @@ $(function () {
 })
 
 // Function DataTable
-function startDataTable() {
+async function startDataTable(){
+    await sleep(50);
+    playDataTable();
+}
 
-
+function playDataTable() {
     $('table').DataTable({
         dom: 'Bfrtip',
         // order: [[0,'asc']],
@@ -105,4 +108,9 @@ function ValidCPF(strCPF) {
     if ((Resto == 10) || (Resto == 11)) Resto = 0;
     if (Resto != parseInt(strCPF.substring(10, 11))) return false;
     return true;
+}
+
+//time functions
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
