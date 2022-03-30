@@ -79,7 +79,7 @@ function saveUser(event) {
         }
 
         let error = function (err) {
-            // console.log(err)
+             console.log(err)
             // console.log(err.responseJSON.message)
             if (err.status == 400 ){
                 alert("O e-mail já está em uso!")

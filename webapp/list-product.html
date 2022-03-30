@@ -45,7 +45,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Imagem</th>
+                                            <!-- <th>Imagem</th> -->
                                             <th>Nome</th>
                                             <th>Qtde.</th>
                                             <th>Preço</th>
@@ -75,26 +75,8 @@
                                                     <i class="material-icons-two-tone">edit</i></a>
                                             </td>
                                         </tr> -->
-                                        <tr>
-                                            <td>1</td>
-                                            <td>null</td>
-                                            <td>Headset HyperX</td>
-                                            <td>18</td>
-                                            <td>R$ 48,58</td>
-                                            <td>Habilitado</td>
-                                            <td>
-                                                <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
-                                                    data-target="#viewModalProduto" title="Informações" id="btnView"
-                                                    onclick="">
-                                                    <i class="material-icons-two-tone">info</i></a>
-                                                <a class="btn btn-sm btn-icon btn-secondary" href="#"
-                                                    title="Ativar/Desativar" id="btnAtive" onclick="">
-                                                    <i class="material-icons-two-tone">toggle_on</i></a>
-                                                <a class="btn btn-sm btn-icon btn-warning" title="Editar" onclick=""
-                                                    id="btnEdit">
-                                                    <i class="material-icons-two-tone">edit</i></a>
-                                            </td>
-                                        </tr </tbody>
+                                    </tbody>
+
                                 </table>
                             </div>
 
@@ -177,6 +159,10 @@
     <!-- JS Main Functions -->
     <script type="text/javascript" src="js/mainFunction.js"></script>
 
+    <!-- JS Service -->
+    <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/productService.js"></script>
+    <script>listProduct();</script>
 
 
 </html>

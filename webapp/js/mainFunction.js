@@ -9,6 +9,8 @@ $(function () {
 
 // Function DataTable
 function startDataTable() {
+
+
     $('table').DataTable({
         dom: 'Bfrtip',
         // order: [[0,'asc']],

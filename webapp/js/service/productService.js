@@ -23,14 +23,14 @@ function loadProduct(tela, idProduct) {
             document.getElementById("cDescricaoProduto").value = data.description
             document.getElementById("cPrecoProduto").value = data.price
             document.getElementById("cAvaliacaoProduto").value = data.rating
-            document.getElementById("cImagemProduto").value = data.photos
+            // document.getElementById("cImagemProduto").value = data.photos
         } else {
             document.getElementById("vNomeProduto").value = data.name
             document.getElementById("vQtdeProduto").value = data.quantity
             document.getElementById("vDescricaoProduto").value = data.description
             document.getElementById("vPrecoProduto").value = data.price
             document.getElementById("vAvaliacaoProduto").value = data.rating
-            document.getElementById("vImagemProduto").value = data.photos
+            // document.getElementById("vImagemProduto").value = data.photos
         }
     }
 
@@ -56,11 +56,11 @@ function saveProduct(event) {
     
     let data = {
         name: cNomeProduto,
-        quantity: cQtdeProduto,
+        quantity: parseInt(cQtdeProduto),
         description: cDescricaoProduto,
-        price: cPrecoProduto,
-        rating: cAvaliacaoProduto,
-        photos: cImagemProduto
+        price: parseFloat(cPrecoProduto),
+        rating: parseFloat(cAvaliacaoProduto)
+        // photos: cImagemProduto
     }
 
     console.log(data)
@@ -89,10 +89,10 @@ function listProduct() {
     let success = function (data) {
         data.forEach(element => {
             //console.log(element)
-            listaUsuario.innerHTML += `
+            listProduto.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
-                        <td>${element.id}</td>
+                        
                         <td>${element.name}</td>
                         <td>${element.quantity}</td>
                         <td>${element.price}</td>
