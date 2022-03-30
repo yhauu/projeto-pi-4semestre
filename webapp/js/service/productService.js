@@ -18,19 +18,19 @@ function loadProduct(tela, idProduct) {
     let success = function (data) {
         //console.log(data)
         if (tela === "editar") {
-            // document.getElementById("cNomeProduto").value = data.
-            // document.getElementById("cQtdeProduto").value = data.
-            // document.getElementById("cDescricaoProduto").value = data.
-            // document.getElementById("cPrecoProduto").value = data.
-            // document.getElementById("cAvaliacaoProduto").value = data.
-            // document.getElementById("cImagemProduto").value = data.
+            document.getElementById("cNomeProduto").value = data.name
+            document.getElementById("cQtdeProduto").value = data.quantity
+            document.getElementById("cDescricaoProduto").value = data.description
+            document.getElementById("cPrecoProduto").value = data.price
+            document.getElementById("cAvaliacaoProduto").value = data.rating
+            document.getElementById("cImagemProduto").value = data.photos
         } else {
-            // document.getElementById("vNomeProduto").value = data.
-            // document.getElementById("vQtdeProduto").value = data.
-            // document.getElementById("vDescricaoProduto").value = data.
-            // document.getElementById("vPrecoProduto").value = data.
-            // document.getElementById("vAvaliacaoProduto").value = data.
-            // document.getElementById("vImagemProduto").value = data.
+            document.getElementById("vNomeProduto").value = data.name
+            document.getElementById("vQtdeProduto").value = data.quantity
+            document.getElementById("vDescricaoProduto").value = data.description
+            document.getElementById("vPrecoProduto").value = data.price
+            document.getElementById("vAvaliacaoProduto").value = data.rating
+            document.getElementById("vImagemProduto").value = data.photos
         }
     }
 
@@ -67,7 +67,7 @@ function saveProduct(event) {
     }
 
     let error = function (err) {
-        // console.log(err)
+        console.log(err)
         // console.log(err.responseJSON.message)
     }
 
@@ -114,6 +114,7 @@ function listProduct() {
     }
 
     let error = function (err) {
+        console.log(err)
     }
 
     findAll(success, error)
