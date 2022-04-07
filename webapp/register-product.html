@@ -39,85 +39,84 @@
                             <h3>Cadastrar Produto</h3>
                         </div>
                         <div class="card-body">
-                            <a href="list-product.html" class="btn btn-primary">
-                                <- Voltar</a>
-                                    <form class="row g-3 mt-3" onsubmit="saveProduct(event)">
-                                        <div class="col-md-9 position-relative">
-                                            <label for="cNomeProduto" class="form-label">Nome do Produto</label>
-                                            <input type="text" class="form-control" name="cNomeProduto"
-                                                id="cNomeProduto" required value="">
-                                        </div>
-                                        <div class="col-md-3 position-relative">
-                                            <label for="cQtdeProduto" class="form-label">Qtde. em Estoque</label>
-                                            <input type="number" class="form-control" name="cQtdeProduto"
-                                                id="cQtdeProduto" required value="">
-                                        </div>
-                                        <div class="col-md-6 position-relative">
-                                            <label for="cDescricaoProduto" class="form-label">Descrição do
-                                                Produto</label>
-                                            <textarea type="textarea" class="form-control" name="cDescricaoProduto"
-                                                id="cDescricaoProduto" required value=""></textarea>
-                                        </div>
-                                        <div class="col-md-3 position-relative">
-                                            <label for="cPrecoProduto" class="form-label">Preço</label>
-                                            <input type="text" class="form-control" name="cPrecoProduto"
-                                                id="cPrecoProduto" required value="">
-                                        </div>
-                                        <div class="col-md-3 position-relative">
-                                            <div class="form-group">
-                                                <label class="form-label" for="cAvaliacaoProduto">Avaliação</label>
-                                                <select class="form-control" name="cAvaliacaoProduto"
-                                                    id="cAvaliacaoProduto" required>
-                                                    <option value="5.0">5,0</option>
-                                                    <option value="4.0">4,5</option>
-                                                    <option value="4.0">4,0</option>
-                                                    <option value="3.0">3,5</option>
-                                                    <option value="3.0">3,0</option>
-                                                    <option value="2.0">2,5</option>
-                                                    <option value="2.0">2,0</option>
-                                                    <option value="1.0">1,5</option>
-                                                    <option value="1.0">1,0</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <hr>
-                                            <h4>Imagens</h4>
+                            <a href="list-product.html" class="btn btn-primary"><- Voltar</a>
+                            <form class="row g-3 mt-3" onsubmit="saveProduct(event)">
+                                <div class="col-md-9 position-relative">
+                                    <label for="cNomeProduto" class="form-label">Nome do Produto</label>
+                                    <input type="text" class="form-control" name="cNomeProduto" id="cNomeProduto"
+                                        required value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cQtdeProduto" class="form-label">Qtde. em Estoque</label>
+                                    <input type="number" class="form-control" name="cQtdeProduto" id="cQtdeProduto"
+                                        required value="">
+                                </div>
+                                <div class="col-md-6 position-relative">
+                                    <label for="cDescricaoProduto" class="form-label">Descrição do
+                                        Produto</label>
+                                    <textarea type="textarea" class="form-control" name="cDescricaoProduto"
+                                        id="cDescricaoProduto" required value=""></textarea>
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cPrecoProduto" class="form-label">Preço</label>
+                                    <input type="text" class="form-control" name="cPrecoProduto" id="cPrecoProduto"
+                                        required value="">
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <div class="form-group">
+                                        <label class="form-label" for="cAvaliacaoProduto">Avaliação</label>
+                                        <select class="form-control" name="cAvaliacaoProduto" id="cAvaliacaoProduto"
+                                            required>
+                                            <option value="5.0">5,0</option>
+                                            <option value="4.0">4,5</option>
+                                            <option value="4.0">4,0</option>
+                                            <option value="3.0">3,5</option>
+                                            <option value="3.0">3,0</option>
+                                            <option value="2.0">2,5</option>
+                                            <option value="2.0">2,0</option>
+                                            <option value="1.0">1,5</option>
+                                            <option value="1.0">1,0</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <hr>
+                                    <h4>Imagens</h4>
 
+                                </div>
+                                <div class="col-md-12 position-relative">
+                                    <label for="cImagemProduto" class="form-label">Inserir Imagens</label>
+                                    <input class="form-control" type="file" id="cImagemProduto" name="cImagemProduto"
+                                        multiple>
+                                </div>
+                                <div class="col-md-12 position-relative" id="lista-produto">
+                                    <div class="card mb-3 " style="width: 18rem;">
+                                        <img src="img/pato.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body ">
+                                            <h5 class="card-title">Card title <i
+                                                    class="material-icons-two-tone md-light">star</i>
+                                                </a></h5>
+                                            <a class="btn btn-sm btn-icon btn-warning text-end"
+                                                title="Tonar Imagem Principal" onclick="" id="">
+                                                <i class="material-icons-two-tone md-light">star</i></a>
+                                            <a class="btn btn-sm btn-icon btn-danger text-end" title="Excluir Imagem"
+                                                onclick="" id="">
+                                                <i class="material-icons-two-tone md-light">close</i></a>
                                         </div>
-                                        <div class="col-md-12 position-relative">
-                                            <label for="cImagemProduto" class="form-label">Inserir Imagens</label>
-                                            <input class="form-control" type="file" id="cImagemProduto"
-                                                name="cImagemProduto" multiple>
-                                        </div>
-                                        <div class="col-md-12 position-relative" id="lista-produto">
+                                    </div>
+                                </div>
 
-                                            <div class="card mb-3 " style="width: 18rem;">
-                                                <img src="img/pato.jpg" class="card-img-top" alt="...">
-                                                <div class="card-body ">
-                                                    <h5 class="card-title">Card title <i class="material-icons-two-tone md-light">star</i></a></h5>                                                   
-                                                    <a class="btn btn-sm btn-icon btn-warning text-end"
-                                                        title="Tonar Imagem Principal" onclick="" id="">
-                                                        <i class="material-icons-two-tone md-light">star</i></a>
-                                                    <a class="btn btn-sm btn-icon btn-danger text-end"
-                                                        title="Excluir Imagem" onclick="" id="">
-                                                        <i class="material-icons-two-tone md-light">close</i></a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button class="btn btn-success float-right">Cadastrar</button>
-                                        </div>
-                                    </form>
+                                <div class="col-12">
+                                    <button class="btn btn-success float-right">Cadastrar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+
 
     <!-- Import Common JS Function-->
     <!-- Dashborad Kit-->
@@ -138,5 +137,7 @@
     <script type="text/javascript" src="js/service/url.js"></script>
     <script type="text/javascript" src="js/service/productService.js"></script>
     <script>verificaIdUrl();</script>
+
+</body>
 
 </html>
