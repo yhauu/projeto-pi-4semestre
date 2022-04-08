@@ -39,7 +39,7 @@
                             <h3>Cadastrar Produto</h3>
                         </div>
                         <div class="card-body">
-                            <a href="list-product.html" class="btn btn-primary"><- Voltar</a>
+                            <a href="list-product.html" class="btn btn-primary">Voltar</a>
                             <form class="row g-3 mt-3" onsubmit="saveProduct(event)">
                                 <div class="col-md-9 position-relative">
                                     <label for="cNomeProduto" class="form-label">Nome do Produto</label>
@@ -89,26 +89,48 @@
                                     <input class="form-control" type="file" id="cImagemProduto" name="cImagemProduto"
                                         multiple>
                                 </div>
-                                <div class="col-md-12 position-relative" id="lista-produto">
-                                    <div class="card mb-3 " style="width: 18rem;">
-                                        <img src="img/pato.jpg" class="card-img-top" alt="...">
-                                        <div class="card-body ">
-                                            <h5 class="card-title">Card title <i
-                                                    class="material-icons-two-tone md-light">star</i>
-                                                </a></h5>
-                                            <a class="btn btn-sm btn-icon btn-warning text-end"
-                                                title="Tonar Imagem Principal" onclick="" id="">
-                                                <i class="material-icons-two-tone md-light">star</i></a>
-                                            <a class="btn btn-sm btn-icon btn-danger text-end" title="Excluir Imagem"
-                                                onclick="" id="">
-                                                <i class="material-icons-two-tone md-light">close</i></a>
+                                <div class="row row-cols-1 row-cols-md-4 mt-3">
+                                    <div class="col mb-4">
+                                        <div class="card">
+                                            <img src="img/pato.jpg" class="img-thumbnail" alt="..." style="max-height: 10rem;">
+                                            <div class="card-body p-1">
+                                                <h5 class="card-title">Pato.jpg<i
+                                                        class="material-icons-two-tone md-light">star</i></h5>
+                                                <ul class="list-group list-group-horizontal float-right">
+                                                    <li class="list-group-item p-0"><a class="btn btn-sm btn-icon btn-warning text-end"
+                                                        title="Tonar Imagem Principal" onclick="" id="">
+                                                        <i class="material-icons-two-tone md-light">star</i></a></li>
+                                                    <li class="list-group-item p-0"><a class="btn btn-sm btn-icon btn-danger text-end"
+                                                        title="Excluir Imagem" onclick="" id="">
+                                                        <i class="material-icons-two-tone md-light">close</i></a></li>                                                   
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col mb-4">
+                                        <div class="card">
+                                            <img src="img/pato2.jpg" class=" img-thumbnail" alt="..." style="max-height: 10rem;">
+                                            <div class="card-body p-1">
+                                                <h5 class="card-title">Pato.jpg<i
+                                                        class="material-icons-two-tone md-light">star</i></h5>
+                                                <ul class="list-group list-group-horizontal float-right">
+                                                    <li class="list-group-item p-0"><a class="btn btn-sm btn-icon btn-warning text-end"
+                                                        title="Tonar Imagem Principal" onclick="" id="">
+                                                        <i class="material-icons-two-tone md-light">star</i></a></li>
+                                                    <li class="list-group-item p-0"><a class="btn btn-sm btn-icon btn-danger text-end"
+                                                        title="Excluir Imagem" onclick="" id="">
+                                                        <i class="material-icons-two-tone md-light">close</i></a></li>                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                
                                 </div>
-
                                 <div class="col-12">
                                     <button class="btn btn-success float-right">Cadastrar</button>
                                 </div>
+
                             </form>
                         </div>
                     </div>
