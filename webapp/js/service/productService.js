@@ -1,5 +1,6 @@
 let idProduct = 0;
-var contImg = 0;
+var contImg = -1;
+var listaDeImagens = [];
 
 function verificaIdUrl() {
     var url = window.location.href;
@@ -45,6 +46,7 @@ function loadProduct(tela, idProduct) {
 
 function saveProduct(event) {
     event.preventDefault()
+    getImages();
 
     let cNomeProduto = document.getElementById("cNomeProduto").value;
     let cQtdeProduto = document.getElementById("cQtdeProduto").value;
@@ -60,8 +62,8 @@ function saveProduct(event) {
         quantity: parseInt(cQtdeProduto),
         description: cDescricaoProduto,
         price: parseFloat(cPrecoProduto),
-        rating: parseFloat(cAvaliacaoProduto)
-        // photos: cImagemProduto
+        rating: parseFloat(cAvaliacaoProduto),
+        files: listaDeImagens
     }
 
     console.log(data)
@@ -75,13 +77,19 @@ function saveProduct(event) {
         // console.log(err.responseJSON.message)
     }
 
-    if (idProduct > 0) {
-        update(success, error, data, idProduct);
-    } else {
-        post(success, error, data);
+    // if (idProduct > 0) {
+    //     update(success, error, data, idProduct);
+    // } else {
+    //     post(success, error, data);
+    // }
+
+}
+
+function getImages() {
+    let imagens = document.getElementsByClassName("img-add-imagem");
+    for (let img of imagens) {
+        listaDeImagens.push(img.currentSrc);
     }
-
-
 }
 
 function listProduct() {
@@ -93,7 +101,6 @@ function listProduct() {
             listProduto.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
-                        
                         <td>${element.name}</td>
                         <td>${element.quantity}</td>
                         <td>${element.price}</td>
@@ -140,19 +147,18 @@ function disableProduct(id) {
     disable(success, error, id)
 }
 
-
-
 function addImage() {
     let addImagem = document.getElementById("lista-imagem");
-
+    let inputFile = document.getElementById("cImagemProduto").files;
+    contImg++;
 
     addImagem.innerHTML += `
-                        <div class="col mb-4">
+                        <div class="col mb-4" id="divImg${contImg}">
                             <div class="card">
-                                <img src="img/pato.jpg" class="img-thumbnail" alt="..."
+                                <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
                                     style="max-height: 10rem;">
                                 <div class="card-body p-1">
-                                    <h5 class="card-title">Pato.jpg<i
+                                    <h5 class="card-title">${inputFile[0].name}<i
                                             class="material-icons-two-tone md-light">star</i></h5>
                                     <ul class="list-group list-group-horizontal float-right">
                                         <li class="list-group-item p-0"><a
@@ -162,20 +168,28 @@ function addImage() {
                                         </li>
                                         <li class="list-group-item p-0"><a
                                                 class="btn btn-sm btn-icon btn-danger text-end"
-                                                title="Excluir Imagem" onclick="deleteImage(event)" id="">
+                                                title="Excluir Imagem" onclick="deleteImage(divImg${contImg})" id="">
                                                 <i class="material-icons-two-tone md-light">close</i></a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>`
+
+    if (inputFile.length > 0) {
+        var fileReader = new FileReader();
+
+        fileReader.onload = function (event) {
+            document.getElementById(`imgId${contImg}`).setAttribute("src", event.target.result);
+        }
+
+        fileReader.readAsDataURL(inputFile[0]);
+    }
+
 }
 
 function deleteImage(event) {
-    console.log(event);
-    console.log($(this))
-
-    $(this).parent().parent().remove();
+    event.remove();
 }
 
 function disable(success, error, id) {
