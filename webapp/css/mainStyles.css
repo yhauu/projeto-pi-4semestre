@@ -10,3 +10,7 @@
 
     <!-- vendor css -->
     <link rel="stylesheet" href="css/dashboardkit/style.css" id="main-style-link"> */
+
+a {
+    color: #fff;
+}

@@ -1,4 +1,5 @@
 let idProduct = 0;
+var contImg = 0;
 
 function verificaIdUrl() {
     var url = window.location.href;
@@ -53,7 +54,7 @@ function saveProduct(event) {
     let cImagemProduto = null;
     // let cImagemProduto = document.getElementById("cImagemProduto").value;
 
-    
+
     let data = {
         name: cNomeProduto,
         quantity: parseInt(cQtdeProduto),
@@ -137,6 +138,44 @@ function disableProduct(id) {
     }
 
     disable(success, error, id)
+}
+
+
+
+function addImage() {
+    let addImagem = document.getElementById("lista-imagem");
+
+
+    addImagem.innerHTML += `
+                        <div class="col mb-4">
+                            <div class="card">
+                                <img src="img/pato.jpg" class="img-thumbnail" alt="..."
+                                    style="max-height: 10rem;">
+                                <div class="card-body p-1">
+                                    <h5 class="card-title">Pato.jpg<i
+                                            class="material-icons-two-tone md-light">star</i></h5>
+                                    <ul class="list-group list-group-horizontal float-right">
+                                        <li class="list-group-item p-0"><a
+                                                class="btn btn-sm btn-icon btn-warning text-end"
+                                                title="Tonar Imagem Principal" onclick="" id="">
+                                                <i class="material-icons-two-tone md-light">star</i></a>
+                                        </li>
+                                        <li class="list-group-item p-0"><a
+                                                class="btn btn-sm btn-icon btn-danger text-end"
+                                                title="Excluir Imagem" onclick="deleteImage(event)" id="">
+                                                <i class="material-icons-two-tone md-light">close</i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>`
+}
+
+function deleteImage(event) {
+    console.log(event);
+    console.log($(this))
+
+    $(this).parent().parent().remove();
 }
 
 function disable(success, error, id) {
