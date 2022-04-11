@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ProjetoGamesApplication<projeto-games>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.jogayjoga.projetogames.ProjetoGamesApplication",
+            "projectName": "projeto-games",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
