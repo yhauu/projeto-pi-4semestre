@@ -23,14 +23,14 @@ function loadProduct(tela, idProduct) {
             document.getElementById("cNomeProduto").value = data.name
             document.getElementById("cQtdeProduto").value = data.quantity
             document.getElementById("cDescricaoProduto").value = data.description
-            document.getElementById("cPrecoProduto").value = data.price
+            document.getElementById("cPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
             document.getElementById("cAvaliacaoProduto").value = data.rating
             // document.getElementById("cImagemProduto").value = data.photos
         } else {
             document.getElementById("vNomeProduto").value = data.name
             document.getElementById("vQtdeProduto").value = data.quantity
             document.getElementById("vDescricaoProduto").value = data.description
-            document.getElementById("vPrecoProduto").value = data.price
+            document.getElementById("vPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
             document.getElementById("vAvaliacaoProduto").value = data.rating
             // document.getElementById("vImagemProduto").value = data.photos
         }
@@ -61,7 +61,7 @@ function saveProduct(event) {
         name: cNomeProduto,
         quantity: parseInt(cQtdeProduto),
         description: cDescricaoProduto,
-        price: parseFloat(cPrecoProduto),
+        price: FormataStringMoneyToBackend(cPrecoProduto),
         rating: parseFloat(cAvaliacaoProduto),
         files: listaDeImagens
     }

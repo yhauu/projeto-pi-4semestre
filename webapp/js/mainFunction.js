@@ -48,7 +48,7 @@ $(document).ready(function () {
     $('.date').mask('00/00/0000');
     $('.phone_with_ddd').mask('(00) 00000-0000');
     $('.cpf').mask('000.000.000-00', { reverse: true });
-    $('.value_real').mask('R$000,25');
+    $('.money').mask('00000000,00', {reverse: true});
 });
 
 // Format Date
@@ -69,6 +69,14 @@ function FormataStringDataToFrontend(data) {
 
     return ("0" + dia).slice(-2) + '/' + ("0" + mes).slice(-2) + '/' + ano ;
     // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
+}
+
+function FormataStringMoneyToBackend(money) {
+    return money.toString().replace(",",".");
+}
+
+function FormataStringMoneyToFrontend(money) {
+    return money.toString().replace(".",",");
 }
 
 // Disable Form by ID;

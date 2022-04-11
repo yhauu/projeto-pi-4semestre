@@ -45,7 +45,7 @@
                                 <div class="col-md-9 position-relative">
                                     <label for="cNomeProduto" class="form-label">Nome do Produto</label>
                                     <input type="text" class="form-control" name="cNomeProduto" id="cNomeProduto"
-                                        required value="">
+                                        required maxlength="200" value="">
                                 </div>
                                 <div class="col-md-3 position-relative">
                                     <label for="cQtdeProduto" class="form-label">Qtde. em Estoque</label>
@@ -56,12 +56,15 @@
                                     <label for="cDescricaoProduto" class="form-label">Descrição do
                                         Produto</label>
                                     <textarea type="textarea" class="form-control" name="cDescricaoProduto"
-                                        id="cDescricaoProduto" required value=""></textarea>
+                                        id="cDescricaoProduto" required maxlength="2000" value=""></textarea>
                                 </div>
                                 <div class="col-md-3 position-relative">
                                     <label for="cPrecoProduto" class="form-label">Preço</label>
-                                    <input type="text" class="form-control" name="cPrecoProduto" id="cPrecoProduto"
-                                        required value="">
+                                    <div class="input-group">
+                                        <span class="input-group-text">R$</span>
+                                        <input type="text" class="form-control money" name="cPrecoProduto"
+                                            id="cPrecoProduto" required value="">
+                                    </div>
                                 </div>
                                 <div class="col-md-3 position-relative">
                                     <div class="form-group">
@@ -84,9 +87,9 @@
                                     <hr>
                                     <h5>Inserir Imagens</h5>
                                 </div>
-                                <div class="col-md-10 position-relative">                                    
+                                <div class="col-md-10 position-relative">
                                     <input class="form-control" type="file" id="cImagemProduto" name="cImagemProduto"
-                                    accept="image/*">                                    
+                                        accept="image/*">
                                 </div>
                                 <div class="col-md-2 position-relative">
                                     <a class="btn btn-info" id="adicionaImg" onclick="addImage()">Adicionar Imagem</a>
@@ -118,7 +121,6 @@
                                 <div class="col-12">
                                     <button class="btn btn-success float-right">Cadastrar</button>
                                 </div>
-
                             </form>
                         </div>
                     </div>
