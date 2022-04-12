@@ -4219,10 +4219,17 @@ textarea.form-control-lg {
 
 .navbar-nav {
     display: flex;
-    flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+}
+
+.menu.custom > .menu-custom-li{
+    display: inline-block;
+    margin: 0 25px;
+    color: blue;
+
+
 }
 
 .navbar-nav .nav-link {
