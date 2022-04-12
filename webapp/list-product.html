@@ -81,7 +81,6 @@
                             </div>
 
                             <!-- Modals -->
-
                             <!-- Modal View -->
                             <div class="modal fade" id="viewModalProduto" tabindex="-1"
                                 aria-labelledby="viewModalProdutoLabel" aria-hidden="true">
@@ -108,9 +107,11 @@
                                                         id="vQtdeProduto" readonly value="">
                                                 </div>
                                                 <div class="col-md-6 position-relative">
-                                                    <label for="vDescricaoProduto" class="form-label">Descrição do Produto</label>
-                                                    <textarea type="textarea" class="form-control" name="vDescricaoProduto"
-                                                        id="vDescricaoProduto" readonly value=""></textarea>
+                                                    <label for="vDescricaoProduto" class="form-label">Descrição do
+                                                        Produto</label>
+                                                    <textarea type="textarea" class="form-control"
+                                                        name="vDescricaoProduto" id="vDescricaoProduto" readonly
+                                                        value=""></textarea>
                                                 </div>
                                                 <div class="col-md-3 position-relative">
                                                     <label for="vPrecoProduto" class="form-label">Preço</label>
@@ -122,11 +123,22 @@
                                                     <input type="text" class="form-control" name="vAvaliacaoProduto"
                                                         id="vAvaliacaoProduto" readonly value="">
                                                 </div>
-                                                <div class="col-md-3 position-relative">
-                                                    <label for="vDataAltercaoProduto" class="form-label">Ultima
-                                                        Alteração</label>
-                                                    <input type="text" class="form-control" name="vDataAltercaoProduto"
-                                                        id="vDataAltercaoProduto" readonly value="">
+                                                <div class="mt-2">
+                                                    <hr>
+                                                    <h5>Imagens</h5>
+                                                </div>
+                                                <div class="row row-cols-1 row-cols-md-4 mt-3" id="lista-imagem">
+                                                    <!-- <div class="col mb-4">
+                                                        <div class="card">
+                                                            <img src="img/pato.jpg" class="img-thumbnail" alt="..."
+                                                                style="max-height: 10rem;">
+                                                            <div class="card-body p-1">
+                                                                <h5 class="card-title">Pato.jpg<i
+                                                                        class="material-icons-two-tone md-light">star</i>
+                                                                </h5>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                     -->
                                                 </div>
                                             </form>
                                         </div>
@@ -144,7 +156,7 @@
         </div>
     </div>
 
-   <!-- Import Common JS Function-->
+    <!-- Import Common JS Function-->
     <!-- Dashborad Kit-->
     <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script>
     <script type="text/javascript" src="js/dashboardkit/plugins/bootstrap.min.js"></script>

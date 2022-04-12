@@ -63,7 +63,7 @@ function saveProduct(event) {
         description: cDescricaoProduto,
         price: FormataStringMoneyToBackend(cPrecoProduto),
         rating: parseFloat(cAvaliacaoProduto),
-        files: listaDeImagens
+        // files: listaDeImagens
     }
 
     console.log(data)
@@ -77,11 +77,11 @@ function saveProduct(event) {
         // console.log(err.responseJSON.message)
     }
 
-    // if (idProduct > 0) {
-    //     update(success, error, data, idProduct);
-    // } else {
-    //     post(success, error, data);
-    // }
+    if (idProduct > 0) {
+        update(success, error, data, idProduct);
+    } else {
+        post(success, error, data);
+    }
 
 }
 
