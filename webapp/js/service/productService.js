@@ -1,6 +1,7 @@
 let idProduct = 0;
 var contImg = -1;
 var listaDeImagens = [];
+var firstImageFavorite = `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`;
 
 function verificaIdUrl() {
     var url = window.location.href;
@@ -98,6 +99,8 @@ function listProduct() {
     let success = function (data) {
         data.forEach(element => {
             //console.log(element)
+
+
             listProduto.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
@@ -154,18 +157,22 @@ function addImage() {
     contImg++;
 
     if (inputFileForm.files.length != 0) {
+        // if (contImg =! 0) {
+        //     firstImageFavorite = 
+        // }
         addImagem.innerHTML += `
                         <div class="col mb-4" id="divImg${contImg}">
                             <div class="card">
                                 <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
                                     style="max-height: 10rem;">
                                 <div class="card-body p-1">
-                                    <h5 class="card-title">${inputFile[0].name}<i
-                                            class="material-icons-two-tone md-light">star</i></h5>
+                                    <h5 class="card-title" id="imgTitle${contImg}">Imagem${contImg+1}
+                                        
+                                    </h5>
                                     <ul class="list-group list-group-horizontal float-right">
                                         <li class="list-group-item p-0"><a
                                                 class="btn btn-sm btn-icon btn-warning text-end"
-                                                title="Tonar Imagem Principal" onclick="" id="">
+                                                title="Tonar Imagem Principal" onclick="favoriteImage(imgTitle${contImg})" id="">
                                                 <i class="material-icons-two-tone md-light">star</i></a>
                                         </li>
                                         <li class="list-group-item p-0"><a
@@ -191,8 +198,20 @@ function addImage() {
         alert("Selecione uma Imagem!");
     }
 
-    inputFileForm.value = "";
+    //inputFileForm.value = "";
 
+}
+
+function favoriteImage(event) {
+    if (document.getElementById("favoriteTestar") != null) {
+        let node = document.getElementById("favoriteTestar")
+
+        if (node.parentNode) {
+            node.parentNode.removeChild(node);
+        }
+    } 
+
+    event.innerHTML += `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`
 }
 
 function deleteImage(event) {
