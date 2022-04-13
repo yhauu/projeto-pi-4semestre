@@ -309,7 +309,7 @@ textarea.input {
 }
 
 .section-title .section-nav {
-  float: right;
+  float: center;
 }
 
 .section-title .section-nav .section-tab-nav {
@@ -714,17 +714,28 @@ textarea.input {
 
   }
 }
-  
-#menu ul {
-	padding:15px;
-	margin:0px;
-  color: #FFF;
-	list-style:none;
-  float: none;
-  display: inline block;
+
+menu > .menu-item {
+  display: inline;
+  margin: 0 25px;
+  padding: 100px;;
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+  text-decoration: none;
+  width: 50px;
 }
 
-#menu ul li { display: inline block; }
+.menu-item > a {
+  color: #888;
+  text-decoration: none;
+}
+
+.menu > .menu-item:hover {
+  background-color: #ddd;
+}
+
+
 
 /*=========================================================
 	04 -> CATEGORY SHOP
