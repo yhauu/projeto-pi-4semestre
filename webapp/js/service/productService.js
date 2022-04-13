@@ -198,7 +198,7 @@ function addImage() {
         alert("Selecione uma Imagem!");
     }
 
-    //inputFileForm.value = "";
+    inputFileForm.value = "";
 
 }
 
