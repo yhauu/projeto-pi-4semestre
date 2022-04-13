@@ -1,13 +1,11 @@
 package com.jogayjoga.projetogames;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
-//@SpringBootTest
-class ProjetoGamesApplicationTests {
+@SpringBootTest
+@AutoConfigureMockMvc
 
-	@Test
-	void contextLoads() {
-	}
+public class ProjetoGamesApplicationTests {
 
 }
