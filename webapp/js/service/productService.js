@@ -150,9 +150,11 @@ function disableProduct(id) {
 function addImage() {
     let addImagem = document.getElementById("lista-imagem");
     let inputFile = document.getElementById("cImagemProduto").files;
+    let inputFileForm = document.getElementById("cImagemProduto");
     contImg++;
 
-    addImagem.innerHTML += `
+    if (inputFileForm.files.length != 0) {
+        addImagem.innerHTML += `
                         <div class="col mb-4" id="divImg${contImg}">
                             <div class="card">
                                 <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
@@ -176,15 +178,20 @@ function addImage() {
                             </div>
                         </div>`
 
-    if (inputFile.length > 0) {
-        var fileReader = new FileReader();
+        if (inputFile.length > 0) {
+            var fileReader = new FileReader();
 
-        fileReader.onload = function (event) {
-            document.getElementById(`imgId${contImg}`).setAttribute("src", event.target.result);
+            fileReader.onload = function (event) {
+                document.getElementById(`imgId${contImg}`).setAttribute("src", event.target.result);
+            }
+
+            fileReader.readAsDataURL(inputFile[0]);
         }
-
-        fileReader.readAsDataURL(inputFile[0]);
+    } else {
+        alert("Selecione uma Imagem!");
     }
+
+    inputFileForm.value = "";
 
 }
 
