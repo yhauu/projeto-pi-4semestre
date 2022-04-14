@@ -900,7 +900,7 @@ menu > .menu-item {
 }
 
 .product .product-img>img {
-  width: 100%;
+  width: 50%;
 }
 
 .product .product-img .product-label {
@@ -928,7 +928,7 @@ menu > .menu-item {
 }
 
 .product .product-body {
-  position: relative;
+  position:relative;
   padding: 15px;
   background-color: #FFF;
   text-align: center;
@@ -947,7 +947,7 @@ menu > .menu-item {
 }
 
 .product .product-body .product-name>a {
-  font-weight: 700;
+  font-weight: 10;
 }
 
 .product .product-body .product-name>a:hover, .product .product-body .product-name>a:focus {
@@ -999,9 +999,9 @@ menu > .menu-item {
 
 .product .product-body .product-btns>button {
   position: relative;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
   background: transparent;
   border: none;
   -webkit-transition: 0.2s all;
@@ -1068,12 +1068,12 @@ menu > .menu-item {
 .product .add-to-cart .add-to-cart-btn {
   position: relative;
   border: 2px solid transparent;
-  height: 40px;
+  height: 50px;
   padding: 0 30px;
   background-color: #ef233c;
   color: #FFF;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 100;
   border-radius: 40px;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;

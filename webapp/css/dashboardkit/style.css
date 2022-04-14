@@ -15736,7 +15736,7 @@ body:not(.minimenu) .pc-sidebar .pc-submenu .pc-submenu .pc-submenu > .pc-item:b
 
 .client-map img {
     vertical-align: top;
-    width: 90px;
+    width: 30px;
 }
 
 .client-map .client-detail {
@@ -16248,8 +16248,8 @@ body:not(.minimenu) .pc-sidebar .pc-submenu .pc-submenu .pc-submenu > .pc-item:b
 }
 
 .analytic-card .analytic-icon {
-    width: 50px;
-    height: 50px;
+    width: 10px;
+    height: 10px;
     text-align: center;
     padding: 17px 0;
     border-radius: 50%;
@@ -16270,7 +16270,7 @@ body:not(.minimenu) .pc-sidebar .pc-submenu .pc-submenu .pc-submenu > .pc-item:b
 .proj-t-card .pt-badge {
     margin-bottom: 0;
     display: inline-block;
-    padding: 60px 50px 20px 20px;
+    padding: 20px 50px 20px 20px;
     border-radius: 50%;
     position: absolute;
     top: -45px;
