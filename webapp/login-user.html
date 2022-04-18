@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="fonts/dashboardkit/material.css">
 
     <!-- jquery -->
-    <link rel="stylesheet" href="css/jquery/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="css/jquery/jquery.dataTables.min.css"> -->
 
     <!-- main styles -->
     <link rel="stylesheet" href="css/mainStyles.css">
@@ -33,21 +33,20 @@
                 <div class="row align-items-center text-center">
                     <div class="col-md-12">
                         <div class="card-body">
-                            <form onsubmit="">
-                                <img src="img/Logotipo.png" alt="" class="img-fluid mb-4">
-                                <h4 class="mb-3 f-w-400">Entrar</h4>
+                            <form onsubmit="loginUser(event)">
+                                <img src="img/Logotipo.png" alt="" class="img-fluid mb-0">
+                                <h4 class="mb-3 mt-0 f-w-400">Back Office</h4>
+                                <h3 class="mb-3 f-w-400">Entrar</h3>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i data-feather="mail"></i></span>
-                                    <input type="email" class="form-control" placeholder="Endereço de e-mail">
+                                    <input type="email" class="form-control" placeholder="Endereço de e-mail" id="loginUserEmail">
                                 </div>
                                 <div class="input-group mb-4">
                                     <span class="input-group-text"><i data-feather="lock"></i></span>
-                                    <input type="password" class="form-control" placeholder="Senha">
+                                    <input type="password" class="form-control" placeholder="Senha" id="loginUserPassword">
                                 </div>
 
-                                <button type="submit" class="btn btn-block btn-primary mb-4">Entrar</button>
-                                <p class="mb-0 text-muted">Ainda não tem cadastro? <a href="auth-signup.html"
-                                        class="f-w-400">Clique aqui</a></p>
+                                <button type="submit" class="btn btn-block btn-primary mb-4">Entrar</button>                                
                             </form>
                         </div>
                     </div>
@@ -73,6 +72,10 @@
 
     <!-- JS Main Functions -->
     <script type="text/javascript" src="js/mainFunction.js"></script>
+
+    <!-- JS Service -->
+    <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/loginUserSevice.js"></script>
 
 </body>
 
