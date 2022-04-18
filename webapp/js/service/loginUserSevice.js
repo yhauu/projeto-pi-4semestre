@@ -3,36 +3,53 @@ function loginUser(event) {
 
     let email = document.getElementById("loginUserEmail").value
     let password = document.getElementById("loginUserPassword").value
-    let emailDefault = "admin@admin"
-    let passwordDefault = "admin"
-    let profileDefault = "Administrador"
 
-    // let data = {
-    //     email: email,
-    //     password: password
-    // }
-
-    if (email == emailDefault && password == passwordDefault) {
-        localStorage.setItem("access", true)
-        localStorage.setItem("email", email)
-        localStorage.setItem("profile", profileDefault)
-
-        window.location.href = "main-page-backoffice.html"
-    } else {
-        alert("Usuário ou senha inválido!")
+    let data = {
+        email: email,
+        password: password
     }
+
+    let success = function (data) {
+        window.location = "main-page-backoffice.html"
+        localStorage.setItem("access", true)
+        localStorage.setItem("email", data.email)
+        localStorage.setItem("profile", data.profile)
+    }
+
+    let error = function (err) {
+        console.log(err)
+        alert("Usuário ou senha invalida!")
+    }
+
+    postLogin(success, error, data)
+
+    //     if (email == emailDefault && password == passwordDefault) {
+    //         localStorage.setItem("access", true)
+    //         localStorage.setItem("email", email)
+    //         localStorage.setItem("profile", profileDefault)
+
+    //         window.location.href = "main-page-backoffice.html"
+    //     } else {
+    //         alert("Usuário ou senha inválido!")
+    //     }
+    // }
 }
 
-function logoofUser(){
+function logoofUser() {
     localStorage.clear();
     window.location.href = "login-user.html"
 }
 
-    
 
-document.addEventListener("DOMContentLoaded", function(event) { 
-    console.log(document.getElementById("previewUserEmail"))
-  });
+async function countHeaderUserData() {
+    await sleep(500);
+    loadHeaderData();
+}
+
+function loadHeaderData() {
+    document.getElementById("previewUserEmail").insertAdjacentHTML('afterbegin', localStorage.getItem("email"))
+    document.getElementById("previewUserProfile").insertAdjacentHTML('afterbegin', localStorage.getItem("profile"))
+}
 
 function postLogin(success, error, dado) {
     $.ajax({
