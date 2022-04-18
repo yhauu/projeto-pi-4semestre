@@ -54,20 +54,27 @@ function saveProduct(event) {
     let cDescricaoProduto = document.getElementById("cDescricaoProduto").value;
     let cPrecoProduto = document.getElementById("cPrecoProduto").value;
     let cAvaliacaoProduto = document.getElementById("cAvaliacaoProduto").value;
-    let cImagemProduto = null;
-    // let cImagemProduto = document.getElementById("cImagemProduto").value;
 
+    let formData = new FormData();
 
     let data = {
-        name: cNomeProduto,
-        quantity: parseInt(cQtdeProduto),
-        description: cDescricaoProduto,
-        price: FormataStringMoneyToBackend(cPrecoProduto),
-        rating: parseFloat(cAvaliacaoProduto),
-        // files: listaDeImagens
+        data: {
+            name: cNomeProduto,
+            quantity: parseInt(cQtdeProduto),
+            description: cDescricaoProduto,
+            price: parseFloat(cPrecoProduto),
+            rating: parseFloat(cAvaliacaoProduto)
+        }
     }
+    formData.append('data', JSON.stringify(data));
 
-    console.log(data)
+    let contador = 1;
+    for (img64 of listaDeImagens) {
+        var file = dataURLtoFile(img64, "img-" + contador);
+        formData.append('files', file);
+        contador++;
+    }
+    console.log(formData);
 
     let success = function (data) {
         window.location = "list-product.html"
@@ -81,11 +88,9 @@ function saveProduct(event) {
     if (idProduct > 0) {
         update(success, error, data, idProduct);
     } else {
-        post(success, error, data);
+        post(success, error, formData);
     }
-
 }
-
 function getImages() {
     let imagens = document.getElementsByClassName("img-add-imagem");
     for (let img of imagens) {
@@ -166,7 +171,7 @@ function addImage() {
                                 <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
                                     style="max-height: 10rem;">
                                 <div class="card-body p-1">
-                                    <h5 class="card-title" id="imgTitle${contImg}">Imagem${contImg+1}
+                                    <h5 class="card-title" id="imgTitle${contImg}">Imagem${contImg + 1}
                                         
                                     </h5>
                                     <ul class="list-group list-group-horizontal float-right">
@@ -209,7 +214,7 @@ function favoriteImage(event) {
         if (node.parentNode) {
             node.parentNode.removeChild(node);
         }
-    } 
+    }
 
     event.innerHTML += `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`
 }
@@ -217,6 +222,23 @@ function favoriteImage(event) {
 function deleteImage(event) {
     event.remove();
 }
+
+function dataURLtoFile(dataurl, filename) {
+
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+}
+
+
 
 function disable(success, error, id) {
     $.ajax({
@@ -229,12 +251,13 @@ function disable(success, error, id) {
 }
 
 function post(success, error, dado) {
-    //console.log(urlPrincipal + urlUsuario)
+    console.log(dado)
     $.ajax({
         url: urlPrincipal + urlProduto,
-        contentType: 'application/json',
         type: 'POST',
-        data: JSON.stringify(dado),
+        contentType: false,
+        processData: false,
+        data: dado,
         success,
         error,
     })
