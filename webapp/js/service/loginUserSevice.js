@@ -22,17 +22,6 @@ function loginUser(event) {
     }
 
     postLogin(success, error, data)
-
-    //     if (email == emailDefault && password == passwordDefault) {
-    //         localStorage.setItem("access", true)
-    //         localStorage.setItem("email", email)
-    //         localStorage.setItem("profile", profileDefault)
-
-    //         window.location.href = "main-page-backoffice.html"
-    //     } else {
-    //         alert("Usuário ou senha inválido!")
-    //     }
-    // }
 }
 
 function logoofUser() {
@@ -44,11 +33,18 @@ function logoofUser() {
 async function countHeaderUserData() {
     await sleep(500);
     loadHeaderData();
+    loadNavData();
 }
 
 function loadHeaderData() {
     document.getElementById("previewUserEmail").insertAdjacentHTML('afterbegin', localStorage.getItem("email"))
     document.getElementById("previewUserProfile").insertAdjacentHTML('afterbegin', localStorage.getItem("profile"))
+}
+
+function loadNavData(){
+    if(localStorage.getItem("profile") == "ESTOQUISTA") {
+        document.getElementById("navAdm").remove()
+    }
 }
 
 function postLogin(success, error, dado) {
