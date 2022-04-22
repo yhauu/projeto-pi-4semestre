@@ -14,4 +14,11 @@
 .logo {
     max-height: 100rem;
     max-width: 13rem;
+    border-radius: 5px;
+}
+
+.logo-store {
+    max-height: 100rem;
+    max-width: 25rem;
+    border-radius: 5px;
 }
