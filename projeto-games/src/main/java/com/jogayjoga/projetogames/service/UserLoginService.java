@@ -4,7 +4,6 @@ import com.jogayjoga.projetogames.dto.UserLoginDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.model.User;
 import com.jogayjoga.projetogames.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -13,17 +12,13 @@ import org.springframework.stereotype.Service;
 public class UserLoginService {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     public User findUserLogin(UserLoginDto userLoginDto) throws BadRequestException {
 
-        // Variável do BD
         User user = userRepository.findByEmail(userLoginDto.getEmail());
 
-        // Verificação de usuário vindo do BD
         if (user != null) {
-
-            // Verificação de senha do BD com a senha recebida do front
             if (BCrypt.checkpw(userLoginDto.getPassword(), user.getPassword())) {
                 return user;
             }
@@ -31,19 +26,4 @@ public class UserLoginService {
 
         throw new BadRequestException("User or password was wrong!");
     }
-
-    /* public User findUserLogin(UserLoginDto userLoginDto) throws Exception {
-        String email = userLoginDto.getEmail();
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new Exception("User or password was wrong!");
-        }
-        String passwordBD = user.getPassword();
-        String passwordFrontend = userLoginDto.getPassword();
-
-        if (!passwordBD.equals(passwordFrontend)) {
-            throw new Exception("User or password was wrong!");
-        }
-        return user;
-    } */
 }

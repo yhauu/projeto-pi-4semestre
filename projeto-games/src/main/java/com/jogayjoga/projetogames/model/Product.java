@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.jogayjoga.projetogames.dto.ProductPhotoDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,12 +47,15 @@ public class Product {
     @Column(name="qtd")
     private int quantity;
 
-    @OneToMany
-    private List<ProductPhoto> photos;
-
     @Column(name="status")
     private boolean productStatus;
 
     @Column(name="data_alteracao_status")
     private Date statusUpdateDate;
+
+    @Column(name="foto_principal")
+    private String principalPhoto;
+
+    @Transient
+    private List<ProductPhotoDto> photos;
 }
