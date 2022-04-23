@@ -31,7 +31,7 @@ public class PhotoManager {
 
     private List<ProductPhoto> save(Product product, List<MultipartFile> files) {
         int i = 1;
-        List<ProductPhoto> list = new ArrayList();
+        List<ProductPhoto> list = new ArrayList<>();
 
         try {
             for (MultipartFile file : files) {

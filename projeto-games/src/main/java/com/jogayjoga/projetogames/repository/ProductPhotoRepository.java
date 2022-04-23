@@ -2,7 +2,6 @@ package com.jogayjoga.projetogames.repository;
 
 import java.util.List;
 
-import com.jogayjoga.projetogames.dto.ProductPhotoDto;
 import com.jogayjoga.projetogames.model.ProductPhoto;
 
 import org.springframework.data.jpa.repository.JpaRepository;
