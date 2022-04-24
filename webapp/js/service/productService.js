@@ -35,6 +35,7 @@ function loadProduct(tela, idProduct) {
             document.getElementById("vDescricaoProduto").value = data.description
             document.getElementById("vPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
             document.getElementById("vAvaliacaoProduto").value = data.rating
+
             let vListaImagens = document.getElementById("vListaImagens")
             vListaImagens.innerHTML = ''
 
@@ -78,15 +79,17 @@ function saveProduct(event) {
     let cAvaliacaoProduto = document.getElementById("cAvaliacaoProduto").value;
 
     let formData = new FormData();
-
+    console.log(cPrecoProduto)
+    
     let data = {
             name: cNomeProduto,
             quantity: parseInt(cQtdeProduto),
             description: cDescricaoProduto,
-            price: parseFloat(cPrecoProduto),
+            price: parseFloat(cPrecoProduto.replace(',', '.')),
             rating: parseFloat(cAvaliacaoProduto),
             principalPhoto: favoriteImageName
     }
+
     formData.append('data', JSON.stringify(data));
 
     let contador = 1;
@@ -122,15 +125,15 @@ function listProduct() {
     let listProduto = document.getElementById("listaProduto")
 
     let success = function (data) {
-        data.forEach(element => {
-            // console.log(element)
-
+        data.forEach(element => {     
+            let = formatPrice = parseFloat(element.price).toFixed(2)
+            formatPrice = formatPrice.replace('.', ',')   
             listProduto.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
                         <td>${element.name}</td>
                         <td>${element.quantity}</td>
-                        <td>${element.price}</td>
+                        <td>R$${FormataStringMoneyToFrontend(element.price)}</td>
                         <td>${element.productStatus == false ? "Desabilitado" : "Habilitado"}</td>
                         <td>
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
