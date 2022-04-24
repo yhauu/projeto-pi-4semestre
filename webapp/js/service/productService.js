@@ -29,14 +29,33 @@ function loadProduct(tela, idProduct) {
             document.getElementById("cDescricaoProduto").value = data.description
             document.getElementById("cPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
             document.getElementById("cAvaliacaoProduto").value = data.rating
-            // document.getElementById("cImagemProduto").value = data.photos
         } else {
             document.getElementById("vNomeProduto").value = data.name
             document.getElementById("vQtdeProduto").value = data.quantity
             document.getElementById("vDescricaoProduto").value = data.description
             document.getElementById("vPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
             document.getElementById("vAvaliacaoProduto").value = data.rating
-            // document.getElementById("vImagemProduto").value = data.photos
+            let vListaImagens = document.getElementById("vListaImagens")
+            vListaImagens.innerHTML = ''
+
+            data.photos.forEach(element => {
+                let imgPrincipal = ""
+                splitText = element.namePhoto.split('.')
+                
+                if (splitText[0] === data.principalPhoto){
+                    imgPrincipal = elementStarIcon
+                }
+
+                vListaImagens.innerHTML += `
+                <div class="col mb-4">
+                    <div class="card">
+                        <img src="../projeto-games/${element.path.replace('.', '')}" class="img-thumbnail" alt="..." style="max-height: 10rem;">
+                        <div class="card-body p-1">
+                            <h5 class="card-title">${element.namePhoto}${imgPrincipal}</h5>                                                                
+                        </div>
+                    </div>
+                </div>`
+            })
         }
     }
 
@@ -76,7 +95,6 @@ function saveProduct(event) {
         formData.append('files', file);
         contador++;
     }
-    console.log(formData);
 
     let success = function (data) {
         window.location = "list-product.html"
@@ -105,8 +123,7 @@ function listProduct() {
 
     let success = function (data) {
         data.forEach(element => {
-            //console.log(element)
-            
+            // console.log(element)
 
             listProduto.innerHTML += `
                     <tr>
@@ -256,7 +273,6 @@ function disable(success, error, id) {
 }
 
 function post(success, error, dado) {
-    console.log(dado)
     $.ajax({
         url: urlPrincipal + urlProduto,
         type: 'POST',
