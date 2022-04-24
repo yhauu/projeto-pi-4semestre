@@ -117,9 +117,12 @@
                                                         value=""></textarea>
                                                 </div>
                                                 <div class="col-md-3 position-relative">
-                                                    <label for="vPrecoProduto" class="form-label">Preço</label>
-                                                    <input type="text" class="form-control value" name="vPrecoProduto"
-                                                        id="vPrecoProduto" readonly value="">
+                                                    <label for="vPrecoProduto" class="form-label">Preço</label>                                                    
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">R$</span>
+                                                        <input type="text" class="form-control money"
+                                                            name="vPrecoProduto" id="vPrecoProduto" readonly>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-3 position-relative">
                                                     <label class="form-label" for="vAvaliacaoProduto">Avaliação</label>
@@ -130,18 +133,7 @@
                                                     <hr>
                                                     <h5>Imagens</h5>
                                                 </div>
-                                                <div class="row row-cols-1 row-cols-md-4 mt-3" id="lista-imagem">
-                                                    <!-- <div class="col mb-4">
-                                                        <div class="card">
-                                                            <img src="img/pato.jpg" class="img-thumbnail" alt="..."
-                                                                style="max-height: 10rem;">
-                                                            <div class="card-body p-1">
-                                                                <h5 class="card-title">Pato.jpg<i
-                                                                        class="material-icons-two-tone md-light">star</i>
-                                                                </h5>                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>                                                     -->
+                                                <div class="row row-cols-1 row-cols-md-4 mt-3" id="vListaImagens">
                                                 </div>
                                             </form>
                                         </div>

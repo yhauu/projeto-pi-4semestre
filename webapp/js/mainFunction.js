@@ -76,7 +76,9 @@ function FormataStringMoneyToBackend(money) {
 }
 
 function FormataStringMoneyToFrontend(money) {
-    return money.toString().replace(".",",");
+    money = parseFloat(money).toFixed(2)
+    money = money.replace('.', ',')
+    return money
 }
 
 // Disable Form by ID;
