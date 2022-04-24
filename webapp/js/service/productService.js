@@ -1,7 +1,10 @@
 let idProduct = 0;
 var contImg = -1;
 var listaDeImagens = [];
-var firstImageFavorite = `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`;
+let primeiraImagem = true;
+let elementStarIcon = `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`;
+var favoriteImageName
+
 
 function verificaIdUrl() {
     var url = window.location.href;
@@ -58,13 +61,12 @@ function saveProduct(event) {
     let formData = new FormData();
 
     let data = {
-        data: {
             name: cNomeProduto,
             quantity: parseInt(cQtdeProduto),
             description: cDescricaoProduto,
             price: parseFloat(cPrecoProduto),
-            rating: parseFloat(cAvaliacaoProduto)
-        }
+            rating: parseFloat(cAvaliacaoProduto),
+            principalPhoto: favoriteImageName
     }
     formData.append('data', JSON.stringify(data));
 
@@ -104,7 +106,7 @@ function listProduct() {
     let success = function (data) {
         data.forEach(element => {
             //console.log(element)
-
+            
 
             listProduto.innerHTML += `
                     <tr>
@@ -162,18 +164,20 @@ function addImage() {
     contImg++;
 
     if (inputFileForm.files.length != 0) {
-        // if (contImg =! 0) {
-        //     firstImageFavorite = 
-        // }
+        if (contImg == 0) {
+            favoriteImageName = "img1"
+            firstImageFavorite = elementStarIcon
+        }else {
+            firstImageFavorite = ""
+        }
+
         addImagem.innerHTML += `
                         <div class="col mb-4" id="divImg${contImg}">
                             <div class="card">
                                 <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
                                     style="max-height: 10rem;">
                                 <div class="card-body p-1">
-                                    <h5 class="card-title" id="imgTitle${contImg}">Imagem${contImg + 1}
-                                        
-                                    </h5>
+                                    <h5 class="card-title" id="imgTitle${contImg}">img${contImg + 1}${firstImageFavorite}</h5>
                                     <ul class="list-group list-group-horizontal float-right">
                                         <li class="list-group-item p-0"><a
                                                 class="btn btn-sm btn-icon btn-warning text-end"
@@ -201,10 +205,10 @@ function addImage() {
         }
     } else {
         alert("Selecione uma Imagem!");
+        contImg--
     }
 
     inputFileForm.value = "";
-
 }
 
 function favoriteImage(event) {
@@ -215,8 +219,9 @@ function favoriteImage(event) {
             node.parentNode.removeChild(node);
         }
     }
-
-    event.innerHTML += `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`
+    // console.log(event)
+    favoriteImageName = event.textContent
+    event.innerHTML += elementStarIcon
 }
 
 function deleteImage(event) {
