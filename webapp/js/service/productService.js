@@ -22,19 +22,58 @@ function verificaIdUrl() {
 
 function loadProduct(tela, idProduct) {
     let success = function (data) {
-        //console.log(data)
+        console.log(data)
         if (tela === "editar") {
             document.getElementById("cNomeProduto").value = data.name
             document.getElementById("cQtdeProduto").value = data.quantity
             document.getElementById("cDescricaoProduto").value = data.description
             document.getElementById("cPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
-            document.getElementById("cAvaliacaoProduto").value = data.rating
+            document.getElementById("cAvaliacaoProduto").value = (data.rating).toFixed(1)
+
+            let cListaImagem = document.getElementById("cListaImagem")
+
+            data.photos.forEach(element => {
+                contImg++
+
+                let imgPrincipal = ""
+                splitText = element.namePhoto.split('.')
+                
+                if (splitText[0] === data.principalPhoto){
+                    imgPrincipal = elementStarIcon
+                    favoriteImageName = imgPrincipal
+                }
+
+                cListaImagem.innerHTML += `
+                <div class="col mb-4" id="divImg${contImg}">
+                    <div class="card">
+                        <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
+                            style="max-height: 10rem;" src="../projeto-games${element.path.replace('.', '')}">
+                        <div class="card-body p-1">
+                            <h5 class="card-title" id="imgTitle${contImg}">${splitText[0]}${imgPrincipal}</h5>
+                            <ul class="list-group list-group-horizontal float-right">
+                                <li class="list-group-item p-0"><a
+                                        class="btn btn-sm btn-icon btn-warning text-end"
+                                        title="Tonar Imagem Principal" onclick="favoriteImage(imgTitle${contImg})" id="">
+                                        <i class="material-icons-two-tone md-light">star</i></a>
+                                </li>
+                                <li class="list-group-item p-0"><a
+                                        class="btn btn-sm btn-icon btn-danger text-end"
+                                        title="Excluir Imagem" onclick="deleteImage(divImg${contImg})" id="">
+                                        <i class="material-icons-two-tone md-light">close</i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>`})
+
+                
+
         } else {
             document.getElementById("vNomeProduto").value = data.name
             document.getElementById("vQtdeProduto").value = data.quantity
             document.getElementById("vDescricaoProduto").value = data.description
             document.getElementById("vPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
-            document.getElementById("vAvaliacaoProduto").value = data.rating
+            document.getElementById("vAvaliacaoProduto").value = (data.rating).toFixed(1)
 
             let vListaImagens = document.getElementById("vListaImagens")
             vListaImagens.innerHTML = ''
@@ -79,8 +118,7 @@ function saveProduct(event) {
     let cAvaliacaoProduto = document.getElementById("cAvaliacaoProduto").value;
 
     let formData = new FormData();
-    console.log(cPrecoProduto)
-    
+
     let data = {
             name: cNomeProduto,
             quantity: parseInt(cQtdeProduto),
@@ -93,6 +131,7 @@ function saveProduct(event) {
     formData.append('data', JSON.stringify(data));
 
     let contador = 1;
+    console.log(listaDeImagens)
     for (img64 of listaDeImagens) {
         var file = dataURLtoFile(img64, "img-" + contador);
         formData.append('files', file);
@@ -118,6 +157,7 @@ function getImages() {
     let imagens = document.getElementsByClassName("img-add-imagem");
     for (let img of imagens) {
         listaDeImagens.push(img.currentSrc);
+        console.log(imagens.src)
     }
 }
 
@@ -178,15 +218,16 @@ function disableProduct(id) {
 }
 
 function addImage() {
-    let addImagem = document.getElementById("lista-imagem");
+    let addImagem = document.getElementById("cListaImagem");
     let inputFile = document.getElementById("cImagemProduto").files;
     let inputFileForm = document.getElementById("cImagemProduto");
+    let firstImageFavorite
     contImg++;
 
     if (inputFileForm.files.length != 0) {
         if (contImg == 0) {
             favoriteImageName = "img1"
-            firstImageFavorite = elementStarIcon
+             firstImageFavorite = elementStarIcon
         }else {
             firstImageFavorite = ""
         }
