@@ -1,7 +1,10 @@
 let idProduct = 0;
 var contImg = -1;
 var listaDeImagens = [];
-var firstImageFavorite = `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`;
+let primeiraImagem = true;
+let elementStarIcon = `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`;
+var favoriteImageName
+
 
 function verificaIdUrl() {
     var url = window.location.href;
@@ -19,21 +22,80 @@ function verificaIdUrl() {
 
 function loadProduct(tela, idProduct) {
     let success = function (data) {
-        //console.log(data)
+        console.log(data)
         if (tela === "editar") {
             document.getElementById("cNomeProduto").value = data.name
             document.getElementById("cQtdeProduto").value = data.quantity
             document.getElementById("cDescricaoProduto").value = data.description
             document.getElementById("cPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
-            document.getElementById("cAvaliacaoProduto").value = data.rating
-            // document.getElementById("cImagemProduto").value = data.photos
+            document.getElementById("cAvaliacaoProduto").value = (data.rating).toFixed(1)
+
+            let cListaImagem = document.getElementById("cListaImagem")
+
+            data.photos.forEach(element => {
+                contImg++
+
+                let imgPrincipal = ""
+                splitText = element.namePhoto.split('.')
+                
+                if (splitText[0] === data.principalPhoto){
+                    imgPrincipal = elementStarIcon
+                    favoriteImageName = imgPrincipal
+                }
+
+                cListaImagem.innerHTML += `
+                <div class="col mb-4" id="divImg${contImg}">
+                    <div class="card">
+                        <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
+                            style="max-height: 10rem;" src="../projeto-games${element.path.replace('.', '')}">
+                        <div class="card-body p-1">
+                            <h5 class="card-title" id="imgTitle${contImg}">${splitText[0]}${imgPrincipal}</h5>
+                            <ul class="list-group list-group-horizontal float-right">
+                                <li class="list-group-item p-0"><a
+                                        class="btn btn-sm btn-icon btn-warning text-end"
+                                        title="Tonar Imagem Principal" onclick="favoriteImage(imgTitle${contImg})" id="">
+                                        <i class="material-icons-two-tone md-light">star</i></a>
+                                </li>
+                                <li class="list-group-item p-0"><a
+                                        class="btn btn-sm btn-icon btn-danger text-end"
+                                        title="Excluir Imagem" onclick="deleteImage(divImg${contImg})" id="">
+                                        <i class="material-icons-two-tone md-light">close</i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>`})
+
+                
+
         } else {
             document.getElementById("vNomeProduto").value = data.name
             document.getElementById("vQtdeProduto").value = data.quantity
             document.getElementById("vDescricaoProduto").value = data.description
             document.getElementById("vPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
-            document.getElementById("vAvaliacaoProduto").value = data.rating
-            // document.getElementById("vImagemProduto").value = data.photos
+            document.getElementById("vAvaliacaoProduto").value = (data.rating).toFixed(1)
+
+            let vListaImagens = document.getElementById("vListaImagens")
+            vListaImagens.innerHTML = ''
+
+            data.photos.forEach(element => {
+                let imgPrincipal = ""
+                splitText = element.namePhoto.split('.')
+                
+                if (splitText[0] === data.principalPhoto){
+                    imgPrincipal = elementStarIcon
+                }
+
+                vListaImagens.innerHTML += `
+                <div class="col mb-4">
+                    <div class="card">
+                        <img src="../projeto-games/${element.path.replace('.', '')}" class="img-thumbnail" alt="..." style="max-height: 10rem;">
+                        <div class="card-body p-1">
+                            <h5 class="card-title">${element.namePhoto}${imgPrincipal}</h5>                                                                
+                        </div>
+                    </div>
+                </div>`
+            })
         }
     }
 
@@ -54,20 +116,27 @@ function saveProduct(event) {
     let cDescricaoProduto = document.getElementById("cDescricaoProduto").value;
     let cPrecoProduto = document.getElementById("cPrecoProduto").value;
     let cAvaliacaoProduto = document.getElementById("cAvaliacaoProduto").value;
-    let cImagemProduto = null;
-    // let cImagemProduto = document.getElementById("cImagemProduto").value;
 
+    let formData = new FormData();
 
     let data = {
-        name: cNomeProduto,
-        quantity: parseInt(cQtdeProduto),
-        description: cDescricaoProduto,
-        price: FormataStringMoneyToBackend(cPrecoProduto),
-        rating: parseFloat(cAvaliacaoProduto),
-        // files: listaDeImagens
+            name: cNomeProduto,
+            quantity: parseInt(cQtdeProduto),
+            description: cDescricaoProduto,
+            price: parseFloat(cPrecoProduto.replace(',', '.')),
+            rating: parseFloat(cAvaliacaoProduto),
+            principalPhoto: favoriteImageName
     }
 
-    console.log(data)
+    formData.append('data', JSON.stringify(data));
+
+    let contador = 1;
+    console.log(listaDeImagens)
+    for (img64 of listaDeImagens) {
+        var file = dataURLtoFile(img64, "img-" + contador);
+        formData.append('files', file);
+        contador++;
+    }
 
     let success = function (data) {
         window.location = "list-product.html"
@@ -81,15 +150,14 @@ function saveProduct(event) {
     if (idProduct > 0) {
         update(success, error, data, idProduct);
     } else {
-        post(success, error, data);
+        post(success, error, formData);
     }
-
 }
-
 function getImages() {
     let imagens = document.getElementsByClassName("img-add-imagem");
     for (let img of imagens) {
         listaDeImagens.push(img.currentSrc);
+        console.log(imagens.src)
     }
 }
 
@@ -97,16 +165,15 @@ function listProduct() {
     let listProduto = document.getElementById("listaProduto")
 
     let success = function (data) {
-        data.forEach(element => {
-            //console.log(element)
-
-
+        data.forEach(element => {     
+            let = formatPrice = parseFloat(element.price).toFixed(2)
+            formatPrice = formatPrice.replace('.', ',')   
             listProduto.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
                         <td>${element.name}</td>
                         <td>${element.quantity}</td>
-                        <td>${element.price}</td>
+                        <td>R$${FormataStringMoneyToFrontend(element.price)}</td>
                         <td>${element.productStatus == false ? "Desabilitado" : "Habilitado"}</td>
                         <td>
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
@@ -151,24 +218,27 @@ function disableProduct(id) {
 }
 
 function addImage() {
-    let addImagem = document.getElementById("lista-imagem");
+    let addImagem = document.getElementById("cListaImagem");
     let inputFile = document.getElementById("cImagemProduto").files;
     let inputFileForm = document.getElementById("cImagemProduto");
+    let firstImageFavorite
     contImg++;
 
     if (inputFileForm.files.length != 0) {
-        // if (contImg =! 0) {
-        //     firstImageFavorite = 
-        // }
+        if (contImg == 0) {
+            favoriteImageName = "img1"
+             firstImageFavorite = elementStarIcon
+        }else {
+            firstImageFavorite = ""
+        }
+
         addImagem.innerHTML += `
                         <div class="col mb-4" id="divImg${contImg}">
                             <div class="card">
                                 <img id="imgId${contImg}" class="img-thumbnail img-add-imagem" alt="..."
                                     style="max-height: 10rem;">
                                 <div class="card-body p-1">
-                                    <h5 class="card-title" id="imgTitle${contImg}">Imagem${contImg+1}
-                                        
-                                    </h5>
+                                    <h5 class="card-title" id="imgTitle${contImg}">img${contImg + 1}${firstImageFavorite}</h5>
                                     <ul class="list-group list-group-horizontal float-right">
                                         <li class="list-group-item p-0"><a
                                                 class="btn btn-sm btn-icon btn-warning text-end"
@@ -196,10 +266,10 @@ function addImage() {
         }
     } else {
         alert("Selecione uma Imagem!");
+        contImg--
     }
 
     inputFileForm.value = "";
-
 }
 
 function favoriteImage(event) {
@@ -209,14 +279,32 @@ function favoriteImage(event) {
         if (node.parentNode) {
             node.parentNode.removeChild(node);
         }
-    } 
-
-    event.innerHTML += `<i class="material-icons-two-tone md-light" id="favoriteTestar">star</i>`
+    }
+    // console.log(event)
+    favoriteImageName = event.textContent
+    event.innerHTML += elementStarIcon
 }
 
 function deleteImage(event) {
     event.remove();
 }
+
+function dataURLtoFile(dataurl, filename) {
+
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+}
+
+
 
 function disable(success, error, id) {
     $.ajax({
@@ -229,12 +317,12 @@ function disable(success, error, id) {
 }
 
 function post(success, error, dado) {
-    //console.log(urlPrincipal + urlUsuario)
     $.ajax({
         url: urlPrincipal + urlProduto,
-        contentType: 'application/json',
         type: 'POST',
-        data: JSON.stringify(dado),
+        contentType: false,
+        processData: false,
+        data: dado,
         success,
         error,
     })
