@@ -153,11 +153,21 @@ function saveProduct(event) {
         post(success, error, formData);
     }
 }
+
 function getImages() {
     let imagens = document.getElementsByClassName("img-add-imagem");
+
     for (let img of imagens) {
-        listaDeImagens.push(img.currentSrc);
-        console.log(imagens.src)
+        fetch(img.currentSrc)
+        .then((res) => res.blob())
+        .then((blob) => {
+            // Read the Blob as DataURL using the FileReader API
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                listaDeImagens.push(reader.result);
+            };
+            reader.readAsDataURL(blob);
+        });
     }
 }
 
