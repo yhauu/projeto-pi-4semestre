@@ -2,6 +2,7 @@ package com.jogayjoga.projetogames.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.jogayjoga.projetogames.dto.ProductPhotoDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
@@ -26,6 +27,16 @@ public class ProductPhotoService {
 
     private ProductService productService;
 
+    private ProductPhoto findOne(long id) throws NotFoundException {
+        Optional<ProductPhoto> productPhoto = productPhotoRepository.findById(id);
+
+        if (productPhoto == null ||  productPhoto.isEmpty() == true) {
+            throw new NotFoundException("Product not found!");
+        }
+
+        return productPhoto.get();
+    }
+
     public void create(Product product, List<MultipartFile> photos) throws NotFoundException {
         List<ProductPhoto> listProductPhoto = photoManager.savePhotos(photos, product);
         for (ProductPhoto productPhoto : listProductPhoto)  {
@@ -33,10 +44,20 @@ public class ProductPhotoService {
         }
     }
 
-    public void update(long productId, ProductPhoto product, List<MultipartFile> photos) throws NotFoundException, BadRequestException {
-        productService.findProduct(productId);
-        product.setId(productId);
-        productPhotoRepository.save(product);
+    public void update(long productId, List<MultipartFile> photos, Product product) throws NotFoundException, BadRequestException {
+        List<ProductPhotoDto> listPhotos = findAllPhotosByProductId(productId);
+
+        photoManager.delete(listPhotos);
+
+        for (ProductPhotoDto productPhotoDto : listPhotos) {
+            ProductPhoto productPhoto = findOne(productPhotoDto.getId());
+            productPhotoRepository.delete(productPhoto);
+        }
+
+        List<ProductPhoto> listProductPhoto = photoManager.savePhotos(photos, product);
+        for (ProductPhoto productPhoto : listProductPhoto)  {
+            productPhotoRepository.save(productPhoto);
+        }
     }
 
     public List<ProductPhotoDto> findAllPhotosByProductId(long idProduct) {
@@ -48,6 +69,7 @@ public class ProductPhotoService {
             productPhotoDto.setId(productPhoto.getId());
             productPhotoDto.setNamePhoto(productPhoto.getNamePhoto());
             productPhotoDto.setPath(productPhoto.getPath());
+            productPhotoDto.setIdProduct(idProduct);
 
             listProductPhotoDto.add(productPhotoDto);
         }

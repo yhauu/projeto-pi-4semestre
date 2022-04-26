@@ -46,6 +46,7 @@ public class ProductService {
         product.setId(productId);
         productRepository.save(product);
 
+        productPhotoService.update(productId, files, product);
     }
 
     public void updateStatus(long productId) throws NotFoundException {

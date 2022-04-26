@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jogayjoga.projetogames.dto.ProductPhotoDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.model.Product;
 import com.jogayjoga.projetogames.model.ProductPhoto;
@@ -71,5 +72,18 @@ public class PhotoManager {
         }
 
         return list;
+    }
+
+    public void delete(List<ProductPhotoDto> listPhotos) {
+        for (ProductPhotoDto file : listPhotos) {
+
+            String photoName = file.getNamePhoto();
+            String folder = String.valueOf(file.getIdProduct());
+
+            String finalPath = rootPath.concat("/" + folder).concat("/" + photoName);
+            File fileWithPath = new File(finalPath);
+
+            fileWithPath.delete();
+        }
     }
 }

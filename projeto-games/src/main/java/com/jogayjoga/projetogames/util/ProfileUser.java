@@ -4,5 +4,7 @@ public enum ProfileUser {
 
     ADMINISTRADOR,
 
-    ESTOQUISTA;
+    ESTOQUISTA,
+    
+    CLIENTE;
 }
