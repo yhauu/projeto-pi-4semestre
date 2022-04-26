@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Eletro-Master -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/eletromaster/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/slick.css" />
+	<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+	<link type="text/css" rel="stylesheet" href="css/eletromaster/nouislider.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link type="text/css" rel="stylesheet" href="css/eletromaster/style.css" />
+
+	<!-- Main Styles -->
+	<link type="text/css" rel="stylesheet" href="css/mainStyles.css" />
+
+	<title>JogaYJoga</title>
+
+</head>
+
+<body>
+
+	<div data-include="header-store"></div>
+
+	<!-- SECTION -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- Product main img -->
+				<div class="col-md-5 col-md-push-2">
+					<div id="product-main-img">
+						<div class="product-preview">
+							<img src="img/img_teste.jpg" id>
+						</div>
+
+						<div class="product-preview">
+							<img src="img/pato2.jpg" alt="">
+						</div>
+
+						<div class="product-preview">
+							<img src="img/pato.jpg" alt="">
+						</div>
+
+					</div>
+				</div>
+				<!-- /Product main img -->
+
+				<!-- Product thumb imgs -->
+				<div class="col-md-2  col-md-pull-5">
+					<div id="product-imgs">
+						<div class="product-preview">
+							<img src="img/img_teste.jpg" alt="">
+						</div>
+
+						<div class="product-preview">
+							<img src="img/pato2.jpg" alt="">
+						</div>
+
+						<div class="product-preview">
+							<img src="img/pato.jpg" alt="">
+						</div>
+
+					</div>
+				</div>
+				<!-- /Product thumb imgs -->
+
+
+				<!-- Product details -->
+				<div class="col-md-5">
+					<div class="product-details">
+						<h2 class="product-name" id="vProductName"></h2>
+						<div>
+							<div class="product-rating">
+								<i class="fa fa-star h4"></i>
+								<i style="color: black" class="h4" id="vProductRating"></i>
+							</div>
+						</div>
+						<div>
+							<h3 class="product-price" id="vProductPrice"></h3>
+							<span class="product-available">Em Estoque</span>
+						</div>
+						<p id="vProductDescription"></p>
+
+						<div class="add-to-cart mt-3">
+							<button class="add-to-cart-btn" style="margin-top: 2.5rem"><i
+									class="fa fa-shopping-cart"></i>Comprar</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /SECTION -->
+
+	<div data-include="footer-store"></div>
+
+
+	<!-- Jquery -->
+	<script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
+
+	<!-- Eletro-Master Plugins -->
+	<script src="js/eletromaster/bootstrap.min.js"></script>
+	<script src="js/eletromaster/slick.min.js"></script>
+	<script src="js/eletromaster/nouislider.min.js"></script>
+	<script src="js/jquery/jquery.zoom.min.js"></script>
+	<script src="js/eletromaster/main.js"></script>
+
+	<!-- JS Main Functions -->
+	<script type="text/javascript" src="js/mainFunction.js"></script>
+
+	<!-- JS Service -->
+	<script type="text/javascript" src="js/service/url.js"></script>
+	<script type="text/javascript" src="js/service/storeProductService.js"></script>
+	<script>verificaIdUrl()</script>
+
+</body>
+
+</html>

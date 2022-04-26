@@ -17,7 +17,7 @@ function loginUser(event) {
     }
 
     let error = function (err) {
-        console.log(err)
+        console.log(err.responseJSON.message)
         alert("Usuário ou senha invalida!")
     }
 
