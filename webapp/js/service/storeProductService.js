@@ -1,10 +1,10 @@
 function listAllProducts() {
     let vListaProdutos = document.getElementById("vListaProdutos")
-    
+
     let success = function (data) {
         data.forEach(element => {
 
-            
+
             vListaProdutos.innerHTML += `
             <div class="col-md-3 col-xs-6" id="productId${element.id}">
                 <div class="product">
@@ -21,7 +21,7 @@ function listAllProducts() {
                     </div>
                 </div>
             </div>`
-            
+
         })
     }
 
@@ -35,7 +35,7 @@ function listAllProducts() {
 
 function listCarouselProduts() {
     // let vCaroselProdutos = document.getElementById("vCaroselProdutos")
-    
+
     // let success = function (data) {
     //     data.forEach(element => {
 
@@ -55,7 +55,7 @@ function listCarouselProduts() {
     //                </div>
     //         </div>
     //         <!-- /product -->`
-            
+
 
     //     })
     // }
@@ -67,11 +67,14 @@ function listCarouselProduts() {
     // findAll(success, error)
 }
 
+function telaProduto(id) {
+    window.location = "store-product.html?id=" + id;
+}
 
-function findPrincipalImage (listaImg, namePrincipalImg) {
+function findPrincipalImage(listaImg, namePrincipalImg) {
     let imgPath;
 
-    listaImg.forEach(element => {        
+    listaImg.forEach(element => {
         splitText = element.namePhoto.split('.')
         if (splitText[0] === namePrincipalImg) {
             imgPath = (element.path).replace('.', '')
@@ -81,9 +84,57 @@ function findPrincipalImage (listaImg, namePrincipalImg) {
     return imgPath
 }
 
+function loadProduct(idProduct) {
+    let success = function (data) {
+        console.log(data)
+        
+        document.getElementById("vProductName").innerText = data.name
+        document.getElementById("vProductRating").innerText = (data.rating).toFixed(1)
+        document.getElementById("vProductPrice").innerText = "R$ " + FormataStringMoneyToFrontend(data.price)
+        document.getElementById("vProductDescription").innerText = data.description
+
+        let productMainImg = document.getElementById("product-main-img")
+        let productImgs = document.getElementById("product-imgs")
+
+        data.photos.forEach(element => {
+            console.log(element)
+        });
+    }
+
+    let error = function (err) {
+        console.log(err)
+    }
+
+    //console.log(tela + " " + idProduct);
+    findOne(success, error, idProduct);
+}
+
+function verificaIdUrl() {
+    var url = window.location.href;
+    var res = url.split('?');
+
+    if (res[1] !== undefined) {
+        var lala = res[1].split('=');
+        idProduct = lala[1];
+    }
+
+    loadProduct(idProduct);
+    
+}
+
 function findAll(success, error) {
     $.ajax({
         url: urlPrincipal + urlProduto,
+        contentType: 'application/json',
+        type: 'GET',
+        success,
+        error,
+    })
+}
+
+function findOne(success, error, id) {
+    $.ajax({
+        url: urlPrincipal + urlProduto + `/${id}`,
         contentType: 'application/json',
         type: 'GET',
         success,
