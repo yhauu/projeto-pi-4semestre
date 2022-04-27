@@ -37,10 +37,10 @@ function loadProduct(tela, idProduct) {
 
                 let imgPrincipal = ""
                 splitText = element.namePhoto.split('.')
-                
-                if (splitText[0] === data.principalPhoto){
+
+                if (splitText[0] === data.principalPhoto) {
                     imgPrincipal = elementStarIcon
-                    favoriteImageName = imgPrincipal
+                    favoriteImageName = splitText[0]
                 }
 
                 cListaImagem.innerHTML += `
@@ -66,7 +66,7 @@ function loadProduct(tela, idProduct) {
                     </div>
                 </div>`})
 
-                
+
 
         } else {
             document.getElementById("vNomeProduto").value = data.name
@@ -81,8 +81,8 @@ function loadProduct(tela, idProduct) {
             data.photos.forEach(element => {
                 let imgPrincipal = ""
                 splitText = element.namePhoto.split('.')
-                
-                if (splitText[0] === data.principalPhoto){
+
+                if (splitText[0] === data.principalPhoto) {
                     imgPrincipal = elementStarIcon
                 }
 
@@ -108,7 +108,7 @@ function loadProduct(tela, idProduct) {
 }
 
 function saveProduct(event) {
-    event.preventDefault()
+    event.preventDefault();
     getImages();
 
     let cNomeProduto = document.getElementById("cNomeProduto").value;
@@ -120,12 +120,12 @@ function saveProduct(event) {
     let formData = new FormData();
 
     let data = {
-            name: cNomeProduto,
-            quantity: parseInt(cQtdeProduto),
-            description: cDescricaoProduto,
-            price: parseFloat(cPrecoProduto.replace(',', '.')),
-            rating: parseFloat(cAvaliacaoProduto),
-            principalPhoto: favoriteImageName
+        name: cNomeProduto,
+        quantity: parseInt(cQtdeProduto),
+        description: cDescricaoProduto,
+        price: parseFloat(cPrecoProduto.replace(',', '.')),
+        rating: parseFloat(cAvaliacaoProduto),
+        principalPhoto: favoriteImageName
     }
 
     formData.append('data', JSON.stringify(data));
@@ -155,19 +155,21 @@ function saveProduct(event) {
 }
 
 function getImages() {
-    let imagens = document.getElementsByClassName("img-add-imagem");
+    let imagensClass = document.getElementsByClassName("img-add-imagem");
 
-    for (let img of imagens) {
-        fetch(img.currentSrc)
-        .then((res) => res.blob())
-        .then((blob) => {
-            // Read the Blob as DataURL using the FileReader API
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                listaDeImagens.push(reader.result);
-            };
-            reader.readAsDataURL(blob);
-        });
+    for (let img of imagensClass) {
+        listaDeImagens.push(img.currentSrc);
+
+        // fetch(img.currentSrc)
+        // .then((res) => res.blob())
+        // .then((blob) => {
+        //     // Read the Blob as DataURL using the FileReader API
+        //     const reader = new FileReader();
+        //     reader.onloadend = () => {
+        //         listaDeImagens.push(reader.result);
+        //     };
+        //     reader.readAsDataURL(blob);
+        // });
     }
 }
 
@@ -175,9 +177,9 @@ function listProduct() {
     let listProduto = document.getElementById("listaProduto")
 
     let success = function (data) {
-        data.forEach(element => {     
+        data.forEach(element => {
             let = formatPrice = parseFloat(element.price).toFixed(2)
-            formatPrice = formatPrice.replace('.', ',')   
+            formatPrice = formatPrice.replace('.', ',')
             listProduto.innerHTML += `
                     <tr>
                         <td>${element.id}</td>
@@ -237,8 +239,8 @@ function addImage() {
     if (inputFileForm.files.length != 0) {
         if (contImg == 0) {
             favoriteImageName = "img1"
-             firstImageFavorite = elementStarIcon
-        }else {
+            firstImageFavorite = elementStarIcon
+        } else {
             firstImageFavorite = ""
         }
 
