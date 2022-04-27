@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <link rel="stylesheet" href="css/dashboardkit/style.css" id="main-style-link">
+    <!-- Favicon icon -->
+    <link rel="icon" href="/img/dashboardkit/image/favicon.svg" type="image/x-icon">
+
+    <!-- font css -->
+    <link rel="stylesheet" href="fonts/dashboardkit/feather.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/fontawesome.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/material.css">
+
+    <!-- jquery -->
+    <link rel="stylesheet" href="css/jquery/jquery.dataTables.min.css">
+
+    <!-- main styles -->
+    <link rel="stylesheet" href="css/mainStyles.css">
+
+    <title>JogaYJoga - Entrar</title>
+
+</head>
+
+<body>
+    <!-- [ auth-signin ] start -->
+    <div class="auth-wrapper bg-dark">
+        <div class="auth-content">
+            <div class="card">
+                <div class="row align-items-center text-center">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <form onsubmit="loginClient(event)">
+                                <a href="index.html">
+                                    <img src="img/Logotipo.png" alt="" class="img-fluid mb-0">
+                                </a>
+                                <h4 class="mb-3 mt-0 f-w-400">Acesso Cliente</h4>
+                                <h3 class="mb-3 f-w-400">Entrar</h3>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i data-feather="mail"></i></span>
+                                    <input type="email" class="form-control" placeholder="Endereço de e-mail" required
+                                        id="loginUserEmail">
+                                </div>
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text"><i data-feather="lock"></i></span>
+                                    <input type="password" class="form-control" placeholder="Senha" required
+                                        id="loginUserPassword">
+                                </div>
+                                <button type="submit" class="btn btn-block btn-primary mb-4">Entrar</button>
+                                <p class="mb-2">Não tem uma conta? <a href="register-client.html"
+                                        class="f-w-400">Cadastre-se</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ auth-signin ] end -->
+
+    <!-- Import Common JS Function-->
+    <!-- Dashborad Kit-->
+    <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/plugins/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/plugins/feather.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/pcoded.min.js"></script>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
+
+    <!-- JS Main Functions -->
+    <script type="text/javascript" src="js/mainFunction.js"></script>
+
+    <!-- JS Service -->
+    <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/loginClientSevice.js"></script>
+
+</body>
+
+</html>
