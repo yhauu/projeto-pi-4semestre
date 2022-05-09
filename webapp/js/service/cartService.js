@@ -72,6 +72,12 @@ function listCart(){
         findOneProduct(success, error, element.id)
     });
 
+    
+
+}
+
+function calcSubtotalCarrinho (listaProdutos) {
+    
 }
 
 function telaCarrinho (){
