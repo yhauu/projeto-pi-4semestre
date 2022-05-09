@@ -150,6 +150,7 @@ function saveProduct(event) {
     if (idProduct > 0) {
         update(success, error, data, idProduct);
     } else {
+        
         post(success, error, formData);
     }
 }
@@ -351,6 +352,7 @@ function findAll(success, error) {
 }
 
 function update(success, error, dado, id) {
+    console.log(dado)
     $.ajax({
         url: urlPrincipal + urlProduto + `/${id}/update`,
         contentType: 'application/json',

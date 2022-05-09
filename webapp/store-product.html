@@ -107,13 +107,17 @@
 						</div>
 						<div>
 							<h3 class="product-price" id="vProductPrice"></h3>
-							<span class="product-available">Em Estoque</span>
+							<span class="product-available" id="vProductQtde">Em Estoque</span>
 						</div>
 						<p id="vProductDescription"></p>
 
-						<div class="add-to-cart mt-3">
-							<button class="add-to-cart-btn" style="margin-top: 2.5rem"><i
-									class="fa fa-shopping-cart"></i>Comprar</button>
+						<div class="add-to-cart mt-3" id="btnBuyDiv">
+							<div class="qty-label">
+								Quantidade
+								<div class="input-number">
+									<input type="number" id="productQtd" value="1">
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -145,6 +149,7 @@
 	<!-- JS Service -->
 	<script type="text/javascript" src="js/service/url.js"></script>
 	<script type="text/javascript" src="js/service/storeProductService.js"></script>
+	<script type="text/javascript" src="js/service/cartService.js"></script>
 	<script>verificaIdUrl()</script>
 
 </body>

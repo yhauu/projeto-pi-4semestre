@@ -22,3 +22,30 @@
     max-width: 25rem;
     border-radius: 5px;
 }
+
+.font-color-white {
+    color: white;
+}
+
+.cart-bg-black {
+    background-color: #15161D;
+}
+
+.panel-black>.panel-heading {
+    color: #15161D;
+    background-color: #1e1f29;
+    border-color: #15161D;
+}
+
+.panel-black {
+    border-color: #15161D;
+}
+
+.btn-red{
+    background-color: #D10024;
+    color: #fff;
+}
+
+.btn-red-icon {
+    font-size: 13px;
+}
