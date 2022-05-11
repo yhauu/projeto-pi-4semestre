@@ -1,16 +1,19 @@
 package com.jogayjoga.projetogames.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.jogayjoga.projetogames.util.Gender;
+import com.jogayjoga.projetogames.util.ProfileUser;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,15 +37,24 @@ public class Client {
     @Column(name="nome_completo")
     private String name;
 
+    @Column(name="cpf")
+    private String legalNumber;
+
+    private String email;
+
+    @Column(name="senha")
+    private String password;
+
     @Column(name="data_nascimento")
     private LocalDate birthDate;
 
     @Column(name="genero")
     private Gender gender;
 
-    // @Column(name="id_endereco_faturamento")
-    // private BillingAddress billingAddress;
+    @Column(name="perfil_sistema")
+    private ProfileUser profile;
 
-    // @Transient
-    // private DeliveryAddress deliveryAddress;
+    @OneToMany
+    @JoinColumn(name="id_endereco")
+    private List<Address> address;
 }

@@ -1,8 +1,12 @@
 package com.jogayjoga.projetogames.controller;
 
+import com.jogayjoga.projetogames.dto.ClientUpdateDto;
+import com.jogayjoga.projetogames.dto.UserLoginDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
-import com.jogayjoga.projetogames.model.User;
+import com.jogayjoga.projetogames.model.Client;
+import com.jogayjoga.projetogames.service.ClientService;
+import com.jogayjoga.projetogames.service.UserLoginService;
 import com.jogayjoga.projetogames.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,26 +26,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientController {
 
     @Autowired
-    private UserService userService;
+    private ClientService clientService;
+
+    @Autowired
+    private UserLoginService userLoginService;
 
     @GetMapping
     @ResponseBody
-    @RequestMapping("/{userId}")
+    @RequestMapping("/{clientId}")
     @ResponseStatus(HttpStatus.OK)
-    public User getUser(@PathVariable Long userId) throws NotFoundException {
-        return userService.findUser(userId);
+    public Client getClient(@PathVariable Long clientId) throws NotFoundException {
+        return clientService.findClient(clientId);
+    }
+
+    @PutMapping
+    @RequestMapping("/{clientId}/update")
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@PathVariable long clientId, @RequestBody ClientUpdateDto clientDto) throws NotFoundException, BadRequestException {
+        clientService.update(clientId, clientDto);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Client login(@RequestBody UserLoginDto userLoginDto) throws Exception {
+        return userLoginService.findClientLogin(userLoginDto);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody User user) throws NotFoundException {
-        userService.create(user);
-    }
-
-    @PutMapping
-    @RequestMapping("/{userId}/update")
-    @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable long userId, @RequestBody User user) throws NotFoundException, BadRequestException {
-        userService.update(userId, user);
+    public void create(@RequestBody Client user) throws NotFoundException {
+        clientService.create(user);
     }
 }
