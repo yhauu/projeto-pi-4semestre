@@ -1,4 +1,4 @@
-if(localStorage.getItem("carrinho") === null) {
+if (localStorage.getItem("carrinho") === null) {
     let listaVazia = []
     localStorage.setItem("carrinho", JSON.stringify(listaVazia))
 }
@@ -6,15 +6,15 @@ if(localStorage.getItem("carrinho") === null) {
 
 // localStorage.setItem("cart", {})
 
-function addProductCart (productId){
+function addProductCart(productId) {
     let productQtd = parseInt(document.getElementById("productQtd").value)
     let listaProdutos = JSON.parse(localStorage.getItem("carrinho") || "[]")
     let produtoRepetido;
     let contRepetido = 0;
-    
+
     // verifica se o produto já exite no carrinho
     listaProdutos.forEach(element => {
-        if(element.id === productId){
+        if (element.id === productId) {
             listaProdutos[contRepetido].qtd = listaProdutos[contRepetido].qtd + productQtd
             localStorage.setItem("carrinho", JSON.stringify(listaProdutos))
 
@@ -27,21 +27,23 @@ function addProductCart (productId){
         let produto = {
             id: productId,
             qtd: productQtd
-        }    
+        }
         listaProdutos.push(produto)
         localStorage.setItem("carrinho", JSON.stringify(listaProdutos))
-    } 
+    }
 
     telaCarrinho()
 }
 
-function listCart(){
+function listCart() {
     let listaProdutos = JSON.parse(localStorage.getItem("carrinho") || "[]")
     let listaCarrinho = document.getElementById("lista-carrinho")
+    let listaPrecos = []
+    let contArrayLength = 1
 
     listaProdutos.forEach(element => {
         let success = function (data) {
-            console.log(data)
+
             listaCarrinho.innerHTML += `<div class="row">
                                             <div class="col-xs-2"><img class="img-responsive" style="max-height: 90px" src="../projeto-games/${findPrincipalImage(data.photos, data.principalPhoto)}">
                                             </div>
@@ -63,6 +65,15 @@ function listCart(){
                                             </div>
                                         </div>
                                         <hr>`
+
+            listaPrecos.push(data.price)
+
+            if (listaProdutos.length !== contArrayLength) {
+                        contArrayLength++
+                    } else {            
+                        document.getElementById("vSubTotalProdutos").innerText = "R$" + calcSubtotalCarrinho(listaProdutos, listaPrecos)
+                    }
+            
         }
 
         let error = function (err) {
@@ -76,11 +87,17 @@ function listCart(){
 
 }
 
-function calcSubtotalCarrinho (listaProdutos) {
-    
+function calcSubtotalCarrinho(listaProdutos, listaPrecos) {
+    let soma = 0.0
+    for (let i = 0; i < listaProdutos.length; i++) {
+        let totalProduto = listaProdutos[i].qtd * listaPrecos[i]
+        soma = soma + totalProduto
+    }
+
+    return soma
 }
 
-function telaCarrinho (){
+function telaCarrinho() {
     window.location = "cart.html"
 }
 
