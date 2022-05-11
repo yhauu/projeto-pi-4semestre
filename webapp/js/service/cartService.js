@@ -83,7 +83,38 @@ function listCart() {
         findOneProduct(success, error, element.id)
     });
 
-    
+}
+
+function listCheckout() {
+    let listaProdutos = JSON.parse(localStorage.getItem("carrinho") || "[]")
+    let listaCheckout = document.getElementById("lista-checkout")
+    let listaPrecos = []
+    let contArrayLength = 1
+
+    listaProdutos.forEach(element => {
+        let success = function (data) {
+
+            listaCheckout.innerHTML += `<div class="order-col">
+                                            <div>${element.qtd}x ${data.name}</div>
+                                            <div>R$${FormataStringMoneyToFrontend(data.price)}</div>
+                                        </div>`
+            
+            listaPrecos.push(data.price)
+
+            if (listaProdutos.length !== contArrayLength) {
+                        contArrayLength++
+                    } else {            
+                        document.getElementById("vTotalProdutos").innerText = "R$" + calcSubtotalCarrinho(listaProdutos, listaPrecos)
+                    }
+            
+        }
+
+        let error = function (err) {
+            console.log(err)
+        }
+
+        findOneProduct(success, error, element.id)
+    });
 
 }
 
