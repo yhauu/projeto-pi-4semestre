@@ -47,6 +47,7 @@ public class ClientController {
     }
 
     @PostMapping
+    @RequestMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     public Client login(@RequestBody UserLoginDto userLoginDto) throws Exception {
         return userLoginService.findClientLogin(userLoginDto);
