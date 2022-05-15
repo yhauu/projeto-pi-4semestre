@@ -14,31 +14,35 @@ function addProductCart(productId) {
 
     let success = function (data) {
 
-        // verifica se o produto já exite no carrinho
         console.log(data)
-        listaProdutos.forEach(element => {
-            if (element.id === productId) {
-                listaProdutos[contRepetido].qtd = listaProdutos[contRepetido].qtd + productQtd
+        if (data.quantity >= productQtd) {
+            // verifica se o produto já exite no carrinho
+            listaProdutos.forEach(element => {
+                if (element.id === productId) {
+                    listaProdutos[contRepetido].qtd = listaProdutos[contRepetido].qtd + productQtd
+                    localStorage.setItem("carrinho", JSON.stringify(listaProdutos))
+
+                    produtoRepetido = 1;
+                }
+                contRepetido++
+            });
+
+            if (produtoRepetido != 1) {
+                let produto = {
+                    id: productId,
+                    qtd: productQtd,
+                    name: data.name,
+                    price: data.price,
+                    image: findPrincipalImage(data.photos, data.principalPhoto)
+                }
+                listaProdutos.push(produto)
                 localStorage.setItem("carrinho", JSON.stringify(listaProdutos))
-
-                produtoRepetido = 1;
             }
-            contRepetido++
-        });
 
-        if (produtoRepetido != 1) {
-            let produto = {
-                id: productId,
-                qtd: productQtd,
-                name: data.name,
-                price: data.price,
-                image: findPrincipalImage(data.photos, data.principalPhoto)
-            }
-            listaProdutos.push(produto)
-            localStorage.setItem("carrinho", JSON.stringify(listaProdutos))
+            telaCarrinho()
+        } else {
+            alert("Sem quantidade em estoque! Selecione uma quantidade válida")
         }
-
-        telaCarrinho()
     }
 
 
@@ -48,6 +52,8 @@ function addProductCart(productId) {
 
 
     findOneProduct(success, error, productId)
+
+
 }
 
 function listCart() {
