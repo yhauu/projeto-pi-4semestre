@@ -47,6 +47,12 @@ function loadNavData(){
     }
 }
 
+// function verifyUserUpdate () {
+//     if(localStorage.getItem("profile") == "ESTOQUISTA") {
+//         console.log()
+//     }
+// }
+
 function postLogin(success, error, dado) {
     $.ajax({
         url: urlPrincipal + urlLoginUsuario,

@@ -2,7 +2,9 @@ package com.jogayjoga.projetogames.service;
 
 import com.jogayjoga.projetogames.dto.UserLoginDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
+import com.jogayjoga.projetogames.model.Client;
 import com.jogayjoga.projetogames.model.User;
+import com.jogayjoga.projetogames.repository.ClientRepository;
 import com.jogayjoga.projetogames.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -14,6 +16,9 @@ public class UserLoginService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    ClientRepository clientRepository;
+
     public User findUserLogin(UserLoginDto userLoginDto) throws BadRequestException {
 
         User user = userRepository.findByEmail(userLoginDto.getEmail());
@@ -21,6 +26,19 @@ public class UserLoginService {
         if (user != null) {
             if (BCrypt.checkpw(userLoginDto.getPassword(), user.getPassword())) {
                 return user;
+            }
+        }
+
+        throw new BadRequestException("User or password was wrong!");
+    }
+
+    public Client findClientLogin(UserLoginDto userLoginDto) throws BadRequestException {
+        
+        Client client = clientRepository.findByEmail(userLoginDto.getEmail());
+
+        if (client != null) {
+            if (BCrypt.checkpw(userLoginDto.getPassword(), client.getPassword())) {
+                return client;
             }
         }
 

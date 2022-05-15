@@ -86,19 +86,21 @@ function findPrincipalImage(listaImg, namePrincipalImg) {
 
 function loadProduct(idProduct) {
     let success = function (data) {
+        let productMainImg = document.getElementById("product-main-img")
+        let productImgs = document.getElementById("product-imgs")
+
         console.log(data)
         
         document.getElementById("vProductName").innerText = data.name
         document.getElementById("vProductRating").innerText = (data.rating).toFixed(1)
         document.getElementById("vProductPrice").innerText = "R$ " + FormataStringMoneyToFrontend(data.price)
         document.getElementById("vProductDescription").innerText = data.description
+        document.getElementById("vProductQtde").innerText = data.quantity + " EM ESTOQUE"
 
-        let productMainImg = document.getElementById("product-main-img")
-        let productImgs = document.getElementById("product-imgs")
-
-        data.photos.forEach(element => {
-            console.log(element)
-        });
+        document.getElementById("btnBuyDiv").innerHTML += `
+                <button class="add-to-cart-btn" style="margin-top: 2.5rem" 
+                onclick="addProductCart(${data.id})"><i
+                class="fa fa-shopping-cart"></i>Comprar</button>`
     }
 
     let error = function (err) {

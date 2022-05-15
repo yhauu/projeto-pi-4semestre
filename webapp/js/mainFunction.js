@@ -9,9 +9,10 @@ $(function () {
 
 // Function DataTable
 async function countDataTable(){
-    await sleep(50);
+    await sleep(100);
     startDataTable();
 }
+
 
 function startDataTable() {
     $('table').DataTable({
