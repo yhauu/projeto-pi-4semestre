@@ -13,7 +13,7 @@ function listAllProducts() {
                     </div>
                     <div class="product-body">
                         <h3 class="product-name"><a href="#">${element.name}</a></h3>
-                        <h4 class="product-price">R$${FormataStringMoneyToFrontend(element.price)}</h4>
+                        <h4 class="product-price">R$${formataStringMoneyToFrontend(element.price)}</h4>
                         <div class="product-rating">
                         </div>
                         <button class="btn primary-btn" onclick="telaProduto(${element.id})"><i class="fa fa-shopping-cart"></i>
@@ -47,7 +47,7 @@ function listCarouselProduts() {
     //             </div>
     //             <div class="product-body">
     //                 <h3 class="product-name"><a href="#">${element.name}</a></h3>
-    //                 <h4 class="product-price">R$${FormataStringMoneyToFrontend(element.price)}</h4>
+    //                 <h4 class="product-price">R$${formataStringMoneyToFrontend(element.price)}</h4>
     //                 <div class="product-rating">
     //                 </div>
     //                 <button class="btn primary-btn" onclick="telaProduto(${element.id})"><i class="fa fa-shopping-cart"></i>
@@ -93,7 +93,7 @@ function loadProduct(idProduct) {
         
         document.getElementById("vProductName").innerText = data.name
         document.getElementById("vProductRating").innerText = (data.rating).toFixed(1)
-        document.getElementById("vProductPrice").innerText = "R$ " + FormataStringMoneyToFrontend(data.price)
+        document.getElementById("vProductPrice").innerText = "R$ " + formataStringMoneyToFrontend(data.price)
         document.getElementById("vProductDescription").innerText = data.description
         document.getElementById("vProductQtde").innerText = data.quantity + " EM ESTOQUE"
 

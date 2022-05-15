@@ -76,7 +76,7 @@ function FormataStringMoneyToBackend(money) {
     return money.toString().replace(",",".");
 }
 
-function FormataStringMoneyToFrontend(money) {
+function formataStringMoneyToFrontend(money) {
     money = parseFloat(money).toFixed(2)
     money = money.replace('.', ',')
     return money

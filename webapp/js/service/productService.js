@@ -27,7 +27,7 @@ function loadProduct(tela, idProduct) {
             document.getElementById("cNomeProduto").value = data.name
             document.getElementById("cQtdeProduto").value = data.quantity
             document.getElementById("cDescricaoProduto").value = data.description
-            document.getElementById("cPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
+            document.getElementById("cPrecoProduto").value = formataStringMoneyToFrontend(data.price)
             document.getElementById("cAvaliacaoProduto").value = (data.rating).toFixed(1)
 
             let cListaImagem = document.getElementById("cListaImagem")
@@ -72,7 +72,7 @@ function loadProduct(tela, idProduct) {
             document.getElementById("vNomeProduto").value = data.name
             document.getElementById("vQtdeProduto").value = data.quantity
             document.getElementById("vDescricaoProduto").value = data.description
-            document.getElementById("vPrecoProduto").value = FormataStringMoneyToFrontend(data.price)
+            document.getElementById("vPrecoProduto").value = formataStringMoneyToFrontend(data.price)
             document.getElementById("vAvaliacaoProduto").value = (data.rating).toFixed(1)
 
             let vListaImagens = document.getElementById("vListaImagens")
@@ -186,7 +186,7 @@ function listProduct() {
                         <td>${element.id}</td>
                         <td>${element.name}</td>
                         <td>${element.quantity}</td>
-                        <td>R$${FormataStringMoneyToFrontend(element.price)}</td>
+                        <td>R$${formataStringMoneyToFrontend(element.price)}</td>
                         <td>${element.productStatus == false ? "Desabilitado" : "Habilitado"}</td>
                         <td>
                             <a class="btn btn-sm btn-icon btn-info" href="#" data-toggle="modal"
