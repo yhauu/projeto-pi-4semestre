@@ -50,7 +50,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="panel-body" id="lista-carrinho">							
+						<div class="panel-body" id="lista-carrinho">
 						</div>
 						<div class="panel-footer">
 							<div class="row text-center">
@@ -59,7 +59,53 @@
 								</div>
 								<div class="col-xs-3">
 									<a type="button" href="checkout.html" class="btn btn-block btn-red">
-										Realizar Pedido
+										Selecionar Endereço
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="panel panel-black ">
+						<div class="panel-heading ">
+							<div class="panel-title">
+								<div class="row">
+									<div class="col-xs-12">
+										<h4 class="font-color-white"> Estimativa de Frete <i class="fa fa-truck"></i>
+										</h4>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-3 col-sm-3 col-md-3">
+									<div class="form-group">
+										<label for="inputUsernameEmail">Digite seu CEP</label>
+										<input type="text" class="form-control cep" id="cCep">
+
+									</div>
+									<a class="btn btn-danger btn-red" onclick="calcFrete()">
+										Calcular
+									</a>
+								</div>
+								<div class="col-xs-9 col-sm-9 col-md-9" id="lista-frete">
+									
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row text-center">
+								<div class="col-xs-9">
+									<h4 class="text-right">Subtotal + Frete: <strong id="vSubTotalProdutos"></strong>
+									</h4>
+								</div>
+								<div class="col-xs-3">
+									<a href="checkout.html" class="btn btn-block btn-red">
+										Selecionar Endereço
 									</a>
 								</div>
 							</div>

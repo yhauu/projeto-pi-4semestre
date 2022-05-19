@@ -124,7 +124,39 @@ function telaCarrinho() {
     window.location = "cart.html"
 }
 
+function calcFrete () {
+    let cep = (document.getElementById("cCep").value).replace('-', '')
+
+    
+
+    document.getElementById("lista-frete").innerHTML = `
+    <label for="inputUsernameEmail">Escolha o Tipo de Entrega: </label>
+        <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default">
+                <input type="radio" value="1" /> Econômica: R$8,00
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" value="2" /> Rápida: R$12,00 
+            </label>
+            <label class="btn btn-default">
+                <input type="radio" value="3" /> Agendada: R$2,00
+            </label>									
+        </div>
+    `
+
+}
+
 function findOneProduct(success, error, id) {
+    $.ajax({
+        url: urlPrincipal + urlProduto + `/${id}`,
+        contentType: 'application/json',
+        type: 'GET',
+        success,
+        error,
+    })
+}
+
+function findCep(success, error, id) {
     $.ajax({
         url: urlPrincipal + urlProduto + `/${id}`,
         contentType: 'application/json',
