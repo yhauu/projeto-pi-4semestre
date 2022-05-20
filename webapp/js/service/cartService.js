@@ -62,7 +62,8 @@ function listCart() {
     let listaPrecos = []
 
     listaProdutos.forEach(element => {
-        listaCarrinho.innerHTML += `<div class="row">
+        listaCarrinho.innerHTML += `<div id="itemId${element.id}">
+                                        <div class="row">
                                             <div class="col-xs-2"><img class="img-responsive" style="max-height: 90px" src="../projeto-games/${element.image}">
                                             </div>
                                             <div class="col-xs-4">
@@ -76,13 +77,14 @@ function listCart() {
                                                     <input type="number" class="form-control input-sm" value="${element.qtd}">
                                                 </div>
                                                 <div class="col-xs-2">
-                                                    <a class="btn btn-danger btn-xs btn-red btn-red-icon">
+                                                    <a class="btn btn-danger btn-xs btn-red btn-red-icon" onclick="deleteCartItem(${element.id})">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>`
+                                        <hr>
+                                    </div>`
 
         listaPrecos.push(element.price)
 
@@ -118,6 +120,25 @@ function calcSubtotalCarrinho(listaProdutos, listaPrecos) {
     }
 
     return soma
+}
+
+function deleteCartItem(id) {
+    let listaProdutos = JSON.parse(localStorage.getItem("carrinho") || "[]")
+    let listaPrecos = []
+    let count = 0
+
+    listaProdutos.forEach(element => {
+        listaPrecos.push(element.price)
+        if (element.id === id) {
+            listaProdutos.splice(count , 1)
+            localStorage.setItem("carrinho", JSON.stringify(listaProdutos))
+        } 
+        count++
+    });
+
+    document.getElementById("itemId" + id).remove()
+    telaCarrinho()
+
 }
 
 function telaCarrinho() {
