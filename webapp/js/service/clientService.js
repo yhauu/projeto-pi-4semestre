@@ -1,5 +1,12 @@
 let idClient = 0;
 
+// document.querySelectorAll('.input-cep').forEach(item => {
+//     item.addEventListener('change', listCep)
+//   })
+
+document.getElementById("cCepCliente1").addEventListener('change', listCep);
+document.getElementById("cCepCliente2").addEventListener('change', listCep);
+
 function verificaIdUrl() {
     var url = window.location.href;
     var res = url.split('?');
@@ -29,7 +36,7 @@ function loadClient(tela, idClient) {
             document.getElementById("cEstadoCliente").value;
             DisableForm("cEmailCliente")
             DisableForm("cCPFCliente")
-        } else 
+        } else {
             document.getElementById("cDataNascimentoCliente").value;
             document.getElementById("cSexo").value;
             document.getElementById("cEnderecoCliente").value;
@@ -40,13 +47,12 @@ function loadClient(tela, idClient) {
             document.getElementById("cEstadoCliente").value;
         }
     }
-
     let error = function (err) {
         console.log(err)
     }
-
     //console.log(tela + " " + idClient);
     findOne(success, error, idClient);
+}
 
 function saveClient(event) {
     event.preventDefault()
@@ -92,18 +98,18 @@ function saveClient(event) {
             cep2: cCepCliente2,
             city2: cCidadeCliente2,
             state2: cEstadoCliente2
-            }
+        }
 
         let success = function (data) {
             window.location = "login-client.html"
         }
 
         let error = function (err) {
-             console.log(err)
+            console.log(err)
             // console.log(err.responseJSON.message)
-            if (err.status == 400 && err.message == "Email is already in use!"){
+            if (err.status == 400 && err.message == "Email is already in use!") {
                 alert("O e-mail já está em uso!")
-            } 
+            }
         }
 
         if (idClient > 0) {
@@ -115,6 +121,33 @@ function saveClient(event) {
     } else {
         alert("CPF Invalido");
     }
+}
+
+function listCep(e) {
+    let cep = e.target.value;
+    let id = e.target.id;
+    let success = function (data) {
+        console.log(data);
+
+        if (id === "cCepCliente1") {
+            document.getElementById("cEnderecoCliente1").value = data.logradouro;
+            document.getElementById("cBairroCliente1").value = data.bairro;
+            document.getElementById("cCidadeCliente1").value = data.localidade;
+            document.getElementById("cEstadoCliente1").value = data.uf;
+        }
+        else {
+            document.getElementById("cEnderecoCliente2").value = data.logradouro;
+            document.getElementById("cBairroCliente2").value = data.bairro;
+            document.getElementById("cCidadeCliente2").value = data.localidade;
+            document.getElementById("cEstadoCliente2").value = data.uf;
+        }
+    }
+
+    let error = function (err) {
+        console.log(err)
+    }
+
+    findViaCep(success, error, cep);
 }
 
 function listClient() {
@@ -222,6 +255,16 @@ function update(success, error, dado, id) {
 function findOne(success, error, id) {
     $.ajax({
         url: urlPrincipal + urlUsuario + `/${id}`,
+        contentType: 'application/json',
+        type: 'GET',
+        success,
+        error,
+    })
+}
+
+function findViaCep(success, error, cep) {
+    $.ajax({
+        url: urlViaCEP + `/${cep}` + `/json`,
         contentType: 'application/json',
         type: 'GET',
         success,
