@@ -2,6 +2,9 @@ if (localStorage.getItem("carrinho") === null) {
     let listaVazia = []
     localStorage.setItem("carrinho", JSON.stringify(listaVazia))
 }
+if (localStorage.getItem("frete") === null) {
+    localStorage.setItem("frete", 0)
+}
 
 
 // localStorage.setItem("cart", {})
@@ -132,8 +135,14 @@ function listCheckout() {
 
         listaPrecos.push(element.price)
     })
+    
+    listaCheckout.innerHTML += `<div class="order-col">
+                                    <div><strong>Frete</strong></div>
+                                    <div><strong>R$${formataStringMoneyToFrontend(localStorage.getItem("frete"))}</strong></div>
+                                </div>`
+    
 
-    document.getElementById("vTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())
+    document.getElementById("vTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho() + parseFloat(localStorage.getItem("frete")))
 }
 
 function calcSubtotalCarrinho() {
@@ -199,6 +208,7 @@ function calcFrete (event) {
 }
 
 function somaTotalFrete (valorFrete) {
+    localStorage.setItem("frete", valorFrete)
     document.getElementById("vSubTotalProdutosFrete").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho() + valorFrete)
 }
 
