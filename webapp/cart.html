@@ -83,24 +83,26 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-xs-3 col-sm-3 col-md-3">
-									<div class="form-group">
-										<label for="inputUsernameEmail">Digite seu CEP</label>
-										<input type="text" class="form-control cep" id="cCep">
+									<form onsubmit="calcFrete(event)">
+										<div class="form-group">
+											<label for="inputUsernameEmail">Digite seu CEP</label>
+											<input type="text" class="form-control cep" id="cCep" required>
 
-									</div>
-									<a class="btn btn-danger btn-red" onclick="calcFrete()">
-										Calcular
-									</a>
+										</div>
+										<button class="btn btn-danger btn-red" onclick="">
+											Calcular
+										</button>
+									</form>
 								</div>
 								<div class="col-xs-9 col-sm-9 col-md-9" id="lista-frete">
-									
+
 								</div>
 							</div>
 						</div>
 						<div class="panel-footer">
 							<div class="row text-center">
 								<div class="col-xs-9">
-									<h4 class="text-right">Subtotal + Frete: <strong id="vSubTotalProdutos"></strong>
+									<h4 class="text-right">Subtotal + Frete: <strong id="vSubTotalProdutosFrete"></strong>
 									</h4>
 								</div>
 								<div class="col-xs-3">

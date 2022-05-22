@@ -50,10 +50,7 @@ function addProductCart(productId) {
         console.log(err)
     }
 
-
     findOneProduct(success, error, productId)
-
-
 }
 
 function listCart() {
@@ -74,7 +71,7 @@ function listCart() {
                                                     <h4><strong>R$${formataStringMoneyToFrontend(element.price)}<span class="text-muted"> x</span></strong></h4>
                                                 </div>
                                                 <div class="col-xs-4">
-                                                    <input type="number" class="form-control input-sm" value="${element.qtd}">
+                                                    <input type="number" style="max-width: 7rem" id="${element.id}" class="form-control input-sm  product-qtde" min="1" step="1" value="${element.qtd}">
                                                 </div>
                                                 <div class="col-xs-2">
                                                     <a class="btn btn-danger btn-xs btn-red btn-red-icon" onclick="deleteCartItem(${element.id})">
@@ -91,7 +88,34 @@ function listCart() {
 
     })
 
-    document.getElementById("vSubTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho(listaProdutos, listaPrecos))
+    document.querySelectorAll('.product-qtde').forEach(item => {
+        item.addEventListener('change', updateProductQtd)
+      })
+
+    document.getElementById("vSubTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())
+    document.getElementById("vSubTotalProdutosFrete").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())
+}
+
+function updateProductQtd (e) {
+    let qtdProduct = parseInt(e.target.value)
+    let idProduct = parseInt(e.target.id)
+    let cont = 0
+
+    let listaProdutos = JSON.parse(localStorage.getItem("carrinho") || "[]")
+    // console.log(listaProdutos)
+    listaProdutos.forEach(element => {
+        console.log(element.id)
+        console.log(idProduct)
+        if(element.id ==+ idProduct){
+            listaProdutos[cont].qtd = qtdProduct
+        }
+        cont++
+    });
+
+    localStorage.setItem("carrinho", JSON.stringify(listaProdutos))
+
+    document.getElementById("vSubTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())
+    document.getElementById("vSubTotalProdutosFrete").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())
 }
 
 function listCheckout() {
@@ -109,10 +133,17 @@ function listCheckout() {
         listaPrecos.push(element.price)
     })
 
-    document.getElementById("vTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho(listaProdutos, listaPrecos))
+    document.getElementById("vTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())
 }
 
-function calcSubtotalCarrinho(listaProdutos, listaPrecos) {
+function calcSubtotalCarrinho() {
+    let listaProdutos = JSON.parse(localStorage.getItem("carrinho") || "[]")
+    let listaPrecos = []
+
+    listaProdutos.forEach(element => {
+        listaPrecos.push(element.price)
+    });
+
     let soma = 0.0
     for (let i = 0; i < listaProdutos.length; i++) {
         let totalProduto = listaProdutos[i].qtd * listaPrecos[i]
@@ -121,6 +152,8 @@ function calcSubtotalCarrinho(listaProdutos, listaPrecos) {
 
     return soma
 }
+
+
 
 function deleteCartItem(id) {
     let listaProdutos = JSON.parse(localStorage.getItem("carrinho") || "[]")
@@ -137,34 +170,36 @@ function deleteCartItem(id) {
     });
 
     document.getElementById("itemId" + id).remove()
-    telaCarrinho()
-
+    document.getElementById("vSubTotalProdutos").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())    
+    document.getElementById("vSubTotalProdutosFrete").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho())
 }
 
 function telaCarrinho() {
     window.location = "cart.html"
 }
 
-function calcFrete () {
+function calcFrete (event) {
+    event.preventDefault();
     let cep = (document.getElementById("cCep").value).replace('-', '')
-
-    
 
     document.getElementById("lista-frete").innerHTML = `
     <label for="inputUsernameEmail">Escolha o Tipo de Entrega: </label>
         <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default">
-                <input type="radio" value="1" /> Econômica: R$8,00
+            <label class="btn btn-default" onclick="somaTotalFrete(8.00)">
+                <input type="radio" value="8.0" /> Econômica: R$8,00
             </label>
-            <label class="btn btn-default">
-                <input type="radio" value="2" /> Rápida: R$12,00 
+            <label class="btn btn-default" onclick="somaTotalFrete(12.50)">
+                <input type="radio" value="12.5" /> Rápida: R$12,50 
             </label>
-            <label class="btn btn-default">
-                <input type="radio" value="3" /> Agendada: R$2,00
+            <label class="btn btn-default" onclick="somaTotalFrete(20.00)">
+                <input type="radio" value="20.0" /> Agendada: R$20,00
             </label>									
         </div>
     `
+}
 
+function somaTotalFrete (valorFrete) {
+    document.getElementById("vSubTotalProdutosFrete").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho() + valorFrete)
 }
 
 function findOneProduct(success, error, id) {
