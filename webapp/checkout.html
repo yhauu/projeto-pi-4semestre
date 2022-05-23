@@ -35,13 +35,31 @@
 			<div class="row">
 
 				<div class="col-md-7">
-					<!-- Billing Details -->
 					<div class="billing-details">
 						<div class="section-title">
 							<h3 class="title">Endereço de Entrega</h3>
 						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<h4 class="product-name"><strong>Rua Rafael Correia Sampaio, 250 -
+										04457-100</strong></h4>
+								<h4><small>Jardim Palmares, São Paulo - SP</small></h4>
+							</div>
+						</div>
 					</div>
-					<!-- /Billing Details -->
+					<hr>
+					<div class="billing-details">
+						<div class="section-title">
+							<h3 class="title">Endereço de Faturamento</h3>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<h4 class="product-name"><strong>Rua Rafael Correia Sampaio, 250 -
+										04457-100</strong></h4>
+								<h4><small>Jardim Palmares, São Paulo - SP</small></h4>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<!-- Order Details -->
@@ -56,7 +74,7 @@
 						</div>
 						<div id="lista-checkout">
 							<div class="order-products">
-								
+
 							</div>
 						</div>
 						<div class="order-col">
@@ -64,48 +82,99 @@
 							<div><strong class="order-total" id="vTotalProdutos"> ----- </strong></div>
 						</div>
 					</div>
-					<div class="payment-method">
+					<div class="section-title text-center">
+						<h4 class="title">Metodo de Pagamento</h4>
+					</div>
+					<form class="payment-method">
 						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-1">
+							<input type="radio" name="payment" id="payment-1" required value="boleto">
 							<label for="payment-1">
 								<span></span>
 								Boleto
 							</label>
-							<div class="caption">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-									incididunt ut labore et dolore magna aliqua.</p>
-							</div>
+
 						</div>
 						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-2">
+							<input type="radio" name="payment" id="payment-2" value="cartao">
 							<label for="payment-2">
 								<span></span>
 								Cartão de Crédito
 							</label>
 							<div class="caption">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-									incididunt ut labore et dolore magna aliqua.</p>
+								<div class="col-md-12">
+									<div class="input-group">
+										<!-- <span class="input-group-addon" id=""><i class="fa fa-check"></i></span> -->
+										<div class="row">
+											<div class="col-md-12">
+												<div class="input-group">
+													<span class="input-group-addon" id=""><i
+															class="fa fa-credit-card"></i></span>
+													<input type="text" class="form-control"
+														placeholder="Número do Cartão" >
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="input-group">
+													<span class="input-group-addon" id=""><i
+															class="fa fa-address-card"></i></span>
+													<input type="text" class="form-control" placeholder="Nome Completo"
+														aria-describedby="basic-addon1">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-group">
+													<span class="input-group-addon" id=""><i
+															class="fa fa-lock"></i></span>
+													<input type="text" class="form-control" placeholder="CVV"
+														aria-describedby="basic-addon1">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-group">
+													<span class="input-group-addon" id=""><i
+															class="fa fa-calendar"></i></span>
+													<input type="date" class="form-control"
+														aria-describedby="basic-addon1">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-group">
+													<span class="input-group-addon" id=""><i
+															class="fa fa-calculator"></i></span>
+													<select class="form-control" id="exampleFormControlSelect1">
+														<option value="">Parcelamento</option>
+														<option value="1x sem juros">1x sem juros</option>
+														<option value="2x sem juros">2x sem juros</option>
+														<option value="3x sem juros">3x sem juros</option>
+														<option value="4x sem juros">4x sem juros</option>
+														<option value="5x sem juros">5x sem juros</option>
+														<option value="6x sem juros">6x sem juros</option>
+														<option value="7x sem juros">7x sem juros</option>
+														<option value="8x sem juros">8x sem juros</option>
+														<option value="9x sem juros">9x sem juros</option>
+														<option value="10x sem juros">10x sem juros</option>
+													</select>
+												</div>
+											</div>
+											
+										</div>
+
+									</div>
+								</div>
+
 							</div>
 						</div>
-						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-3">
-							<label for="payment-3">
-								<span></span>
-								Pix
-							</label>
-							<div class="caption">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-									incididunt ut labore et dolore magna aliqua.</p>
-							</div>
-						</div>
-					</div>
-					<a href="#" class="primary-btn order-submit">Finalizar Pedido</a>
+						<a type="submit" onclick="checkout()" class="primary-btn order-submit">Finalizar Pedido</a>
+					</form>
 				</div>
-				<!-- /Order Details -->
+
+
 			</div>
-			<!-- /row -->
+			<!-- /Order Details -->
 		</div>
-		<!-- /container -->
+		<!-- /row -->
+	</div>
+	<!-- /container -->
 	</div>
 	<!-- /SECTION -->
 
@@ -132,6 +201,7 @@
 	<script type="text/javascript" src="js/service/url.js"></script>
 	<script type="text/javascript" src="js/service/storeProductService.js"></script>
 	<script type="text/javascript" src="js/service/cartService.js"></script>
+	<script type="text/javascript" src="js/service/checkoutService.js"></script>
 	<script>listCheckout()</script>
 </body>
 
