@@ -55,6 +55,6 @@ public class Client {
     private ProfileUser profile;
 
     @OneToMany
-    @JoinColumn(name="id_endereco")
+    @JoinColumn(name="id_cliente")
     private List<Address> address;
 }
