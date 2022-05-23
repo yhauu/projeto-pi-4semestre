@@ -50,6 +50,7 @@ $(document).ready(function () {
     $('.phone_with_ddd').mask('(00) 00000-0000');
     $('.cpf').mask('000.000.000-00', { reverse: true });
     $('.money').mask('00000000,00', {reverse: true});
+    $('.cep').mask('00000-000', {reverse: true});
 });
 
 // Format Date
@@ -76,7 +77,7 @@ function FormataStringMoneyToBackend(money) {
     return money.toString().replace(",",".");
 }
 
-function FormataStringMoneyToFrontend(money) {
+function formataStringMoneyToFrontend(money) {
     money = parseFloat(money).toFixed(2)
     money = money.replace('.', ',')
     return money
