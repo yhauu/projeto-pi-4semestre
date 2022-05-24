@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Eletro-Master -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/eletromaster/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/slick.css" />
+    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+    <link type="text/css" rel="stylesheet" href="css/eletromaster/nouislider.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/eletromaster/style.css" />
+
+    <!-- Main Styles -->
+    <link type="text/css" rel="stylesheet" href="css/mainStyles.css" />
+
+    <title>JogaYJoga - Meu Perfil</title>
+</head>
+
+<body>
+    <div data-include="header-store"></div>
+
+    <!-- <div class="auth-wrapper bg-dark">
+        <div class="auth-content" style="width: 1000px;">
+            <div class="card">
+                <div class="row align-items-center text-center">
+                    <div class="col-md-12">
+                        <div class="card-body">
+							<form onsubmit="saveClient(event)">
+                                <div class="col-md-12">
+                                    <a href="index.html">
+                                        <img src="img/Logotipo.png" alt="" class="img-fluid mb-0">
+                                    </a>
+                                    <h4 class="mb-3 mt-0 f-w-400">Acesso Cliente</h4>
+                                    <h3 class="mb-3 f-w-400">Cadastrar</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="mail"></i></span>
+                                        <input type="email" class="form-control" name="cEmailCliente" placeholder="Endereço de e-mail"
+                                            required id="">
+
+                                        <span class="input-group-text ml-4"><i data-feather="file-text"></i></span>
+                                        <input type="text" class="form-control" name="cCPFCliente" placeholder="CPF" required id="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="lock"></i></span>
+                                        <input type="password" class="form-control" name="cSenhaCliente" placeholder="Senha" required
+                                            id="loginUserPassword">
+                                        <span class="input-group-text  ml-4"><i data-feather="lock"></i></span>
+                                        <input type="password" class="form-control" placeholder="Confirmar Senha"
+                                            required id="loginUserPassword">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="calendar"></i></span>
+                                        <input type="date" class="form-control" name="cData" required id="loginUserPassword">
+                                        <span class="input-group-text ml-4"><i data-feather="user"></i></span>
+                                        <select class="form-control" id="exampleFormControlSelect1" name="cSexo">
+                                            <option>Selecione seu gênero</option>
+                                            <option>Masculino</option>
+                                            <option>Feminino</option>
+                                            <option>Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <h3 class="mb-3 f-w-400">Endereço</h3>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="=cEnderecoCliente1" placeholder="Endereço"
+                                            required id="cEnderecoCliente1">
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cNumeroCliente1" placeholder="Número"
+                                             required id="cNumeroCliente1">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cBairroCliente1" placeholder="Bairro"
+                                            required id="cBairroCliente1">
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cCepCliente1" placeholder="CEP"
+                                            required id="cCepCliente1">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cCidadeCliente1" placeholder="Cidade"
+                                            required id="cCidadeCliente1">
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cEstadoCliente1" placeholder="Estado" 
+                                            required id="cEstadoCliente1">
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="mb-3 f-w-400">Endereço de Cobrança</h3>    
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="=cEnderecoCliente2" placeholder="Endereço"
+                                            required id="cEnderecoCliente2">
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cNumeroCliente2" placeholder="Número"
+                                            required id="cNumeroCliente2">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cBairroCliente2" placeholder="Bairro"
+                                            required id="cBairroCliente2">
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cCepCliente2" placeholder="CEP"
+                                            required id="cCepCliente2">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cCidadeCliente2" placeholder="Cidade"
+                                            required id="cCidadeCliente2">
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cEstadoCliente2" placeholder="Estado"
+                                            required id="cEstadoCliente2">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-block btn-primary mb-4">Cadastrar</button>
+                                <p class="mb-2">Já tem conta? <a href="login-client.html" class="f-w-400">Acesse-se
+                                        aqui</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+    <div class="panel panel-black ">
+        <div class="panel-heading ">
+            <div class="panel-title">
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h4 class="font-color-white"><i class="center-block"></i> Meu perfil
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body" id="lista-carrinho">
+
+            <div class="section">
+                <div class="container text-center">
+                    <h4 class="mb-3 f-w-400">Dados pessoais</h4>
+                    <form onsubmit="saveUpdate(event)">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-user-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cNomeCliente3"
+                                        placeholder="Nome completo" required id="cNomeCliente3">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-at"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cEmailCliente3"
+                                        placeholder="Endereço de e-mail" readonly required id="cEmailCliente3">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-key"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cSenhaCliente3" placeholder="Senha"
+                                        readonly required id="cSenhaCliente">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-calendar"></i>
+                                    </span>
+                                    <input type="date" class="form-control" name="cData3" required
+                                        id="loginUserPassword" required id="cData3">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-id-card"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cCPFCliente3" placeholder="CPF"
+                                        readonly required id="cCPFCliente3">
+                                </div>
+                                <div class="input-group mb-4 position-relative margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-venus-mars"></i>
+                                    </span>
+                                    <select class="form-control" id="cSexo3" name="cSexo3">
+                                        <option>Selecione seu gênero</option>
+                                        <option>Masculino</option>
+                                        <option>Feminino</option>
+                                        <option>Outro</option>
+                                    </select>
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-key"></i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Confirmar senha" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3 f-w-400">Endereços de Entrega</h4>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cCepCliente3" placeholder="CEP"
+                                        required id="cCepCliente3">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cEnderecoCliente3"
+                                        placeholder="Endereço" readonly required id="cEnderecoCliente3">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cCidadeCliente3" placeholder="Cidade"
+                                        readonly required id="cCidadeCliente3">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cBairroCliente3" placeholder="Bairro"
+                                        readonly required id="cBairroCliente3">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cNumeroCliente3" placeholder="Número"
+                                        required id="cNumeroCliente3">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cEstadoCliente3" placeholder="Estado"
+                                        readonly required id="cEstadoCliente3">
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="mb-3 f-w-400">Endereços de Cobrança</h4>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cCepCliente4" placeholder="CEP"
+                                        required id="cCepCliente4">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cEnderecoCliente4"
+                                        placeholder="Endereço" readonly required id="cEnderecoCliente4">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cCidadeCliente4" placeholder="Cidade"
+                                        readonly required id="cCidadeCliente4">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cBairroCliente4" placeholder="Bairro"
+                                        readonly required id="cBairroCliente4">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cNumeroCliente4" placeholder="Número"
+                                        required id="cNumeroCliente4">
+                                </div>
+                                <div class="input-group margin-bottom">
+                                    <span class="input-group-addon" id=""><i class="fa fa-map-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control" name="cEstadoCliente4" placeholder="Estado"
+                                        readonly required id="cEstadoCliente4">
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="row text-center">
+                                    <button type="button" class="btn btn-block btn-red">Salvar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-include="footer-store"></div>
+
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
+
+    <!-- Eletro-Master Plugins -->
+    <script src="js/eletromaster/bootstrap.min.js"></script>
+    <script src="js/eletromaster/slick.min.js"></script>
+    <script src="js/eletromaster/nouislider.min.js"></script>
+    <script src="js/jquery/jquery.zoom.min.js"></script>
+    <script src="js/eletromaster/main.js"></script>
+
+    <!-- JS Main Functions -->
+    <script type="text/javascript" src="js/mainFunction.js"></script>
+
+    <!-- JS Service -->
+    <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/updateClientService.js"></script>
+    <script>listCarouselProduts()</script>
+    <script>listAllProducts()</script>
+
+</body>
+
+</html>

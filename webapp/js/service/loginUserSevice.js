@@ -11,9 +11,9 @@ function loginUser(event) {
 
     let success = function (data) {
         window.location = "main-page-backoffice.html"
-        localStorage.setItem("access", true)
-        localStorage.setItem("email", data.email)
-        localStorage.setItem("profile", data.profile)
+        localStorage.setItem("accessBackoffice", true)
+        localStorage.setItem("emailBackoffice", data.email)
+        localStorage.setItem("profileBackoffice", data.profile)
     }
 
     let error = function (err) {

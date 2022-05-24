@@ -33,7 +33,7 @@
                 <div class="row align-items-center text-center">
                     <div class="col-md-12">
                         <div class="card-body">
-                            <form onsubmit="registerClient(event)">
+                            <form onsubmit="saveClient(event)">
                                 <div class="col-md-12">
                                     <a href="index.html">
                                         <img src="img/Logotipo.png" alt="" class="img-fluid mb-0">
@@ -42,19 +42,27 @@
                                     <h3 class="mb-3 f-w-400">Cadastrar</h3>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="input-group mb-3 position-relative">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="file-text"></i></span>
+                                        <input type="text" class="form-control" name="cNomeCliente" placeholder="Nome completo"
+                                            required id="cNomeCliente">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="mail"></i></span>
-                                        <input type="email" class="form-control" placeholder="Endereço de e-mail"
-                                            required id="">
+                                        <input type="email" class="form-control" name="cEmailCliente" placeholder="Endereço de e-mail"
+                                            required id="cEmailCliente">
 
                                         <span class="input-group-text ml-4"><i data-feather="file-text"></i></span>
-                                        <input type="text" class="form-control" placeholder="CPF" required id="">
+                                        <input type="text" class="form-control" name="cCPFCliente" placeholder="CPF" required 
+                                            required id="cCPFCliente">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="lock"></i></span>
-                                        <input type="password" class="form-control" placeholder="Senha" required
+                                         <input type="password" class="form-control" name="cSenhaCliente" placeholder="Senha" required
                                             id="loginUserPassword">
                                         <span class="input-group-text  ml-4"><i data-feather="lock"></i></span>
                                         <input type="password" class="form-control" placeholder="Confirmar Senha"
@@ -66,9 +74,9 @@
                                 <div class="col-md-12">
                                     <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="calendar"></i></span>
-                                        <input type="date" class="form-control mr-5" required id="loginUserPassword">
-                                        <span class="input-group-text"><i data-feather="user"></i></span>
-                                        <select class="form-select" id="exampleFormControlSelect1">
+                                        <input type="date" class="form-control" name="cData" required id="loginUserPassword">
+                                        <span class="input-group-text ml-4"><i data-feather="user"></i></span>
+                                        <select class="form-control" id="cSexo" name="cSexo">
                                             <option>Selecione seu gênero</option>
                                             <option>Masculino</option>
                                             <option>Feminino</option>
@@ -76,32 +84,69 @@
                                         </select>
                                     </div>
                                 </div>
-                                <h3 class="mb-3 f-w-400">Endereço</h3>
+                                <h3 class="mb-3 f-w-400">Endereço de Entrega</h3>
                                 <div class="col-md-12">
                                     <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="map"></i></span>
-                                        <input type="text" class="form-control" placeholder="Endereço"
-                                            required id="">
+                                        <input type="text" class="form-control" name="cCepCliente1" placeholder="CEP" 
+                                            required id="cCepCliente1">
                                         <span class="input-group-text ml-4"><i data-feather="map"></i></span>
-                                        <input type="text" class="form-control" placeholder="Número" required id="">
+                                        <input type="text" class="form-control" name="cBairroCliente1" placeholder="Bairro"
+                                            required id="cBairroCliente1" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="map"></i></span>
-                                        <input type="text" class="form-control" placeholder="Bairro"
-                                            required id="">
+                                        <input type="text" class="form-control" name="=cEnderecoCliente1" placeholder="Endereço"
+                                            required id="cEnderecoCliente1" readonly>
                                         <span class="input-group-text ml-4"><i data-feather="map"></i></span>
-                                        <input type="text" class="form-control" placeholder="CEP" required id="">
+                                        <input type="text" class="form-control" name="cNumeroCliente1" placeholder="Número"
+                                            required id="cNumeroCliente1">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="map"></i></span>
-                                        <input type="text" class="form-control" placeholder="Cidade"
-                                            required id="">
+                                        <input type="text" class="form-control" name="cCidadeCliente1" placeholder="Cidade"
+                                            required id="cCidadeCliente1" readonly>
                                         <span class="input-group-text ml-4"><i data-feather="map"></i></span>
-                                        <input type="text" class="form-control" placeholder="Estado" required id="">
+                                        <input type="text" class="form-control" name="cEstadoCliente1" placeholder="Estado" 
+                                            required id="cEstadoCliente1" readonly>
+                                    </div>
+                                </div>
+                                <div>
+                                    <!-- <input class="form-check-input" type="checkbox" value="flase" id="defaultCheck2" checked="false"> -->
+                                    <h3 class="mb-3 f-w-400">Endereço de Cobrança</h3>    
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cCepCliente2" placeholder="CEP" 
+                                            required id="cCepCliente2">
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cBairroCliente2" placeholder="Bairro"
+                                            required id="cBairroCliente2" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="=cEnderecoCliente2" placeholder="Endereço"
+                                            required id="cEnderecoCliente2" readonly>
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cNumeroCliente2" placeholder="Número"
+                                            required id="cNumeroCliente2">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cCidadeCliente2" placeholder="Cidade"
+                                            required id="cCidadeCliente2" readonly>
+                                        <span class="input-group-text ml-4"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cEstadoCliente2" placeholder="Estado" 
+                                            required id="cEstadoCliente2" readonly>
                                     </div>
                                 </div>
 
@@ -136,7 +181,7 @@
 
     <!-- JS Service -->
     <script type="text/javascript" src="js/service/url.js"></script>
-    <script type="text/javascript" src="js/service/loginClientSevice.js"></script>
+    <script type="text/javascript" src="js/service/clientService.js"></script>
 
 </body>
 
