@@ -22,7 +22,7 @@ function saveUpdate(event) {
     let error = function (err) {
         console.log(err)
         // console.log(err.responseJSON.message)
-        }
+    }
 
     update(success, error, data, idClient);
 }
@@ -32,34 +32,18 @@ function listCep(e) {
     let id = e.target.id;
     let success = function (data) {
 
-        if (cep == "" || cep == " " || cep == "0") {
-            if (id === "cCepCliente3") {
-                document.getElementById("cEnderecoCliente3").value = "";
-                document.getElementById("cBairroCliente3").value = "";
-                document.getElementById("cCidadeCliente3").value = "";
-                document.getElementById("cEstadoCliente3").value = "";
-
-            }
-            else {
-                document.getElementById("cEnderecoCliente4").value = "";
-                document.getElementById("cBairroCliente4").value = "";
-                document.getElementById("cCidadeCliente4").value = "";
-                document.getElementById("cEstadoCliente4").value = "";
-            }
+        if (id === "cCepCliente3") {
+            document.getElementById("cEnderecoCliente3").value = data.logradouro;
+            document.getElementById("cBairroCliente3").value = data.bairro;
+            document.getElementById("cCidadeCliente3").value = data.localidade;
+            document.getElementById("cEstadoCliente3").value = data.uf;
         }
-        else
-            if (id === "cCepCliente3") {
-                document.getElementById("cEnderecoCliente3").value = data.logradouro;
-                document.getElementById("cBairroCliente3").value = data.bairro;
-                document.getElementById("cCidadeCliente3").value = data.localidade;
-                document.getElementById("cEstadoCliente3").value = data.uf;
-            }
-            else {
-                document.getElementById("cEnderecoCliente4").value = data.logradouro;
-                document.getElementById("cBairroCliente4").value = data.bairro;
-                document.getElementById("cCidadeCliente4").value = data.localidade;
-                document.getElementById("cEstadoCliente4").value = data.uf;
-            }
+        else {
+            document.getElementById("cEnderecoCliente4").value = data.logradouro;
+            document.getElementById("cBairroCliente4").value = data.bairro;
+            document.getElementById("cCidadeCliente4").value = data.localidade;
+            document.getElementById("cEstadoCliente4").value = data.uf;
+        }
     }
 
     let error = function (err) {
