@@ -3,6 +3,7 @@ package com.jogayjoga.projetogames.service;
 import java.util.Optional;
 
 import com.jogayjoga.projetogames.dto.ClientUpdateDto;
+import com.jogayjoga.projetogames.dto.ClientUpdatePasswordDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
 import com.jogayjoga.projetogames.model.Client;
@@ -19,6 +20,9 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private AddressService addressService;
+
     private Client findOne(long id) throws NotFoundException {
         Optional<Client> user = clientRepository.findById(id);
 
@@ -29,11 +33,13 @@ public class ClientService {
         return user.get();
     }
 
-    public void create(Client client) throws NotFoundException {
+    public void create(Client client) throws BadRequestException {
         clientVerification(client);
         client.setPassword(BCrypt.hashpw(client.getPassword(), BCrypt.gensalt(10)));
         client.setProfile(ProfileUser.CLIENTE);
         clientRepository.save(client);
+
+        addressService.create(client.getAddress());
     }
 
     public void update(long clientId, ClientUpdateDto clientUpdateDto) throws NotFoundException, BadRequestException {
@@ -43,6 +49,13 @@ public class ClientService {
         client.setBirthDate(clientUpdateDto.getBirthDate());
         client.setGender(clientUpdateDto.getGender());
 
+        clientRepository.save(client);
+    }
+
+    public void updatePassword(long clientId, ClientUpdatePasswordDto clientUpdatePasswordDto) {
+        Client client = findOne(clientId);
+        client.setId(clientId);
+        client.setPassword(BCrypt.hashpw(clientUpdatePasswordDto.getNewPassword(), BCrypt.gensalt(10)));
         clientRepository.save(client);
     }
 

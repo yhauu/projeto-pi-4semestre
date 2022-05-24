@@ -1,13 +1,15 @@
 package com.jogayjoga.projetogames.controller;
 
 import com.jogayjoga.projetogames.dto.ClientUpdateDto;
+import com.jogayjoga.projetogames.dto.ClientUpdatePasswordDto;
 import com.jogayjoga.projetogames.dto.UserLoginDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
+import com.jogayjoga.projetogames.model.Address;
 import com.jogayjoga.projetogames.model.Client;
+import com.jogayjoga.projetogames.service.AddressService;
 import com.jogayjoga.projetogames.service.ClientService;
 import com.jogayjoga.projetogames.service.UserLoginService;
-import com.jogayjoga.projetogames.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,9 @@ public class ClientController {
     @Autowired
     private UserLoginService userLoginService;
 
+    @Autowired
+    private AddressService addressService;
+
     @GetMapping
     @ResponseBody
     @RequestMapping("/{clientId}")
@@ -44,6 +49,29 @@ public class ClientController {
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable long clientId, @RequestBody ClientUpdateDto clientDto) throws NotFoundException, BadRequestException {
         clientService.update(clientId, clientDto);
+    }
+
+    @PutMapping
+    @RequestMapping("/{clientId}/password")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePassword(@PathVariable long clientId, @RequestBody ClientUpdatePasswordDto clientDto) throws NotFoundException, BadRequestException {
+        clientService.updatePassword(clientId, clientDto);
+    }
+
+    @PostMapping
+    @RequestMapping("/{clientId}/address")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addAddress(@PathVariable long clientId, @RequestBody Address address) throws NotFoundException {
+        Client client = clientService.findClient(address.getId());
+        address.setClient(client);
+        addressService.addAddress(address);
+    }
+
+    @PutMapping
+    @RequestMapping("/address/delete/{addressId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateAddress(@PathVariable long addressId) throws NotFoundException, BadRequestException {
+        addressService.delete(addressId);
     }
 
     @PostMapping
