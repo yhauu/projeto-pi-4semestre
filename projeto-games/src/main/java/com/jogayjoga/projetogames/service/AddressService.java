@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
 import com.jogayjoga.projetogames.model.Address;
+import com.jogayjoga.projetogames.model.Client;
 import com.jogayjoga.projetogames.repository.AddressRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ public class AddressService {
         return address.get();
     }
 
-    public void create(List<Address> listAddress) throws NotFoundException {
+    public void create(List<Address> listAddress, Client client) throws NotFoundException {
         for (Address address : listAddress) {
+            address.setClient(client);
             addressRepository.save(address);
         }
     }
