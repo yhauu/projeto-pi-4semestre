@@ -57,6 +57,7 @@ function loadClient(tela, idClient) {
 function saveClient(event) {
     event.preventDefault()
 
+    let cNomeCliente = document.getElementById("cNomeCliente").value;
     let cEmailCliente = document.getElementById("cEmailCliente").value;
     let cCPFCliente = document.getElementById("cCPFCliente").value;
     let cSenhaCliente = document.getElementById("cSenhaCliente").value;
@@ -79,25 +80,36 @@ function saveClient(event) {
     if (ValidCPF(cCPFCliente) === true) {
 
         let data = {
-            name: cNomeUsuario,
-            login: cEmailCliente,
+            name: cNomeCliente,
             legalNumber: cCPFCliente,
+            email: cEmailCliente,
             password: cSenhaCliente,
             birthDate: FormataStringDataToBackend(cDataNascimentoCliente),
-            sex: cSexo,
-            email: cEmailCliente,
-            address1: cEnderecoCliente1,
-            number1: cNumeroCliente1,
-            district1: cBairroCliente1,
-            cep1: cCepCliente1,
-            city1: cCidadeCliente1,
-            state1: cEstadoCliente1,
-            address2: cEnderecoCliente2,
-            number2: cNumeroCliente2,
-            district2: cBairroCliente2,
-            cep2: cCepCliente2,
-            city2: cCidadeCliente2,
-            state2: cEstadoCliente2
+            gender: cSexo,
+            address: [
+                {
+                    zipCode: cCepCliente1,
+                    address: cEnderecoCliente1,
+                    numberAddress: cNumeroCliente1,
+                    district: cBairroCliente1,
+                    complementAddress: cComplementoCliente1,
+                    city: cCidadeCliente1,
+                    uf: cEstadoCliente1,
+                    billingAddress: false,
+                    deliveryAddress: true
+                },
+                {
+                    zipCode: cCepCliente2,
+                    address: cEnderecoCliente2,
+                    numberAddress: cNumeroCliente2,
+                    district: cBairroCliente2,
+                    complementAddress: cComplementoCliente2,
+                    city: cCidadeCliente2,
+                    uf: cEstadoCliente2,
+                    billingAddress: true,
+                    deliveryAddress: false
+                }
+            ]
         }
 
         let success = function (data) {
@@ -106,10 +118,10 @@ function saveClient(event) {
 
         let error = function (err) {
             console.log(err)
-            // console.log(err.responseJSON.message)
-            if (err.status == 400 && err.message == "Email is already in use!") {
-                alert("O e-mail já está em uso!")
-            }
+            console.log(err.responseJSON.message)
+            // if (err.status == 400 && err.message == "Email is already in use!") {
+            //     alert("O e-mail já está em uso!")
+            // }
         }
 
         if (idClient > 0) {
@@ -222,7 +234,7 @@ function disable(success, error, id) {
 function post(success, error, dado) {
     //console.log(urlPrincipal + urlUsuario)
     $.ajax({
-        url: urlPrincipal + urlUsuario,
+        url: urlPrincipal + urlClient,
         contentType: 'application/json',
         type: 'POST',
         data: JSON.stringify(dado),
