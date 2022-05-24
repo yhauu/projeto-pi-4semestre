@@ -5,4 +5,4 @@ const urlUsuario = "/users"
 const urlProduto = "/products"
 const urlLoginUsuario = "/login"
 const urlClient = "/client"
-const urlLoginClient = urlClient + urlLoginUsuario
+const urlLoginClient = "/client/login"

@@ -1,18 +1,21 @@
-function logiClient(event) {
+function loginClient(event) {
     event.preventDefault()
 
-    let email = document.getElementById("loginClientEmail").value
-    let password = document.getElementById("loginClientPassword").value
+    let emailClient = document.getElementById("loginClientEmail").value
+    let passwordClient = document.getElementById("loginClientPassword").value
 
     let data = {
-        email: email,
-        password: password
+        email: emailClient,
+        password: passwordClient
     }
+
+    console.log(data);
 
     let success = function (data) {
         window.location = "index.html"
-        localStorage.setItem("access", true)
-        localStorage.setItem("email", data.email)
+        localStorage.setItem("accessClient", true)
+        localStorage.setItem("idClient", data.id)
+        localStorage.setItem("emailClient", data.email)
     }
 
     let error = function (err) {
@@ -24,7 +27,7 @@ function logiClient(event) {
 }
 
 function logoofClient() {
-    localStorage.clear();
+    localStorage.setItem("accessClient", false);
     window.location.href = "login-client.html"
 }
 
@@ -40,15 +43,19 @@ function loadHeaderData() {
     document.getElementById("previewClientProfile").insertAdjacentHTML('afterbegin', localStorage.getItem("profile"))
 }
 
-function loadNavData(){
-    if(localStorage.getItem("profile") == "ESTOQUISTA") {
-        document.getElementById("navAdm").remove()
+function loadNavData() {
+    if (localStorage.getItem("accessClient") === "true") {
+        document.getElementById("navItem").innerHTML = `
+        				<li><a href="login-client.html"><i class="fa fa-list"></i>Meus Pedidos</a></li>
+                        <li><a href="register-client.html"><i class="fa fa-user-o"></i>Meu Perfil</a></li>
+                        <li><a href="login-client.html" onclick="logoofClient()"><i class="fa fa-sign-out"></i>Logoof</a></li>
+                    `
     }
 }
 
 function postLogin(success, error, dado) {
     $.ajax({
-        url: urlPrincipal + urlLoginUsuario,
+        url: urlPrincipal + urlLoginClient,
         contentType: 'application/json',
         type: 'POST',
         data: JSON.stringify(dado),

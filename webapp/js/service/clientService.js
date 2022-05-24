@@ -76,6 +76,7 @@ function saveClient(event) {
     let cCidadeCliente2 = document.getElementById("cCidadeCliente2").value;
     let cEstadoCliente2 = document.getElementById("cEstadoCliente2").value;
 
+    console.log(cDataNascimentoCliente);
 
     if (ValidCPF(cCPFCliente) === true) {
 
@@ -84,7 +85,7 @@ function saveClient(event) {
             legalNumber: cCPFCliente,
             email: cEmailCliente,
             password: cSenhaCliente,
-            birthDate: FormataStringDataToBackend(cDataNascimentoCliente),
+            birthDate: cDataNascimentoCliente,
             gender: cSexo,
             address: [
                 {
@@ -92,7 +93,7 @@ function saveClient(event) {
                     address: cEnderecoCliente1,
                     numberAddress: cNumeroCliente1,
                     district: cBairroCliente1,
-                    complementAddress: cComplementoCliente1,
+                    complementAddress: null,
                     city: cCidadeCliente1,
                     uf: cEstadoCliente1,
                     billingAddress: false,
@@ -103,7 +104,7 @@ function saveClient(event) {
                     address: cEnderecoCliente2,
                     numberAddress: cNumeroCliente2,
                     district: cBairroCliente2,
-                    complementAddress: cComplementoCliente2,
+                    complementAddress: null,
                     city: cCidadeCliente2,
                     uf: cEstadoCliente2,
                     billingAddress: true,
@@ -111,6 +112,8 @@ function saveClient(event) {
                 }
             ]
         }
+
+        console.log(data);
 
         let success = function (data) {
             window.location = "login-client.html"
