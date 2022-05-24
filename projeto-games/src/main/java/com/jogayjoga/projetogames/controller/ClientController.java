@@ -1,5 +1,6 @@
 package com.jogayjoga.projetogames.controller;
 
+import com.jogayjoga.projetogames.dto.ClientDto;
 import com.jogayjoga.projetogames.dto.ClientUpdateDto;
 import com.jogayjoga.projetogames.dto.ClientUpdatePasswordDto;
 import com.jogayjoga.projetogames.dto.UserLoginDto;
@@ -40,7 +41,7 @@ public class ClientController {
     @ResponseBody
     @RequestMapping("/{clientId}")
     @ResponseStatus(HttpStatus.OK)
-    public Client getClient(@PathVariable Long clientId) throws NotFoundException {
+    public ClientDto getClient(@PathVariable Long clientId) throws NotFoundException {
         return clientService.findClient(clientId);
     }
 
@@ -62,8 +63,8 @@ public class ClientController {
     @RequestMapping("/{clientId}/address")
     @ResponseStatus(HttpStatus.CREATED)
     public void addAddress(@PathVariable long clientId, @RequestBody Address address) throws NotFoundException {
-        Client client = clientService.findClient(address.getId());
-        address.setClient(client);
+        //Client client = clientService.findClient(address.getId());
+        //address.setClient(client);
         addressService.addAddress(address);
     }
 
