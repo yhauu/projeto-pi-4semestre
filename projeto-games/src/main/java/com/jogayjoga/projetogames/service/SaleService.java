@@ -147,6 +147,7 @@ public class SaleService {
         saleResponseDto.setDeliveryAddress(deliveryAddressDto);
         saleResponseDto.setBillingAdrress(billingAddressDto);
         saleResponseDto.setPaymentMethods(sale.getPaymentMethods());
+        saleResponseDto.setSaleDate(sale.getSaleDate());
 
         return saleResponseDto;
     }

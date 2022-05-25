@@ -1,5 +1,6 @@
 package com.jogayjoga.projetogames.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.jogayjoga.projetogames.util.PaymentMethods;
@@ -26,4 +27,6 @@ public class SaleResponseDto {
     private AddressDto billingAdrress;
 
     private PaymentMethods paymentMethods;
+
+    private LocalDateTime saleDate;
 }
