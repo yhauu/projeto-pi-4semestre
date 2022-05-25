@@ -63,24 +63,23 @@
                                     <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="lock"></i></span>
                                          <input type="password" class="form-control" name="cSenhaCliente" placeholder="Senha" required
-                                            id="loginUserPassword">
+                                            id="cSenhaCliente">
                                         <span class="input-group-text  ml-4"><i data-feather="lock"></i></span>
                                         <input type="password" class="form-control" placeholder="Confirmar Senha"
                                             required id="loginUserPassword">
-                                        <!-- <span class="input-group-text ml-4"><i data-feather="lock"></i></span>
-                                        <input type="date" class="form-control" required id="loginUserPassword"> -->
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input-group mb-4 position-relative">
                                         <span class="input-group-text"><i data-feather="calendar"></i></span>
-                                        <input type="date" class="form-control" name="cData" required id="loginUserPassword">
+                                        <input type="date" class="form-control" name="cDataNascimentoCliente" required
+                                            id="cDataNascimentoCliente">
                                         <span class="input-group-text ml-4"><i data-feather="user"></i></span>
                                         <select class="form-control" id="cSexo" name="cSexo">
                                             <option>Selecione seu gênero</option>
-                                            <option>Masculino</option>
-                                            <option>Feminino</option>
-                                            <option>Outro</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Feminino</option>
+                                            <option value="O">Outro</option>
                                         </select>
                                     </div>
                                 </div>
@@ -115,8 +114,14 @@
                                             required id="cEstadoCliente1" readonly>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cComplementoCliente1" placeholder="Complemento"
+                                            required id="cComplementoCliente1" readonly>
+                                    </div>
+                                </div>
                                 <div>
-                                    <!-- <input class="form-check-input" type="checkbox" value="flase" id="defaultCheck2" checked="false"> -->
                                     <h3 class="mb-3 f-w-400">Endereço de Cobrança</h3>    
                                 </div>
                                 <div class="col-md-12">
@@ -147,6 +152,13 @@
                                         <span class="input-group-text ml-4"><i data-feather="map"></i></span>
                                         <input type="text" class="form-control" name="cEstadoCliente2" placeholder="Estado" 
                                             required id="cEstadoCliente2" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group mb-4 position-relative">
+                                        <span class="input-group-text"><i data-feather="map"></i></span>
+                                        <input type="text" class="form-control" name="cComplementoCliente2" placeholder="Complemento"
+                                            required id="cComplementoCliente2" readonly>
                                     </div>
                                 </div>
 
