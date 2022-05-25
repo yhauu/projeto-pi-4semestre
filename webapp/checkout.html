@@ -87,7 +87,7 @@
 					</div>
 					<form class="payment-method">
 						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-1" required value="boleto">
+							<input type="radio" name="payment" id="payment-1" required value="BOLETO">
 							<label for="payment-1">
 								<span></span>
 								Boleto
@@ -95,7 +95,7 @@
 
 						</div>
 						<div class="input-radio">
-							<input type="radio" name="payment" id="payment-2" value="cartao">
+							<input type="radio" name="payment" id="payment-2" value="CARTAO_CREDITO">
 							<label for="payment-2">
 								<span></span>
 								Cartão de Crédito
@@ -164,7 +164,7 @@
 
 							</div>
 						</div>
-						<a type="submit" onclick="checkout()" class="primary-btn order-submit">Finalizar Pedido</a>
+						<a type="submit" onclick="validaPagamento()" class="primary-btn order-submit">Finalizar Pedido</a>
 					</form>
 				</div>
 
