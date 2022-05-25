@@ -1,5 +1,6 @@
 package com.jogayjoga.projetogames.service;
 
+import com.jogayjoga.projetogames.dto.ClientDto;
 import com.jogayjoga.projetogames.dto.UserLoginDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.model.Client;
@@ -32,13 +33,21 @@ public class UserLoginService {
         throw new BadRequestException("User or password was wrong!");
     }
 
-    public Client findClientLogin(UserLoginDto userLoginDto) throws BadRequestException {
-        
+    public ClientDto findClientLogin(UserLoginDto userLoginDto) throws BadRequestException {
+
         Client client = clientRepository.findByEmail(userLoginDto.getEmail());
+        ClientDto clientDto = new ClientDto();
 
         if (client != null) {
             if (BCrypt.checkpw(userLoginDto.getPassword(), client.getPassword())) {
-                return client;
+                clientDto.setId(client.getId());
+                clientDto.setName(client.getName());
+                clientDto.setLegalNumber(client.getLegalNumber());
+                clientDto.setEmail(client.getEmail());
+                clientDto.setPassword(client.getPassword());
+                clientDto.setBirthDate(client.getBirthDate());
+                clientDto.setAddress(null);
+                return clientDto;
             }
         }
 
