@@ -69,12 +69,14 @@ function saveClient(event) {
     let cCepCliente1 = document.getElementById("cCepCliente1").value;
     let cCidadeCliente1 = document.getElementById("cCidadeCliente1").value;
     let cEstadoCliente1 = document.getElementById("cEstadoCliente1").value;
+    let cComplementoCliente1 = document.getElementById("cComplementoCliente1").value;
     let cEnderecoCliente2 = document.getElementById("cEnderecoCliente2").value;
     let cNumeroCliente2 = document.getElementById("cNumeroCliente2").value;
     let cBairroCliente2 = document.getElementById("cBairroCliente2").value;
     let cCepCliente2 = document.getElementById("cCepCliente2").value;
     let cCidadeCliente2 = document.getElementById("cCidadeCliente2").value;
     let cEstadoCliente2 = document.getElementById("cEstadoCliente2").value;
+    let cComplementoCliente2 = document.getElementById("cComplementoCliente2").value;
 
     console.log(cDataNascimentoCliente);
 
@@ -93,7 +95,7 @@ function saveClient(event) {
                     address: cEnderecoCliente1,
                     numberAddress: cNumeroCliente1,
                     district: cBairroCliente1,
-                    complementAddress: null,
+                    complementAddress: cComplementoCliente1,
                     city: cCidadeCliente1,
                     uf: cEstadoCliente1,
                     billingAddress: false,
@@ -104,7 +106,7 @@ function saveClient(event) {
                     address: cEnderecoCliente2,
                     numberAddress: cNumeroCliente2,
                     district: cBairroCliente2,
-                    complementAddress: null,
+                    complementAddress: cComplementoCliente2,
                     city: cCidadeCliente2,
                     uf: cEstadoCliente2,
                     billingAddress: true,
@@ -127,11 +129,7 @@ function saveClient(event) {
             // }
         }
 
-        if (idClient > 0) {
-            update(success, error, data, idClient);
-        } else {
-            post(success, error, data);
-        }
+        post(success, error, data);
 
     } else {
         alert("CPF Invalido");
@@ -235,13 +233,12 @@ function disable(success, error, id) {
     })
 }
 
-function post(success, error, dado) {
-    //console.log(urlPrincipal + urlUsuario)
+function post(success, error, data) {
     $.ajax({
         url: urlPrincipal + urlClient,
         contentType: 'application/json',
         type: 'POST',
-        data: JSON.stringify(dado),
+        data: JSON.stringify(data),
         success,
         error,
     })
