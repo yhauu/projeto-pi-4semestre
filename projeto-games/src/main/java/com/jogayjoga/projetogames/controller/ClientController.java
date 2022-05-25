@@ -7,7 +7,6 @@ import com.jogayjoga.projetogames.dto.ClientUpdatePasswordDto;
 import com.jogayjoga.projetogames.dto.UserLoginDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
-import com.jogayjoga.projetogames.model.Address;
 import com.jogayjoga.projetogames.model.Client;
 import com.jogayjoga.projetogames.service.AddressService;
 import com.jogayjoga.projetogames.service.ClientService;
@@ -69,7 +68,7 @@ public class ClientController {
     }
 
     @PutMapping
-    @RequestMapping("/address/delete/{addressId}")
+    @RequestMapping("/address/{addressId}/delete")
     @ResponseStatus(HttpStatus.OK)
     public void updateAddress(@PathVariable long addressId) throws NotFoundException, BadRequestException {
         addressService.delete(addressId);

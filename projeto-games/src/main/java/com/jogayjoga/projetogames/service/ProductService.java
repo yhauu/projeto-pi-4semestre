@@ -76,4 +76,11 @@ public class ProductService {
 
         return list;
     }
+
+    public void updateProductQuantity(long productId, int quantity) {
+        Product product = findOne(productId);
+        product.setQuantity(product.getQuantity() - quantity);
+
+        productRepository.save(product);
+    }
 }
