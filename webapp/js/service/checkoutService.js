@@ -7,29 +7,39 @@ function checkout(metodoPagamento) {
     let endEntrega = parseInt(localStorage.getItem("endEntrega"))
     let endFatura = parseInt(localStorage.getItem("endFatura"))
 
+    // let listaAux = []
+    // let count = 0
+
+    // listaProdutos.forEach(element => {
+    //     let produto = {element.id, element.qtde}
+    // });
+
 
 
     if (metodoPagamento === "BOLETO" || metodoPagamento === "CARTAO_CREDITO") {
-        console.log("Foi")
-        let data = {
+        let dado = {
             fee: frete,
             totalSaleAmount: valTotal,
             clientId: idCliente,
             deliveryAddressId: endEntrega,
             billingAdrressId: endFatura,
-            paymentMethods: metodoPagamento
+            paymentMethods: metodoPagamento,
+            listProductsCart: listaProdutos
         }
-        console.log(data)
+        console.log(JSON.stringify(dado))
 
         let success = function (data) {
             alert("Pedido Realizado com Sucesso!")
+            localStorage.setItem("carrinho", []) 
+
             window.location = "store-list-order.html"
         }
 
         let error = function (err) {
-            console.log(err)
+            console.log(err.responseJSON)
         }
 
+        postCheckout(success, error, dado)
     }
 }
 
@@ -101,6 +111,17 @@ function listClientAddressCheckout() {
 
 }
 
+function postCheckout(success, error, dado) {
+    $.ajax({
+        url: urlPrincipal + urlSales,
+        contentType: 'application/json',
+        type: 'POST',
+        data: JSON.stringify(dado),
+        success,
+        error,
+    })
+}
+
 function findOneClient(success, error, id) {
     $.ajax({
         url: urlPrincipal + urlClient + `/${id}`,
@@ -110,3 +131,4 @@ function findOneClient(success, error, id) {
         error,
     })
 }
+

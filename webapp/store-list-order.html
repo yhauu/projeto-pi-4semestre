@@ -40,20 +40,8 @@
 
                 <div class="col-md-12">
                     <div class="panel panel-black ">
-                        <div class="panel-body" id="lista-carrinho">
-                            <div class="row">
-                                <div class="col-xs-10">
-                                    <h4 class="product-name"><strong>Pedido #000001</strong></h4>
-                                    <h5><strong>Status do Pedido: Pedido Enviado</strong></h5>
-                                    <h5><strong>Data: 23/05/2022</strong></h5>
-                                    <h5>Valor Total: <strong>$550,00</strong></h5>
-                                </div>
-                                <div class="col-xs-2">
-                                    <a class="btn btn-red" data-toggle="modal"
-                                        data-target="#viewModalPedido">Detalhes</a>
-                                </div>
-                            </div>
-                            <hr>
+                        <div class="panel-body" id="lista-pedidos-cliente">
+                            
 
                         </div>
                     </div>
@@ -77,7 +65,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="viewModalPedidoLabel">Pedido #000001</h4>
+                    <h4 class="modal-title" id="viewModalPedidoLabel">Pedido #<div class="vIDPedido"></div></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -91,7 +79,7 @@
                                     <div><strong>VALOR</strong></div>
                                 </div>
                                 <div id="lista-checkout">
-                                    <div class="order-products">
+                                    <div class="order-products" id="lista-produtos">
                                         <div class="order-col">
                                             <div>2x João</div>
                                             <div>R$450,00</div>
@@ -109,7 +97,7 @@
                             </div>
                             <hr>
                             <div class="section-title">
-                                <h4 class="title"><strong>Metodo de Pagamento: Boleto</strong></h4>
+                                <h4 class="title"><strong id="vMetodoPag">Metodo de Pagamento: Boleto</strong></h4>
                             </div>
                             <hr>
                             <div class="billing-details">
@@ -118,9 +106,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <h4 class="product-name"><strong>Rua Rafael Correia Sampaio, 250 -
+                                        <h4 class="product-name"><strong id="vEnderecoEntrg">Rua Rafael Correia Sampaio, 250 -
                                                 04457-100</strong></h4>
-                                        <h4><small>Jardim Palmares, São Paulo - SP</small></h4>
+                                        <h4><small id="vEstadoUFEntrg">Jardim Palmares, São Paulo - SP</small></h4>
                                     </div>
                                 </div>
                             </div>
@@ -131,9 +119,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <h4 class="product-name"><strong>Rua Rafael Correia Sampaio, 250 -
+                                        <h4 class="product-name"><strong id="vEnderecoEntrg">Rua Rafael Correia Sampaio, 250 -
                                                 04457-100</strong></h4>
-                                        <h4><small>Jardim Palmares, São Paulo - SP</small></h4>
+                                        <h4><small id="vEstadoUFEntrg">Jardim Palmares, São Paulo - SP</small></h4>
                                     </div>
                                 </div>
                             </div>
@@ -146,62 +134,7 @@
             </div>
         </div>
     </div>
-    <!-- <div class="modal fade" id="viewModalPedido" tabindex="-1" aria-labelledby="viewModalPedidoLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen p-25">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title h4" id="viewModalPedidoLabel">Visualização de Dados
-                        do Produto</h5>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="row g-3">
-                        <div class="col-md-9 position-relative">
-                            <label for="vNomeProduto" class="form-label">Nome Produto</label>
-                            <input type="text" class="form-control" name="vNomeProduto" id="vNomeProduto" readonly
-                                value="">
-                        </div>
-                        <div class="col-md-3 position-relative">
-                            <label for="vQtdeProduto" class="form-label">Qtde. em
-                                Estoque</label>
-                            <input type="text" class="form-control" name="vQtdeProduto" id="vQtdeProduto" readonly
-                                value="">
-                        </div>
-                        <div class="col-md-6 position-relative">
-                            <label for="vDescricaoProduto" class="form-label">Descrição do
-                                Produto</label>
-                            <textarea type="textarea" class="form-control" name="vDescricaoProduto"
-                                id="vDescricaoProduto" readonly value=""></textarea>
-                        </div>
-                        <div class="col-md-3 position-relative">
-                            <label for="vPrecoProduto" class="form-label">Preço</label>
-                            <div class="input-group">
-                                <span class="input-group-text">R$</span>
-                                <input type="text" class="form-control money" name="vPrecoProduto" id="vPrecoProduto"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-3 position-relative">
-                            <label class="form-label" for="vAvaliacaoProduto">Avaliação</label>
-                            <input type="text" class="form-control" name="vAvaliacaoProduto" id="vAvaliacaoProduto"
-                                readonly value="">
-                        </div>
-                        <div class="mt-2">
-                            <hr>
-                            <h5>Imagens</h5>
-                        </div>
-                        <div class="row row-cols-1 row-cols-md-4 mt-3" id="vListaImagens">
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-            </div>
-        </div>
-    </div> -->
+    
 
 
 
@@ -226,9 +159,10 @@
     <!-- JS Service -->
     <script type="text/javascript" src="js/service/url.js"></script>
     <script type="text/javascript" src="js/service/storeProductService.js"></script>
-    <script type="text/javascript" src="js/service/cartService.js"></script>
+    <script type="text/javascript" src="js/service/orderService.js"></script>
     <script type="text/javascript" src="js/service/loginClientService.js"></script>
     <script>countHeaderClientData();</script>
+    <script>listClientOrders()</script>
 
 </body>
 
