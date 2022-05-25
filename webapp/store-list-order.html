@@ -49,18 +49,12 @@
                                     <h5>Valor Total: <strong>$550,00</strong></h5>
                                 </div>
                                 <div class="col-xs-2">
-                                    <!-- <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-red">
-                                            <input type="button" name="options" id="option2" autocomplete="off" data-toggle="modal" data-target="#viewModalProduto">
-                                            Detalhes
-                                        </label>
-                                    </div> -->
                                     <a class="btn btn-red" data-toggle="modal"
                                         data-target="#viewModalPedido">Detalhes</a>
                                 </div>
                             </div>
                             <hr>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -75,7 +69,8 @@
     <!-- Modal View -->
 
     <!-- The modal -->
-    <div class="modal fade" id="viewModalPedido" tabindex="-1" role="dialog" aria-labelledby="viewModalPedidoLabel" aria-hidden="true">
+    <div class="modal fade" id="viewModalPedido" tabindex="-1" role="dialog" aria-labelledby="viewModalPedidoLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,7 +80,65 @@
                     <h4 class="modal-title" id="viewModalPedidoLabel">Pedido #000001</h4>
                 </div>
                 <div class="modal-body">
-                    Modal content...
+                    <div class="row">
+                        <div class="col-md-12 order-details">
+                            <div class="section-title text-center">
+                                <h3 class="title">Seu pedido</h3>
+                            </div>
+                            <div class="order-summary">
+                                <div class="order-col">
+                                    <div><strong>PRODUTO</strong></div>
+                                    <div><strong>VALOR</strong></div>
+                                </div>
+                                <div id="lista-checkout">
+                                    <div class="order-products">
+                                        <div class="order-col">
+                                            <div>2x João</div>
+                                            <div>R$450,00</div>
+                                        </div>
+                                        <div class="order-col">
+                                            <div><strong>Frete</strong></div>
+                                            <div><strong>R$12,00</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-col">
+                                    <div><strong>TOTAL</strong></div>
+                                    <div><strong class="order-total" id="vTotalProdutos"> ----- </strong></div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="section-title">
+                                <h4 class="title"><strong>Metodo de Pagamento: Boleto</strong></h4>
+                            </div>
+                            <hr>
+                            <div class="billing-details">
+                                <div class="section-title">
+                                    <h3 class="title">Endereço de Entrega</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="product-name"><strong>Rua Rafael Correia Sampaio, 250 -
+                                                04457-100</strong></h4>
+                                        <h4><small>Jardim Palmares, São Paulo - SP</small></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="billing-details">
+                                <div class="section-title">
+                                    <h3 class="title">Endereço de Faturamento</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="product-name"><strong>Rua Rafael Correia Sampaio, 250 -
+                                                04457-100</strong></h4>
+                                        <h4><small>Jardim Palmares, São Paulo - SP</small></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-red" data-dismiss="modal">Fechar</button>
@@ -174,6 +227,8 @@
     <script type="text/javascript" src="js/service/url.js"></script>
     <script type="text/javascript" src="js/service/storeProductService.js"></script>
     <script type="text/javascript" src="js/service/cartService.js"></script>
+    <script type="text/javascript" src="js/service/loginClientService.js"></script>
+    <script>countHeaderClientData();</script>
 
 </body>
 

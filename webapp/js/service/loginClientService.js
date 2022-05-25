@@ -48,6 +48,12 @@ function loadNavData() {
     }
 }
 
+function ocultaFrete (){
+    if (localStorage.getItem("accessClient") === "true") {
+        document.getElementById("ocultaFrete").innerHTML = ``
+    }
+}
+
 function postLogin(success, error, dado) {
     $.ajax({
         url: urlPrincipal + urlLoginClient,

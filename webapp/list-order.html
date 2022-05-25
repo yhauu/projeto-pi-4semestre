@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <link rel="stylesheet" href="css/dashboardkit/style.css" id="main-style-link">
+    <!-- Favicon icon -->
+    <link rel="icon" href="/img/dashboardkit/image/favicon.svg" type="image/x-icon">
+
+    <!-- font css -->
+    <link rel="stylesheet" href="fonts/dashboardkit/feather.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/fontawesome.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/material.css">
+
+    <!-- jquery -->
+    <link rel="stylesheet" href="css/jquery/jquery.dataTables.min.css">
+
+    <!-- main styles -->
+    <link rel="stylesheet" href="css/mainStyles.css">
+
+    <title>Pedidos Realizados</title>
+
+</head>
+
+<body onload="countHeaderUserData()">
+    <div data-include="pre-loader"></div>
+    <div data-include="mobile-header"></div>
+    <div data-include="navigation-menu"></div>
+    <div data-include="header"></div>
+
+    <!-- Conteudo da Página -->
+    <div class="pc-container">
+        <div class="pcoded-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pedidos Realizados</h3>
+                        </div>
+                        <div class="card-body table-border-style">                            
+                            <div class="table-responsive">
+                                <table class="display table table-hover table-striped pt-2" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Data</th>
+                                            <th>Valor Total</th>
+                                            <th>Status</th>
+                                            <th>Funções</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listaPedido">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>20/09/2022</td>
+                                            <td>R$14,00</td>
+                                            <td>Em Análise</td>
+                                            <td>                                                
+                                                <a class="btn btn-sm btn-icon btn-warning"
+                                                    title="Alterar" onclick="telaUpdate(1)"
+                                                    id="btnEdit">
+                                                    <i class="material-icons-two-tone">edit</i></a>                            
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Common JS Function-->
+    <!-- Dashborad Kit-->
+    <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/plugins/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/plugins/feather.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/pcoded.min.js"></script>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
+
+    <!-- JS Main Functions -->
+    <script type="text/javascript" src="js/mainFunction.js"></script>
+
+    <!-- JS Service -->
+    <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/orderService.js"></script>
+    <script type="text/javascript" src="js/service/loginUserSevice.js"></script>
+    <script>listProduct();</script>
+
+    <!-- DataTable -->
+    <script>countDataTable();</script>
+
+</html>

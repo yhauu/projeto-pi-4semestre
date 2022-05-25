@@ -224,6 +224,7 @@ function disableUser(id) {
     disable(success, error, id)
 }
 
+
 function disable(success, error, id) {
     $.ajax({
         url: urlPrincipal + urlUsuario + `/${id}/status`,
@@ -269,7 +270,7 @@ function update(success, error, dado, id) {
 
 function findOne(success, error, id) {
     $.ajax({
-        url: urlPrincipal + urlUsuario + `/${id}`,
+        url: urlPrincipal + urlClient + `/${id}`,
         contentType: 'application/json',
         type: 'GET',
         success,

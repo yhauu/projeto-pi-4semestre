@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+    <link rel="stylesheet" href="css/dashboardkit/style.css" id="main-style-link">
+    <!-- Favicon icon -->
+    <link rel="icon" href="/img/dashboardkit/image/favicon.svg" type="image/x-icon">
+
+    <!-- font css -->
+    <link rel="stylesheet" href="fonts/dashboardkit/feather.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/fontawesome.css">
+    <link rel="stylesheet" href="fonts/dashboardkit/material.css">
+
+    <!-- jquery -->
+    <link rel="stylesheet" href="css/jquery/jquery.dataTables.min.css">
+
+    <!-- main styles -->
+    <link rel="stylesheet" href="css/mainStyles.css">
+
+    <title>Status do Pedido</title>
+
+</head>
+
+<body onload="countHeaderUserData()">
+    <div data-include="pre-loader"></div>
+    <div data-include="mobile-header"></div>
+    <div data-include="navigation-menu"></div>
+    <div data-include="header"></div>
+
+    <!-- Conteudo da Página -->
+    <div class="pc-container">
+        <div class="pcoded-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Status do Pedido</h3>
+                        </div>
+                        <div class="card-body table-border-style">
+                            <a href="list-order.html" class="btn btn-primary" ><- Voltar</a>
+                            <form class="row g-3 mt-3" onsubmit="saveOrder(event)">
+                                <div class="col-md-2 position-relative">
+                                    <label for="cNomePedido" class="form-label">ID</label>
+                                    <input type="text" class="form-control" name="cNomePedido" id="cNomePedido" readonly>
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <div class="form-group">
+                                        <label class="form-label" for="cStatusPedido">Status</label>
+                                        <select class="form-control" name="cStatusPedido" id="cStatusPedido" >
+                                            <option value="AGUARDANDO PAGAMENTO">AGUARDANDO PAGAMENTO</option>
+                                            <option value="PAGAMENTO REJEITADO">PAGAMENTO REJEITADO</option>
+                                            <option value="PAGAMENTO COM SUCESSO">PAGAMENTO COM SUCESSO</option>
+                                            <option value="AGUARDANDO RETIRADA">AGUARDANDO RETIRADA</option>
+                                            <option value="EM TRANSITO">EM TRÂNSITO</option>
+                                            <option value="ENTREGUE">ENTREGUE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cDataPedido" class="form-label">Data</label>
+                                    <input type="text" class="form-control" name="cDataPedido" id="cDataPedido" readonly>
+                                </div>
+                                <div class="col-md-3 position-relative">
+                                    <label for="cTotalPedido" class="form-label">Valor Total</label>
+                                    <input type="text" class="form-control cpf" name="cTotalPedido" id="cTotalPedido" readonly>
+                                </div>                       
+                                <div class="col-12">
+                                    <button class="btn btn-success float-right">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Import Common JS Function-->
+    <!-- Dashborad Kit-->
+    <script type="text/javascript" src="js/dashboardkit/vendor-all.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/plugins/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/plugins/feather.min.js"></script>
+    <script type="text/javascript" src="js/dashboardkit/pcoded.min.js"></script>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="js/jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.maskPlugin.min.js"></script>
+
+    <!-- JS Main Functions -->
+    <script type="text/javascript" src="js/mainFunction.js"></script>
+
+    <!-- JS Service -->
+    <script type="text/javascript" src="js/service/url.js"></script>
+    <script type="text/javascript" src="js/service/loginUserSevice.js"></script>
+    <script type="text/javascript" src="js/service/orderService.js"></script>
+    <script>verificaIdUrl();</script>
+
+    <!-- <script>verifyUserUpdate();</script> -->
+
+</body>
+
+</html>
