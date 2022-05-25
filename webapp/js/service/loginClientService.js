@@ -34,20 +34,15 @@ function logoofClient() {
 
 async function countHeaderClientData() {
     await sleep(500);
-    loadHeaderData();
     loadNavData();
 }
 
-function loadHeaderData() {
-    document.getElementById("previewClientEmail").insertAdjacentHTML('afterbegin', localStorage.getItem("email"))
-    document.getElementById("previewClientProfile").insertAdjacentHTML('afterbegin', localStorage.getItem("profile"))
-}
 
 function loadNavData() {
     if (localStorage.getItem("accessClient") === "true") {
         document.getElementById("navItem").innerHTML = `
-        				<li><a href="login-client.html"><i class="fa fa-list"></i>Meus Pedidos</a></li>
-                        <li><a href="register-client.html"><i class="fa fa-user-o"></i>Meu Perfil</a></li>
+        				<li><a href="store-list-order.html"><i class="fa fa-list"></i>Meus Pedidos</a></li>
+                        <li><a href="update-client.html"><i class="fa fa-user-o"></i>Meu Perfil</a></li>
                         <li><a href="login-client.html" onclick="logoofClient()"><i class="fa fa-sign-out"></i>Logoof</a></li>
                     `
     }
