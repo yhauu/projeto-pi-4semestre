@@ -33,10 +33,10 @@ public class SaleItensService {
     }
 
     public void create(List<ProductDto> listProductDto, long saleId) throws BadRequestException {
-        SaleItens saleItens = new SaleItens();
-
         for (ProductDto productDto : listProductDto) {
-            Product product = productService.findProduct(productDto.getId());
+            SaleItens saleItens = new SaleItens();
+            Product product = new Product();
+            product = productService.findProduct(productDto.getId());
 
             saleItens.setSaleId(saleId);
             saleItens.setProductId(productDto.getId());
@@ -44,9 +44,8 @@ public class SaleItensService {
             saleItens.setUnitPrice(product.getPrice());
 
             productService.updateProductQuantity(productDto.getId(), productDto.getQtd());
+            saleItensRepository.save(saleItens);
         }
-
-        saleItensRepository.save(saleItens);
     }
 
     public List<SaleItens> findSaleItensBySaleId(long saleId) throws NotFoundException {
