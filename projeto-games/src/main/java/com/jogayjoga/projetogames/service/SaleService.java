@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.jogayjoga.projetogames.dto.AddressDto;
 import com.jogayjoga.projetogames.dto.CartDto;
 import com.jogayjoga.projetogames.dto.ProductSaleDto;
 import com.jogayjoga.projetogames.dto.SaleFinalize;
@@ -13,6 +14,7 @@ import com.jogayjoga.projetogames.dto.SaleResponseDto;
 import com.jogayjoga.projetogames.dto.SaleStatusDto;
 import com.jogayjoga.projetogames.exceptionhandler.BadRequestException;
 import com.jogayjoga.projetogames.exceptionhandler.NotFoundException;
+import com.jogayjoga.projetogames.model.Address;
 import com.jogayjoga.projetogames.model.Sale;
 import com.jogayjoga.projetogames.model.SaleItens;
 import com.jogayjoga.projetogames.repository.SaleRepository;
@@ -98,6 +100,8 @@ public class SaleService {
     public SaleResponseDto getSale(long saleId) {
         List<ProductSaleDto> listProductSaleDto = new ArrayList<>();
         SaleResponseDto saleResponseDto = new SaleResponseDto();
+        AddressDto deliveryAddressDto = new AddressDto();
+        AddressDto billingAddressDto = new AddressDto();
 
         Sale sale = findOne(saleId);
         List<SaleItens> listSaleItens = saleItensService.findSaleItensBySaleId(sale.getId());
@@ -113,11 +117,35 @@ public class SaleService {
             listProductSaleDto.add(productSaleDto);
         }
 
+        Address deliveryAddress =  addressService.findAddress(sale.getDeliveryAddressId());
+        deliveryAddressDto.setId(deliveryAddress.getId());
+        deliveryAddressDto.setZipCode(deliveryAddress.getZipCode());
+        deliveryAddressDto.setAddress(deliveryAddress.getAddress());
+        deliveryAddressDto.setDistrict(deliveryAddress.getDistrict());
+        deliveryAddressDto.setNumberAddress(deliveryAddress.getNumberAddress());
+        deliveryAddressDto.setCity(deliveryAddress.getCity());
+        deliveryAddressDto.setUf(deliveryAddress.getUf());
+        deliveryAddressDto.setBillingAdrress(deliveryAddress.isBillingAdrress());
+        deliveryAddressDto.setDeliveryAddress(deliveryAddress.isDeliveryAddress());
+        deliveryAddressDto.setIdClient(deliveryAddress.getClient().getId());
+
+        Address billingAddress = addressService.findAddress(sale.getBillingAdrressId());
+        billingAddressDto.setId(billingAddress.getId());
+        billingAddressDto.setZipCode(billingAddress.getZipCode());
+        billingAddressDto.setAddress(billingAddress.getAddress());
+        billingAddressDto.setDistrict(billingAddress.getDistrict());
+        billingAddressDto.setNumberAddress(billingAddress.getNumberAddress());
+        billingAddressDto.setCity(billingAddress.getCity());
+        billingAddressDto.setUf(billingAddress.getUf());
+        billingAddressDto.setBillingAdrress(billingAddress.isBillingAdrress());
+        billingAddressDto.setDeliveryAddress(billingAddress.isDeliveryAddress());
+        billingAddressDto.setIdClient(billingAddress.getClient().getId());
+
         saleResponseDto.setListProducts(listProductSaleDto);
         saleResponseDto.setFee(sale.getFee());
         saleResponseDto.setTotalSaleAmount(sale.getTotalSaleAmount());
-        saleResponseDto.setDeliveryAddress(addressService.findAddress(sale.getDeliveryAddressId()));
-        saleResponseDto.setBillingAdrress(addressService.findAddress(sale.getBillingAdrressId()));
+        saleResponseDto.setDeliveryAddress(deliveryAddressDto);
+        saleResponseDto.setBillingAdrress(billingAddressDto);
         saleResponseDto.setPaymentMethods(sale.getPaymentMethods());
 
         return saleResponseDto;

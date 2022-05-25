@@ -2,7 +2,6 @@ package com.jogayjoga.projetogames.dto;
 
 import java.util.List;
 
-import com.jogayjoga.projetogames.model.Address;
 import com.jogayjoga.projetogames.util.PaymentMethods;
 
 import lombok.AllArgsConstructor;
@@ -22,9 +21,9 @@ public class SaleResponseDto {
 
     private Double totalSaleAmount;
 
-    private Address deliveryAddress;
+    private AddressDto deliveryAddress;
 
-    private Address billingAdrress;
+    private AddressDto billingAdrress;
 
     private PaymentMethods paymentMethods;
 }
