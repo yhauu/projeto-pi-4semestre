@@ -1,4 +1,4 @@
-function checkout(metodoPagamento) {
+function checkout() {
 
     let frete = parseFloat(localStorage.getItem("frete"))
     let valTotal = calcSubtotalCarrinho() + frete
@@ -6,6 +6,7 @@ function checkout(metodoPagamento) {
     let idCliente = parseInt(localStorage.getItem("idClient"))
     let endEntrega = parseInt(localStorage.getItem("endEntrega"))
     let endFatura = parseInt(localStorage.getItem("endFatura"))
+    let metodoPagamento = localStorage.getItem("pagamento")
 
     // let listaAux = []
     // let count = 0
@@ -16,7 +17,7 @@ function checkout(metodoPagamento) {
 
 
 
-    if (metodoPagamento === "BOLETO" || metodoPagamento === "CARTAO_CREDITO") {
+    // if (metodoPagamento === "BOLETO" || metodoPagamento === "CARTAO_CREDITO") {
         let dado = {
             fee: frete,
             totalSaleAmount: valTotal,
@@ -40,22 +41,27 @@ function checkout(metodoPagamento) {
         }
 
         postCheckout(success, error, dado)
-    }
+    // }
 }
 
-function validaPagamento() {
-    let inputBoleto = document.getElementById("payment-1")
-    let inputCartao = document.getElementById("payment-2")
-
-    if (inputBoleto.checked === true) {
-        checkout(inputBoleto.value)
-    } else if (inputCartao.checked === true) {
-        checkout(inputCartao.value)
-    } else {
-        alert("Selecione o método de pagamento!!")
-        checkout(null)
-    }
+function listPayment () {
+    console.log()
+    document.getElementById("metodoPagemento").innerHTML = localStorage.getItem("pagamento") === "BOLETO" ? "Boleto" : "Cartão de Crédito"
 }
+
+// function validaPagamento() {
+//     let inputBoleto = document.getElementById("payment-1")
+//     let inputCartao = document.getElementById("payment-2")
+
+//     if (inputBoleto.checked === true) {
+//         checkout(inputBoleto.value)
+//     } else if (inputCartao.checked === true) {
+//         checkout(inputCartao.value)
+//     } else {
+//         alert("Selecione o método de pagamento!!")
+//         checkout(null)
+//     }
+// }
 
 function listClientAddressCheckout() {
     let idCliente = parseInt(localStorage.getItem("idClient"))
@@ -72,8 +78,8 @@ function listClientAddressCheckout() {
                                 </div>
                                 <div class="col-xs-2">
                                     <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-danger">
-                                            <input type="radio" name="options" id="option2" autocomplete="off">
+                                        <label class="btn btn-danger" onclick="selectAddress(${data.address[0].id})">
+                                            <input type="radio" name="options" id="option2" autocomplete="off" ">
                                             <i class="fa fa-check"></i>
                                         </label>
                                     </div>
@@ -81,7 +87,7 @@ function listClientAddressCheckout() {
                             </div>
                             <hr>`
 
-        document.getElementById("lista-faturamento").innerHTML += `
+        document.getElementById("lista-entrega").innerHTML += `
                             <div class="row">
                                 <div class="col-xs-10">
                                     <h4 class="product-name"><strong>${data.address[1].address}, ${data.address[1].numberAddress} -
@@ -90,7 +96,7 @@ function listClientAddressCheckout() {
                                 </div>
                                 <div class="col-xs-2">
                                     <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-danger">
+                                        <label class="btn btn-danger" onclick="selectAddress(${data.address[1].id})">
                                             <input type="radio" name="options" id="option2" autocomplete="off">
                                             <i class="fa fa-check"></i>
                                         </label>
@@ -99,8 +105,9 @@ function listClientAddressCheckout() {
                             </div>
                             <hr>`
 
-        localStorage.setItem("endEntrega", data.address[0].id)
+        
         localStorage.setItem("endFatura", data.address[1].id)
+
     }
 
     let error = function (err) {
@@ -109,6 +116,15 @@ function listClientAddressCheckout() {
 
     findOneClient(success, error, idCliente)
 
+}
+
+function selectAddress (id) {
+    console.log(id)
+    localStorage.setItem("endEntrega", id)
+}
+
+function selectPayment (metodo) {
+    localStorage.setItem("pagamento", metodo)
 }
 
 function postCheckout(success, error, dado) {

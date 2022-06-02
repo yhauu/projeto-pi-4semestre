@@ -32,14 +32,13 @@
             <!-- row -->
             <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="panel panel-black ">
                         <div class="panel-heading ">
                             <div class="panel-title">
                                 <div class="row">
                                     <div class="col-xs-9">
-                                        <h4 class="font-color-white"><i class="fa fa-home"></i> Escolha o endereço de
-                                            entrega
+                                        <h4 class="font-color-white"><i class="fa fa-home"></i> Escolha o Endereço de Entrega
                                         </h4>
                                     </div>
                                 </div>
@@ -51,22 +50,102 @@
                     </div>
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="panel panel-black ">
                         <div class="panel-heading ">
                             <div class="panel-title">
                                 <div class="row">
                                     <div class="col-xs-9">
-                                        <h4 class="font-color-white"><i class="fa fa-money"></i> Escolha o endereço de
-                                            faturamento
+                                        <h4 class="font-color-white"><i class="fa fa-money"></i> Metodo de Pagamento
                                         </h4>
+                                        
                                     </div>
+                                    
 
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-body" id="lista-faturamento">
-                            
+                        <div class="panel-body" id="lista-faturamento" style="min-height: 23rem;">
+                            <form class="payment-method">
+                                <div class="input-radio">
+                                    <input type="radio" name="payment" id="payment-1" required value="BOLETO">
+                                    <label for="payment-1" onclick="selectPayment('BOLETO')">
+                                        <span></span>
+                                        Boleto
+                                    </label>
+        
+                                </div>
+                                <div class="input-radio">
+                                    <input type="radio" name="payment" id="payment-2" value="CARTAO_CREDITO">
+                                    <label for="payment-2" onclick="selectPayment('CARTAO_CREDITO')">
+                                        <span></span>
+                                        Cartão de Crédito
+                                    </label>
+                                    <div class="caption">
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <!-- <span class="input-group-addon" id=""><i class="fa fa-check"></i></span> -->
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" id=""><i
+                                                                    class="fa fa-credit-card"></i></span>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Número do Cartão" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" id=""><i
+                                                                    class="fa fa-address-card"></i></span>
+                                                            <input type="text" class="form-control" placeholder="Nome Completo"
+                                                                aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" id=""><i
+                                                                    class="fa fa-lock"></i></span>
+                                                            <input type="text" class="form-control" placeholder="CVV"
+                                                                aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" id=""><i
+                                                                    class="fa fa-calendar"></i></span>
+                                                            <input type="date" class="form-control"
+                                                                aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon" id=""><i
+                                                                    class="fa fa-calculator"></i></span>
+                                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                                <option value="">Parcelamento</option>
+                                                                <option value="1x sem juros">1x sem juros</option>
+                                                                <option value="2x sem juros">2x sem juros</option>
+                                                                <option value="3x sem juros">3x sem juros</option>
+                                                                <option value="4x sem juros">4x sem juros</option>
+                                                                <option value="5x sem juros">5x sem juros</option>
+                                                                <option value="6x sem juros">6x sem juros</option>
+                                                                <option value="7x sem juros">7x sem juros</option>
+                                                                <option value="8x sem juros">8x sem juros</option>
+                                                                <option value="9x sem juros">9x sem juros</option>
+                                                                <option value="10x sem juros">10x sem juros</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+        
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </form>
 
                         </div>
 
@@ -91,13 +170,13 @@
                             <label for="inputUsernameEmail">Escolha o Tipo de Entrega: </label>
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-default" onclick="somaTotalFrete(8.00)">
-                                    <input type="radio" value="8.0" /> Econômica: R$8,00
+                                    <input type="radio" value="8.0" /> Econômica - 10 dias: R$8,00
                                 </label>
                                 <label class="btn btn-default" onclick="somaTotalFrete(12.50)">
-                                    <input type="radio" value="12.5" /> Rápida: R$12,50
+                                    <input type="radio" value="12.5" /> Rápida - 2 dias: R$12,50
                                 </label>
                                 <label class="btn btn-default" onclick="somaTotalFrete(20.00)">
-                                    <input type="radio" value="20.0" /> Agendada: R$20,00
+                                    <input type="radio" value="20.0" /> Agendada - Mais de 30 dias: R$20,00
                                 </label>
                             </div>
                         </div>
