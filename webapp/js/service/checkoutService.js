@@ -105,7 +105,7 @@ function listClientAddressCheckout() {
                             </div>
                             <hr>`
 
-        
+        localStorage.setItem("endEntrega", data.address[0].id)
         localStorage.setItem("endFatura", data.address[1].id)
 
     }

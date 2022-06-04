@@ -12,10 +12,10 @@ function loginClient(event) {
     console.log(data);
 
     let success = function (data) {
-        window.location = "index.html"
         localStorage.setItem("accessClient", true)
         localStorage.setItem("idClient", data.id)
         localStorage.setItem("emailClient", data.email)
+        verAcesso()
     }
 
     let error = function (err) {
@@ -26,9 +26,23 @@ function loginClient(event) {
     postLogin(success, error, data)
 }
 
+function verAcesso() {
+    let acesso = localStorage.getItem("processo-compra")
+
+    console.log(acesso)
+    
+
+    if(acesso === "true") {
+        window.location.href = "select-address.html"
+        localStorage.setItem("processo-compra", false)
+    } else {        
+        window.location.href = "index.html"
+    }
+}
+
 function logoofClient() {
     localStorage.setItem("accessClient", false);
-    window.location.href = "login-client.html"
+    
 }
 
 

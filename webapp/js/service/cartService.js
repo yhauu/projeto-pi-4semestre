@@ -212,6 +212,18 @@ function somaTotalFrete (valorFrete) {
     document.getElementById("vSubTotalProdutosFrete").innerText = "R$" + formataStringMoneyToFrontend(calcSubtotalCarrinho() + valorFrete)
 }
 
+function verificarAcesso(){
+    let acesso = localStorage.getItem("accessClient")
+    
+
+    if(acesso === "true") {
+        window.location.href = "select-address.html"
+    } else {
+        localStorage.setItem("processo-compra", true)
+        window.location.href = "login-client.html"
+    }
+}
+
 function findOneProduct(success, error, id) {
     $.ajax({
         url: urlPrincipal + urlProduto + `/${id}`,

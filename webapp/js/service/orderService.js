@@ -2,13 +2,14 @@ function listClientOrders() {
     let idCliente = parseInt(localStorage.getItem("idClient"))
 
     let success = function (data) {
+        console.log(data)
 
         data.forEach(element => {
             document.getElementById("lista-pedidos-cliente").innerHTML += `<div class="row">
                 <div class="col-xs-10">
                     <h4 class="product-name"><strong>Pedido #${element.id}</strong></h4>
                     <h5><strong>Status do Pedido: ${element.status}</strong></h5>
-                    <h5><strong>Data: 23/05/2022</strong></h5>
+                    <h5><strong>Data: ${FormataStringDataToFrontend(element.saleDate)}</strong></h5>
                     <h5>Valor Total: <strong>R$${formataStringMoneyToFrontend(element.totalSaleAmount)}</strong></h5>
                 </div>
                 <div class="col-xs-2">
