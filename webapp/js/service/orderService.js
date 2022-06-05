@@ -40,8 +40,7 @@ function listOneOrder(idOrder) {
         document.getElementById("vMetodoPag").innerText = "Metodo de Pagamento: " + data.paymentMethods
         document.getElementById("vEnderecoEntrg").innerText = data.deliveryAddress.address + ", " + data.deliveryAddress.numberAddress + " - " + data.deliveryAddress.zipCode
         document.getElementById("vEstadoUFEntrg").innerText = data.deliveryAddress.district + ", " + data.deliveryAddress.city + " - " + data.deliveryAddress.uf
-        document.getElementById("vEnderecoFatura").innerText = data.billingAdrress.address + ", " + data.billingAdrress.numberAddress + " - " + data.billingAdrress.zipCode
-        document.getElementById("vEstadoUFFatura").innerText = data.billingAdrress.district + ", " + data.billingAdrress.city + " - " + data.billingAdrress.uf
+        
         data.listProducts.forEach(element => {
             document.getElementById("lista-produtos").innerHTML += `<div class="order-col">
                                             <div>${element.qtd}x ${element.name}</div>

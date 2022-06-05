@@ -9,8 +9,14 @@ $(function () {
 
 // Function DataTable
 async function countDataTable(){
-    await sleep(100);
+    await sleep(200);
     startDataTable();
+}
+
+// Function DataTable
+async function countSlickCarrossel(){
+    await sleep(200);
+    ativaCarrosel();
 }
 
 
@@ -43,6 +49,8 @@ function startDataTable() {
         }
     });
 }
+
+
 
 // Jquery Mask
 $(document).ready(function () {
