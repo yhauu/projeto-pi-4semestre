@@ -124,8 +124,17 @@ function loadOrder (idOrder){
 
 function saveOrder(event) {
     event.preventDefault()
-    document.getElementById("cStatusPedido").value 
-    document.getElementById("cStatusPedido").value 
+    let idOrder = document.getElementById("cIDPedido").value 
+    let statusOrder = document.getElementById("cStatusPedido").value
+    
+
+    let data = {
+        id: idOrder,
+        status: statusOrder.replace(' ', '_')
+        
+    }
+    console.log(data)
+    
 }
 
 
@@ -173,6 +182,18 @@ function findAllOrder(success, error) {
         url: urlPrincipal + urlSales,
         contentType: 'application/json',
         type: 'GET',
+        success,
+        error,
+    })
+}
+
+function updateOrder(success, error, dado, id) {
+    console.log(dado)
+    $.ajax({
+        url: urlPrincipal + urlSales + `/${id}/update`,
+        contentType: 'application/json',
+        type: 'PUT',
+        data: JSON.stringify(dado),
         success,
         error,
     })
