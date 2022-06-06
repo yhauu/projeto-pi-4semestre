@@ -4,11 +4,28 @@ function listClientOrders() {
     let success = function (data) {
         console.log(data)
 
+
+
         data.forEach(element => {
+            let status
+            if (data.status == "AGUARDANDO_PAGAMENTO") {
+                status = "Aguardando Pagamento"
+            } else if (element.status == "PAGAMENTO_REJEITADO") {
+                status = "Pagamento Rejeitado"
+            } else if (element.status == "PAGAMENTO_SUCESSO") {
+                status = "Pagamento com Sucesso"
+            } else if (element.status == "AGUARDANDO_RETIRADA") {
+                status = "Aguardando Retirada"
+            } else if (element.status == "EM_TRANSITO") {
+                status = "Em Trânsito"
+            } else if (element.status == "ENTREGUE") {
+                status = "Entregue"
+            }
+
             document.getElementById("lista-pedidos-cliente").innerHTML += `<div class="row">
                 <div class="col-xs-10">
                     <h4 class="product-name"><strong>Pedido #${element.id}</strong></h4>
-                    <h5><strong>Status do Pedido: ${element.status}</strong></h5>
+                    <h5><strong>Status do Pedido: ${status}</strong></h5>
                     <h5><strong>Data: ${FormataStringDataToFrontend(element.saleDate)}</strong></h5>
                     <h5>Valor Total: <strong>R$${formataStringMoneyToFrontend(element.totalSaleAmount)}</strong></h5>
                 </div>
@@ -40,7 +57,7 @@ function listOneOrder(idOrder) {
         document.getElementById("vMetodoPag").innerText = "Metodo de Pagamento: " + data.paymentMethods
         document.getElementById("vEnderecoEntrg").innerText = data.deliveryAddress.address + ", " + data.deliveryAddress.numberAddress + " - " + data.deliveryAddress.zipCode
         document.getElementById("vEstadoUFEntrg").innerText = data.deliveryAddress.district + ", " + data.deliveryAddress.city + " - " + data.deliveryAddress.uf
-        
+
         data.listProducts.forEach(element => {
             document.getElementById("lista-produtos").innerHTML += `<div class="order-col">
                                             <div>${element.qtd}x ${element.name}</div>
@@ -105,12 +122,12 @@ function listOrder() {
     findAllOrder(success, error)
 }
 
-function loadOrder (idOrder){
+function loadOrder(idOrder) {
     console.log(idOrder)
     let success = function (data) {
         console.log(data)
         document.getElementById("cIDPedido").value = idOrder
-        // document.getElementById("cStatusPedido").value = 
+        document.getElementById("cStatusPedido").value = data.status
         document.getElementById("cDataPedido").value = FormataStringDataToFrontend(data.saleDate)
         document.getElementById("cTotalPedido").value = formataStringMoneyToFrontend(data.totalSaleAmount)
     }
@@ -124,17 +141,26 @@ function loadOrder (idOrder){
 
 function saveOrder(event) {
     event.preventDefault()
-    let idOrder = document.getElementById("cIDPedido").value 
+    let idOrder = document.getElementById("cIDPedido").value
     let statusOrder = document.getElementById("cStatusPedido").value
-    
 
-    let data = {
+
+    let dado = {
         id: idOrder,
-        status: statusOrder.replace(' ', '_')
-        
+        saleStatus: statusOrder
     }
-    console.log(data)
-    
+
+    let success = function (data) {
+        alert("Status do Pedido Alterado!")
+        window.location = "register-order.html?id=" + id;
+    }
+
+    let error = function (err) {
+        console.log(err.responseJSON)
+    }
+
+    updateOrder(success, error, dado, idOrder)
+
 }
 
 
@@ -190,7 +216,7 @@ function findAllOrder(success, error) {
 function updateOrder(success, error, dado, id) {
     console.log(dado)
     $.ajax({
-        url: urlPrincipal + urlSales + `/${id}/update`,
+        url: urlPrincipal + urlSales + `/${id}/status`,
         contentType: 'application/json',
         type: 'PUT',
         data: JSON.stringify(dado),
