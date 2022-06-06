@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.jogayjoga.projetogames.util.PaymentMethods;
+import com.jogayjoga.projetogames.util.SaleStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,4 +30,6 @@ public class SaleResponseDto {
     private PaymentMethods paymentMethods;
 
     private LocalDateTime saleDate;
+
+    private SaleStatus status;
 }
