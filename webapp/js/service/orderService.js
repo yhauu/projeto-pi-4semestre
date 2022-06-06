@@ -8,7 +8,7 @@ function listClientOrders() {
 
         data.forEach(element => {
             let status
-            if (data.status == "AGUARDANDO_PAGAMENTO") {
+            if (element.status == "AGUARDANDO_PAGAMENTO") {
                 status = "Aguardando Pagamento"
             } else if (element.status == "PAGAMENTO_REJEITADO") {
                 status = "Pagamento Rejeitado"

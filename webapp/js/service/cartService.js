@@ -64,7 +64,7 @@ function listCart() {
     listaProdutos.forEach(element => {
         listaCarrinho.innerHTML += `<div id="itemId${element.id}">
                                         <div class="row">
-                                            <div class="col-xs-2"><img class="img-responsive" style="max-height: 90px" src="../projeto-games/${element.image}">
+                                            <div class="col-xs-2"><img class="img-responsive" style="max-height: 90px" src="../${element.image}">
                                             </div>
                                             <div class="col-xs-4">
                                                 <h4 class="product-name"><strong>${element.name}</strong></h4>
