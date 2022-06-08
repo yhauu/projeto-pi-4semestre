@@ -36,6 +36,30 @@ function loadClient() {
     findOneClient(success, error, idClient);
 }
 
+// function listAddress() {
+//     let listAddress = document.getElementById("listaClient")
+
+
+//     let success = function (data) {
+
+//         data.forEach(element => {
+//             //console.log(element)
+//             listaClient.innerHTML += `
+//                     <li><a href="#">${element.id}</a></li>
+//                     <li><a href="#">${element.id}</a></li>
+//                     <li><a href="#">${element.id}</a></li>
+//                     <li><a href="#">${element.id}</a></li>
+//                 `
+//         })
+//     }
+
+//     let error = function (err) {
+
+//     }
+
+//     findAllAddress(success, error, idClient)
+
+// }
 
 function saveUpdate() {
     let cNomeCliente = document.getElementById("cNomeCliente3").value;
@@ -143,6 +167,15 @@ function findOneClient(success, error, idClient) {
         error,
     })
 }
+// function findAllAddress(success, error, idClient) {
+//     $.ajax({
+//         url: urlPrincipal + urlClient + `/${idClient}/address`,
+//         contentType: 'application/json',
+//         type: 'GET',
+//         success,
+//         error,
+//     })
+// }
 
 function resetPassword(success, error, data, idClient) {
     $.ajax({
