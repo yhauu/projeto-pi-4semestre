@@ -25,7 +25,9 @@ function loginUser(event) {
 }
 
 function logoofUser() {
-    localStorage.clear();
+    localStorage.setItem("accessBackoffice", false)
+    localStorage.setItem("emailBackoffice", null)
+    localStorage.setItem("profileBackoffice", null)
     window.location.href = "login-user.html"
 }
 
@@ -37,18 +39,18 @@ async function countHeaderUserData() {
 }
 
 function loadHeaderData() {
-    document.getElementById("previewUserEmail").insertAdjacentHTML('afterbegin', localStorage.getItem("email"))
-    document.getElementById("previewUserProfile").insertAdjacentHTML('afterbegin', localStorage.getItem("profile"))
+    document.getElementById("previewUserEmail").insertAdjacentHTML('afterbegin', localStorage.getItem("emailBackoffice"))
+    document.getElementById("previewUserProfile").insertAdjacentHTML('afterbegin', localStorage.getItem("profileBackoffice"))
 }
 
 function loadNavData(){
-    if(localStorage.getItem("profile") == "ESTOQUISTA") {
+    if(localStorage.getItem("profileBackoffice") == "ESTOQUISTA") {
         document.getElementById("navAdm").remove()
     }
 }
 
 // function verifyUserUpdate () {
-//     if(localStorage.getItem("profile") == "ESTOQUISTA") {
+//     if(localStorage.getItem("profileBackoffice") == "ESTOQUISTA") {
 //         console.log()
 //     }
 // }

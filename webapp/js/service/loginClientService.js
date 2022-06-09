@@ -42,7 +42,9 @@ function verAcesso() {
 
 function logoofClient() {
     localStorage.setItem("accessClient", false);
-    
+    localStorage.setItem("idClient", null)
+    localStorage.setItem("emailClient", null)
+    window.location.href = "index.html"
 }
 
 
